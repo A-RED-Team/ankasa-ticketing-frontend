@@ -1,10 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from '../pages/main/Home';
 import ScrollToTop from '../utils/ScrollToTop';
 
-import Home from '../pages/main/Home';
-
-function Router() {
+const router = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -15,6 +14,5 @@ function Router() {
       <ScrollToTop />
     </BrowserRouter>
   );
-}
-
-export default Router;
+};
+export default router;
