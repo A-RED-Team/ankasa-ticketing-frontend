@@ -1,19 +1,17 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from '../views/Login';
-import Register from '../views/Register';
+import Home from '../pages/main/Home';
+import ScrollToTop from '../utils/ScrollToTop';
 
 const router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login">
-          <Route index element={<Login />} />
-        </Route>
-        <Route path="/register">
-          <Route index element={<Register />} />
+        <Route path="/">
+          <Route index element={<Home />} />
         </Route>
       </Routes>
+      <ScrollToTop />
     </BrowserRouter>
   );
 };
