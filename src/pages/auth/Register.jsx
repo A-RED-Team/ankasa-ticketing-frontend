@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from '../assets/styles/input.module.css';
 import Plane from '../assets/images/plane.svg';
 import Icon from '../assets/images/icon.svg';
-const Login = () => {
+const Register = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   return (
     <>
@@ -165,4 +165,4 @@ const Login = () => {
     </>
   );
 };
-export default Login;
+export default Register;
