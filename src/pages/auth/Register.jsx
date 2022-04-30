@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import styles from '../assets/styles/input.module.css';
-import Plane from '../assets/images/plane.svg';
-import Icon from '../assets/images/icon.svg';
+import styles from '../../assets/styles/input.module.css';
+import Plane from '../../assets/images/plane.svg';
+import Icon from '../../assets/images/icon.svg';
 const Register = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   return (

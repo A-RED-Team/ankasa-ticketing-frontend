@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
-import styles from '../assets/styles/input.module.css';
-import Plane from '../assets/images/plane.svg';
-import Icon from '../assets/images/icon.svg';
-import Google from '../assets/images/google.svg';
-import Facebook from '../assets/images/facebook.svg';
+import styles from '../../assets/styles/input.module.css';
+import Plane from '../../assets/images/plane.svg';
+import Icon from '../../assets/images/icon.svg';
+import Google from '../../assets/images/google.svg';
+import Facebook from '../../assets/images/facebook.svg';
 const Login = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   return (
