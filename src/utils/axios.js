@@ -1,9 +1,8 @@
 import axios from 'axios';
+import { APP_STAGING, APP_DEV, APP_PROD } from '../helper/env';
 
 const axiosApiIntances = axios.create({
-  baseURL: `${
-    process.env.REACT_APP_STAGING === 'dev' ? process.env.REACT_APP_DEV : process.env.REACT_APP_PROD
-  }`
+  baseURL: `${APP_STAGING === 'dev' ? APP_DEV : APP_PROD}`
 });
 
 // Add a request interceptor
