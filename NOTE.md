@@ -1,0 +1,1 @@
+1. Migrasi folder img => images
