@@ -25,7 +25,7 @@ const router = () => {
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-          <Route path="/*" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="profile/" element={<PrivateRoute />}>
           <Route index element={<Profile />} />
@@ -33,7 +33,7 @@ const router = () => {
         <Route path="admin/" element={<PrivateRoute />}>
           <Route index element={<Dashboard />} />
           <Route path="airlines" element={<Airlines />} />
-          <Route path="admin/*" element={<NotFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
       <ScrollToTop />
