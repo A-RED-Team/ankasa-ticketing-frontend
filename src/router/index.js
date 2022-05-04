@@ -1,21 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import PrivateRoute from '../utils/privateRoute';
-import ScrollToTop from '../utils/scrollToTop';
-
-// Auth
+import Home from '../pages/main/Home';
 import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
-
-// Customer
-import Home from '../pages/customer/Home';
-import NotFound from '../pages/customer/NotFound';
 import Profile from '../pages/main/Profile';
-
-// Admin
-import Dashboard from '../pages/admin/Home';
-import NotFoundPage from '../pages/admin/NotFound';
-import Airlines from '../pages/admin/Airlines';
+import ScrollToTop from '../utils/ScrollToTop';
 
 const router = () => {
   return (
@@ -23,17 +12,15 @@ const router = () => {
       <Routes>
         <Route path="/">
           <Route index element={<Home />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="/*" element={<NotFound />} />
         </Route>
-        <Route path="profile/" element={<PrivateRoute />}>
+        <Route path="/login">
+          <Route index element={<Login />} />
+        </Route>
+        <Route path="/register">
+          <Route index element={<Register />} />
+        </Route>
+        <Route path="/profile">
           <Route index element={<Profile />} />
-        </Route>
-        <Route path="admin/" element={<PrivateRoute />}>
-          <Route index element={<Dashboard />} />
-          <Route path="airlines" element={<Airlines />} />
-          <Route path="admin/*" element={<NotFoundPage />} />
         </Route>
       </Routes>
       <ScrollToTop />
