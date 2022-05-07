@@ -11,6 +11,7 @@ import Register from '../pages/auth/Register';
 import Home from '../pages/customer/Home';
 import NotFound from '../pages/customer/NotFound';
 import Profile from '../pages/customer/Profile';
+import MyBooking from '../pages/customer/MyBooking';
 
 // Admin
 import Dashboard from '../pages/admin/Home';
@@ -29,6 +30,9 @@ const router = () => {
         </Route>
         <Route path="profile/" element={<PrivateRoute />}>
           <Route index element={<Profile />} />
+        </Route>
+        <Route path="mybooking/" element={<PrivateRoute />}>
+          <Route index element={<MyBooking />} />
         </Route>
         <Route path="admin/" element={<PrivateRoute />}>
           <Route index element={<Dashboard />} />
