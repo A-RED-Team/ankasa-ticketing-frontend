@@ -11,6 +11,7 @@ import Register from '../pages/auth/Register';
 import Home from '../pages/customer/Home';
 import NotFound from '../pages/customer/NotFound';
 import BookingDetail from '../pages/customer/BookingDetail';
+import FlightDetail from '../pages/customer/FlightDetail';
 import Profile from '../pages/main/Profile';
 
 // Admin
@@ -33,6 +34,7 @@ const router = () => {
         </Route>
         <Route path="booking/">
           <Route path="detail" element={<BookingDetail />} />
+          <Route path="add" element={<FlightDetail />} />
         </Route>
         <Route path="admin/" element={<PrivateRoute />}>
           <Route index element={<Dashboard />} />
