@@ -3,10 +3,15 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PrivateRoute from '../utils/privateRoute';
 import ScrollToTop from '../utils/scrollToTop';
 
+// Auth
+import Login from '../pages/auth/Login';
+import Register from '../pages/auth/Register';
+
 // Customer
 import Home from '../pages/customer/Home';
 import NotFound from '../pages/customer/NotFound';
 import BookingDetail from '../pages/customer/BookingDetail';
+import Profile from '../pages/main/Profile';
 
 // Admin
 import Dashboard from '../pages/admin/Home';
@@ -19,7 +24,12 @@ const router = () => {
       <Routes>
         <Route path="/">
           <Route index element={<Home />} />
-          <Route path="/*" element={<NotFound />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+        <Route path="profile/" element={<PrivateRoute />}>
+          <Route index element={<Profile />} />
         </Route>
         <Route path="booking/">
           <Route path="detail" element={<BookingDetail />} />
@@ -27,7 +37,7 @@ const router = () => {
         <Route path="admin/" element={<PrivateRoute />}>
           <Route index element={<Dashboard />} />
           <Route path="airlines" element={<Airlines />} />
-          <Route path="admin/*" element={<NotFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
       <ScrollToTop />
