@@ -11,7 +11,7 @@ import Register from '../pages/auth/Register';
 import Home from '../pages/customer/Home';
 import NotFound from '../pages/customer/NotFound';
 import BookingDetail from '../pages/customer/BookingDetail';
-import Profile from '../pages/main/Profile';
+import Profile from '../pages/customer/Profile';
 
 // Admin
 import Dashboard from '../pages/admin/Home';
