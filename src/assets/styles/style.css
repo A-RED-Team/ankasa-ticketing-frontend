@@ -1,0 +1,247 @@
+@import '@fontsource/poppins';
+
+
+/* .swiper-button-prev:disabled,
+.swiper-button-prev:hover:disabled,
+.swiper-button-next:focus:disabled {
+  background-color: #f00;
+  color: #ffffff !important;
+  border: 1px solid #ffffff;
+}
+.swiper-button-prev:hover:enabled,
+.swiper-button-next:focus:enabled {
+  background-color: #2395ff;
+  color: #ffffff !important;
+  border: 1px solid #ffffff;
+} */
+
+.trending-card-new {
+  background-image: url('../../assets/images/tokyo.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 260px;
+  width: 200px;
+  border-radius: 20px;
+  color: #fff;
+  position: relative;
+}
+.trending-card-new:hover {
+  box-shadow: 20px -20px rgba(115, 115, 115, 0.65), 40px -40px rgba(196, 196, 196, 0.65);
+  margin: 30px 0 -30px -20px;
+  transition: all 0.4s ease;
+}
+.trending-card-top {
+  background-color: rgba(255, 255, 255, 0.41);
+  border-radius: 20px;
+  font-size: 12px;
+  width: 88px;
+  height: 28px;
+}
+.trending-card-new::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+  position: absolute;
+  bottom: 0;
+  border-radius: 20px;
+}
+.trending-card-new .trending-card-city {
+  z-index: 1;
+  margin: 60% 0 0 10%;
+}
+.title-blue {
+  color: #2395ff;
+}
+.title-white {
+  color: #ffffff;
+}
+.hero-container {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+}
+.hero-section {
+  /* background-color: cadetblue; */
+  height: 130vh;
+  margin: 90px -7.5px 0 -8px;
+}
+.trending-section {
+  /* background-color: rgb(224, 174, 139); */
+  height: 70vh;
+}
+.top-destination-section {
+  /* background-color: darkkhaki; */
+  height: 100vh;
+}
+
+/* ================== HERO SECTION ============================= */
+.hero-section-left {
+  flex: 2.1;
+}
+.hero-section-right {
+  flex: 0.9;
+}
+.hero-section-text-wrapper {
+  margin: 5em 4em 5em 7.4em;
+}
+.hero-title {
+  font-size: 4rem;
+  font-weight: 600;
+  color: #414141;
+}
+.hero-subtitle {
+  color: #6b6b6b;
+}
+.vector-wrapper {
+  margin-top: 2em;
+  padding-left: 4.2em;
+}
+
+/* ================== TRENDING SECTION ============================= */
+.trending-text-container {
+  margin: 2em 8em 1em 7.4em;
+}
+.trending {
+  text-transform: uppercase;
+}
+.trending-title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  color: #000000;
+}
+.trending-view-all:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.trending-card-wrapper {
+  margin-right: 6em;
+  margin-left: 6em;
+}
+.trending-card {
+  height: 255px;
+  width: 212px;
+  background: #ffffff;
+  box-shadow: 0px 8px 27px rgba(14, 63, 108, 0.15);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.trending-card:hover {
+  cursor: pointer;
+}
+.card-img {
+  width: 180px;
+  height: 150px;
+  border-radius: 20px;
+  margin: 1em 1.1em;
+  object-fit: cover;
+}
+.card-details-container {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.card-city-name {
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 1.257em;
+  color: #000000;
+}
+.card-country-name {
+  font-size: 1.75em;
+  font-weight: 700;
+  line-height: 1em;
+  color: #000000;
+}
+.arrow-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 1em;
+  padding: 0.4em 0.5em;
+  height: 37px;
+  background: rgba(35, 149, 255, 0.1);
+  border-radius: 50%;
+}
+.arrow-icon {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+/* ================== TOP DESTINATION SECTION ============================= */
+.carousel-destination-wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.carousel-destination {
+  height: 85%;
+  width: 85%;
+  background: #2395ff;
+  /* background: url("../../assets/hero/carousel-bg.png") no-repeat; */
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.destination-text-wrapper {
+  margin-top: 4em;
+  margin-bottom: 2em;
+}
+.destination {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+}
+.destination-title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+/* custom carousel styling */
+.img-destination-wrapper {
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  padding: 0.5em;
+}
+.img-destination {
+  border-radius: 50%;
+  width: 125px;
+}
+.img-destination-caption {
+  text-transform: uppercase;
+  color: #ffffff;
+  font-size: 1.2em;
+}
+.rec.rec-arrow {
+  text-align: center;
+  font-size: 1em !important;
+  background-color: #fff;
+  color: #2395ff !important;
+  border-radius: 5px;
+}
+.rec.rec-arrow:hover:enabled,
+.rec.rec-arrow:focus:enabled {
+  background-color: #2395ff;
+  color: #ffffff !important;
+  border: 1px solid #ffffff;
+}
+.rec.rec-arrow-left {
+  position: relative;
+  left: 43%;
+  margin-top: 19em;
+}
+.rec.rec-arrow-right {
+  position: relative;
+  right: 43%;
+  margin-top: 19em;
+}
+button.rec-dot {
+  display: none;
+}

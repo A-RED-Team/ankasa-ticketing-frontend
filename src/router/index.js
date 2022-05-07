@@ -6,6 +6,7 @@ import ScrollToTop from '../utils/scrollToTop';
 // Customer
 import Home from '../pages/customer/Home';
 import NotFound from '../pages/customer/NotFound';
+import BookingDetail from '../pages/customer/BookingDetail';
 
 // Admin
 import Dashboard from '../pages/admin/Home';
@@ -19,6 +20,9 @@ const router = () => {
         <Route path="/">
           <Route index element={<Home />} />
           <Route path="/*" element={<NotFound />} />
+        </Route>
+        <Route path="booking/">
+          <Route path="detail" element={<BookingDetail />} />
         </Route>
         <Route path="admin/" element={<PrivateRoute />}>
           <Route index element={<Dashboard />} />
