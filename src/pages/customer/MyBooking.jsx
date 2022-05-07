@@ -2,8 +2,10 @@ import React from 'react';
 
 import Navbar from '../../components/customer/Navbar';
 import Footer from '../../components/customer/Footer';
-import style from '../../assets/styles/input.module.css';
-const Profile = () => {
+
+import Flight from '../../assets/images/flightIcon.svg';
+
+const MyBooking = () => {
   return (
     <>
       <Navbar />
@@ -217,11 +219,12 @@ const Profile = () => {
           style={{
             width: '70%',
             height: '100%',
-            display: 'flex'
+            display: 'flex',
+            flexDirection: 'column'
           }}>
           <div
             style={{
-              height: '75%',
+              height: '13%',
               width: '95%',
               border: 'none',
               borderRadius: '15px',
@@ -229,7 +232,8 @@ const Profile = () => {
               marginTop: '35px',
               display: 'flex',
               flexDirection: 'column',
-              padding: '30px 25px'
+              padding: '30px 25px',
+              marginBottom: '25px'
             }}>
             <small
               style={{
@@ -238,143 +242,147 @@ const Profile = () => {
                 fontWeight: '500',
                 marginBottom: '7px'
               }}>
-              PROFILE
+              MY BOOKING
             </small>
-            <h4 style={{ fontWeight: '600', marginBottom: '30px' }}>Profile</h4>
-            <div style={{ width: '100%', display: 'flex', height: '100px' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <h4 style={{ fontWeight: '600', marginLeft: '0px', marginRight: 'auto' }}>
+                My Booking
+              </h4>
+              <h6
+                style={{
+                  fontWeight: '600',
+                  marginRight: '0px',
+                  marginLeft: 'auto',
+                  color: '#2395FF'
+                }}>
+                Order History
+              </h6>
+            </div>
+          </div>
+          <div
+            style={{
+              width: '95%',
+              border: 'none',
+              borderRadius: '15px',
+              backgroundColor: '#FFFFFF',
+              display: 'flex',
+              flexDirection: 'column',
+              padding: '30px 25px',
+              marginBottom: '20px'
+            }}>
+            <small
+              style={{
+                marginBottom: '15px',
+                fontSize: '14px'
+              }}>
+              Monday, 20 July ‘20 - 12:33
+            </small>
+            <div style={{ display: 'flex' }}>
+              <h5 style={{ fontWeight: '600' }}>IDN</h5>
+              <img src={Flight} style={{ marginLeft: '20px', marginRight: '20px' }} />
+              <h5 style={{ fontWeight: '600' }}>JPN</h5>
+            </div>
+            <small style={{ fontSize: '14px', color: '#979797' }}>Garuda Indonesia, AB-221</small>
+            <hr style={{ height: '1px', backgroundColor: '#E6E6E6' }} />
+            <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+              <small
+                style={{
+                  fontSize: '14px',
+                  color: '#7A7A7A',
+                  fontWeight: '600',
+                  marginLeft: '0px'
+                }}>
+                Status
+              </small>
               <div
                 style={{
-                  width: '50%',
-                  paddingRight: '25px'
+                  padding: '7px 18px',
+                  backgroundColor: '#FF7F23',
+                  width: 'auto',
+                  height: 'auto',
+                  color: '#FFFFFF',
+                  borderRadius: '6px',
+                  marginLeft: '60px',
+                  marginRight: 'auto'
                 }}>
-                <h6 style={{ fontWeight: '600' }}>Contact</h6>
-                <small style={{ color: '#9B96AB' }}>Email</small>
-                <input
-                  type="text"
-                  className={style.inputForm}
-                  name="email"
-                  placeholder="Email"
-                  style={{
-                    width: '100%',
-                    height: '40px',
-                    border: 'none',
-                    borderBottom: '2px solid #D2C2FF',
-                    marginBottom: '30px'
-                  }}
-                />
-                <small style={{ color: '#9B96AB' }}>Phone Number</small>
-                <input
-                  type="text"
-                  className={style.inputForm}
-                  name="phone"
-                  placeholder="Phone Number"
-                  style={{
-                    width: '100%',
-                    height: '40px',
-                    border: 'none',
-                    borderBottom: '2px solid #D2C2FF',
-                    marginBottom: '30px'
-                  }}
-                />
-                <div
-                  style={{
-                    color: '#2395FF',
-                    width: '100%',
-                    display: 'flex'
-                  }}>
-                  <h6
-                    style={{
-                      fontWeight: '600',
-                      marginRight: '25px',
-                      marginLeft: 'auto'
-                    }}>
-                    Account Settings
-                  </h6>
-                  <i
-                    className="fa-solid fa-angle-right"
-                    style={{ marginLeft: '0px', marginRight: '0px', paddingTop: '2px' }}></i>
-                </div>
+                <small style={{ fontSize: '14px', fontWeight: '600' }}>Waiting for payment</small>
               </div>
+              <small
+                style={{
+                  fontSize: '16px',
+                  color: '#2395FF',
+                  fontWeight: '600',
+                  marginLeft: 'auto',
+                  marginRight: '15px'
+                }}>
+                View Details
+              </small>
+              <i
+                className="fa-solid fa-angle-down"
+                style={{ color: '#2395FF', marginRight: '0px' }}></i>
+            </div>
+          </div>
+          <div
+            style={{
+              width: '95%',
+              border: 'none',
+              borderRadius: '15px',
+              backgroundColor: '#FFFFFF',
+              display: 'flex',
+              flexDirection: 'column',
+              padding: '30px 25px',
+              marginBottom: '20px'
+            }}>
+            <small
+              style={{
+                marginBottom: '15px',
+                fontSize: '14px'
+              }}>
+              Monday, 20 July ‘20 - 12:33
+            </small>
+            <div style={{ display: 'flex' }}>
+              <h5 style={{ fontWeight: '600' }}>IDN</h5>
+              <img src={Flight} style={{ marginLeft: '20px', marginRight: '20px' }} />
+              <h5 style={{ fontWeight: '600' }}>JPN</h5>
+            </div>
+            <small style={{ fontSize: '14px', color: '#979797' }}>Garuda Indonesia, AB-221</small>
+            <hr style={{ height: '1px', backgroundColor: '#E6E6E6' }} />
+            <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+              <small
+                style={{
+                  fontSize: '14px',
+                  color: '#7A7A7A',
+                  fontWeight: '600',
+                  marginLeft: '0px'
+                }}>
+                Status
+              </small>
               <div
                 style={{
-                  width: '50%',
-                  paddingLeft: '0px'
+                  padding: '7px 18px',
+                  backgroundColor: '#4FCF4D',
+                  width: 'auto',
+                  height: 'auto',
+                  color: '#FFFFFF',
+                  borderRadius: '6px',
+                  marginLeft: '60px',
+                  marginRight: 'auto'
                 }}>
-                <h6 style={{ fontWeight: '600' }}>Biodata</h6>
-                <small style={{ color: '#9B96AB' }}>Username</small>
-                <input
-                  type="text"
-                  className={style.inputForm}
-                  name="username"
-                  placeholder="Username"
-                  style={{
-                    width: '100%',
-                    height: '40px',
-                    border: 'none',
-                    borderBottom: '2px solid #D2C2FF',
-                    marginBottom: '30px'
-                  }}
-                />
-                <small style={{ color: '#9B96AB' }}>City</small>
-                <input
-                  type="text"
-                  className={style.inputForm}
-                  name="city"
-                  placeholder="City"
-                  style={{
-                    width: '100%',
-                    height: '40px',
-                    border: 'none',
-                    borderBottom: '2px solid #D2C2FF',
-                    marginBottom: '30px'
-                  }}
-                />
-                <small style={{ color: '#9B96AB' }}>Address</small>
-                <input
-                  type="text"
-                  className={style.inputForm}
-                  name="address"
-                  placeholder="Address"
-                  style={{
-                    width: '100%',
-                    height: '40px',
-                    border: 'none',
-                    borderBottom: '2px solid #D2C2FF',
-                    marginBottom: '30px'
-                  }}
-                />
-                <small style={{ color: '#9B96AB' }}>Post Code</small>
-                <input
-                  type="number"
-                  className={style.inputForm}
-                  name="postalcode"
-                  placeholder="Post Code"
-                  style={{
-                    width: '100%',
-                    height: '40px',
-                    border: 'none',
-                    borderBottom: '2px solid #D2C2FF',
-                    marginBottom: '30px'
-                  }}
-                />
-                <div style={{ width: '100%', display: 'flex' }}>
-                  <input
-                    type="button"
-                    value="Save"
-                    style={{
-                      width: '150px',
-                      height: '50px',
-                      marginLeft: 'auto',
-                      marginRight: '0px',
-                      backgroundColor: '#2395FF',
-                      color: 'white',
-                      borderRadius: '10px',
-                      border: 'none',
-                      fontWeight: 'bold'
-                    }}
-                  />
-                </div>
+                <small style={{ fontSize: '14px', fontWeight: '600' }}>Eticket issued</small>
               </div>
+              <small
+                style={{
+                  fontSize: '16px',
+                  color: '#2395FF',
+                  fontWeight: '600',
+                  marginLeft: 'auto',
+                  marginRight: '15px'
+                }}>
+                View Details
+              </small>
+              <i
+                className="fa-solid fa-angle-down"
+                style={{ color: '#2395FF', marginRight: '0px' }}></i>
             </div>
           </div>
         </div>
@@ -384,4 +392,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default MyBooking;
