@@ -1,4 +1,10 @@
 <p align="center">
+  <a href="https://github.com/altrawan/ankasa-ticketing-frontend">
+    <img src="./screenshoots/logo.png"  width="200px" alt="Logo">
+  </a>
+</p>
+<h3 align="center">Ankasa Ticketing App</h3>
+<p align="center">
   Find your Flight and explore the world with us.
   <br/>
   <a href="https://github.com/altrawan/ankasa-ticketing-frontend">
