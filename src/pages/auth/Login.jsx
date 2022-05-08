@@ -114,7 +114,7 @@ const Login = () => {
             </div>
             <small>Did you forgot your password?</small>
             <small>
-              <Link to="/forgot">Tap here for reset</Link>
+              <Link to="/forgot-password">Tap here for reset</Link>
             </small>
             <div
               style={{

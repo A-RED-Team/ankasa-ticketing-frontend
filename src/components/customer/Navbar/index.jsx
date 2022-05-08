@@ -11,21 +11,14 @@ import {
   NavItem,
   NavLink
 } from 'reactstrap';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-// import './navbar.css';
 
 import logo from '../../../assets/icons/illustration.svg';
 import toggle from '../../../assets/icons/align-right.svg';
 import search from '../../../assets/icons/search.svg';
-
-// const Section = styled.section`
-//   font-family: 'Poppins', sans-serif;
-//   padding-top: 20px;
-//   background-color: #fff;
-//   padding-bottom: 20px;
-// `;
 
 const Search = styled.div`
   border-radius: 10px;
@@ -90,6 +83,8 @@ const Button = styled.button`
 `;
 
 const index = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [modal, setModal] = useState(false);
 
@@ -126,10 +121,15 @@ const index = () => {
                 <NavLink onClick={() => setModal(!modal)}>find ticket</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#">my booking</NavLink>
+                <NavLink
+                  tag={Link}
+                  to="/profile/booking"
+                  active={location.pathname === '/profile/booking'}>
+                  my booking
+                </NavLink>
               </NavItem>
             </Nav>
-            <Button>Sign Up</Button>
+            <Button onClick={() => navigate('/register')}>Sign Up</Button>
           </Collapse>
         </Container>
       </Navbar>
