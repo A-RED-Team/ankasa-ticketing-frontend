@@ -8,7 +8,7 @@
 <p align="center">
   Find your Flight and explore the world with us.
   <br/>
-  <a href="https://github.com/altrawan/ankasa-ticketing-frontend">
+  <a href="#table-of-contents">
     <strong>Explore the docs »</strong>
   </a>
   <br /><br/>
