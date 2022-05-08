@@ -86,6 +86,14 @@ REACT_APP_STAGING=prod / dev
   npm start
 ```
 
+## Screenshoots
+<details>
+  <summary>
+    Landing Page
+  </summary>
+<img src="#" alt="Explore" />
+</details>
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
