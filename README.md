@@ -1,3 +1,4 @@
+<div id="top"></div>
 <p align="center">
   <a href="https://github.com/altrawan/ankasa-ticketing-frontend">
     <img src="./screenshoots/logo.png"  width="200px" alt="Logo">
@@ -34,9 +35,9 @@
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
-* [Screenshots](#screenshots)
+* [Screenshots](#screenshoots)
 * [Related Project](#related-project)
-* [Contributors](#Contributors)
+* [Contributors](#contributors)
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -46,9 +47,12 @@
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS?retiredLocale=id)
 * [Javascript](https://www.javascript.com/)
 * [React](https://vuejs.org/v2)
+* [Axios](https://axios-http.com/)
 * [React Redux](https://react-redux.js.org/introduction/getting-started)
 * [Bootstrap](https://getbootstrap.com/)
 * [Reactstrap](https://reactstrap.github.io/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -58,6 +62,8 @@
 Before going to the installation stage there are some software that must be installed first.
 
 * [NodeJs](https://nodejs.org/en/download/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Installation
 
@@ -86,6 +92,8 @@ REACT_APP_STAGING=prod / dev
   npm start
 ```
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ## Screenshoots
 <details>
   <summary>
@@ -93,6 +101,8 @@ REACT_APP_STAGING=prod / dev
   </summary>
 <img src="#" alt="Explore" />
 </details>
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Contributing
 
@@ -104,11 +114,14 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ## Related Project
 - [Flight Booking API](https://github.com/altrawan/ankasa-ticketing-backend)
 
-## Contributors
+<p align="right">(<a href="#top">back to top</a>)</p>
 
+## Contributors
 <center>
   <table>
     <tr>
@@ -139,3 +152,5 @@ Contributions are what make the open source community such an amazing place to b
     </tr>
   </table>
 </center>
+
+<p align="right">(<a href="#top">back to top</a>)</p>
