@@ -43,7 +43,7 @@
 ## About The Project
 
 ### Built With
-
+This app was built with some technologies below:
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS?retiredLocale=id)
 * [Javascript](https://www.javascript.com/)
 * [React](https://vuejs.org/v2)
