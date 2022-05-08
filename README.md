@@ -89,7 +89,7 @@ REACT_APP_STAGING=prod / dev
 ## Screenshoots
 <details>
   <summary>
-    Landing Page
+    Explore Page
   </summary>
 <img src="#" alt="Explore" />
 </details>
@@ -103,3 +103,39 @@ Contributions are what make the open source community such an amazing place to b
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
+
+## Related Project
+- [Flight Booking API](https://github.com/altrawan/ankasa-ticketing-backend)
+
+## Contributors
+
+<center>
+  <table>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/janexmgd">
+          <img width="100" src="https://avatars.githubusercontent.com/u/43938494?v=4" alt="Denny Wahyu Prasetio"><br/>
+          <sub><b>Denny Wahyu Prasetio</b></sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/edoprayoga1999">
+          <img width="100" src="https://avatars.githubusercontent.com/u/101086199?v=4" alt="Edo Prayoga"><br/>
+          <sub><b>Edo Prayoga</b></sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/altrawan">
+          <img width="100" src="https://avatars.githubusercontent.com/u/39686865?v=4" alt="Nur Muhammad Alif Putra Setiawan"><br/>
+          <sub><b>Nur Muhammad Alif</b></sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/rifanhidayatulloh">
+          <img width="100" src="https://avatars.githubusercontent.com/u/87940197?v=4" alt="Rif'an Hidayatulloh"><br/>
+          <sub><b>Rif'an Hidayatulloh</b></sub>
+        </a>
+      </td>
+    </tr>
+  </table>
+</center>
