@@ -38,7 +38,7 @@ const router = () => {
           <Route path="detail" element={<BookingDetail />} />
           <Route path="add" element={<FlightDetail />} />
         </Route>
-        <Route path="profile/" element={<PrivateRoute />}>
+        <Route path="profile/">
           <Route index element={<Profile />} />
           <Route path="booking" element={<MyBooking />} />
         </Route>
