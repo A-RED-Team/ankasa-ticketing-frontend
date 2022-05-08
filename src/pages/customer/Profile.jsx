@@ -2,13 +2,13 @@ import React from 'react';
 
 import Navbar from '../../components/customer/Navbar';
 import Footer from '../../components/customer/Footer';
-
+import style from '../../assets/styles/input.module.css';
 const Profile = () => {
   return (
     <>
       <Navbar />
       <div
-        className="container"
+        className="container-fluid"
         style={{ width: '100%', height: '85vh', backgroundColor: '#F5F6FA', display: 'flex' }}>
         <div className="leftArea" style={{ width: '30%', height: '100%', display: 'flex' }}>
           <div
@@ -251,6 +251,7 @@ const Profile = () => {
                 <small style={{ color: '#9B96AB' }}>Email</small>
                 <input
                   type="text"
+                  className={style.inputForm}
                   name="email"
                   placeholder="Email"
                   style={{
@@ -264,6 +265,7 @@ const Profile = () => {
                 <small style={{ color: '#9B96AB' }}>Phone Number</small>
                 <input
                   type="text"
+                  className={style.inputForm}
                   name="phone"
                   placeholder="Phone Number"
                   style={{
@@ -302,6 +304,7 @@ const Profile = () => {
                 <small style={{ color: '#9B96AB' }}>Username</small>
                 <input
                   type="text"
+                  className={style.inputForm}
                   name="username"
                   placeholder="Username"
                   style={{
@@ -315,6 +318,7 @@ const Profile = () => {
                 <small style={{ color: '#9B96AB' }}>City</small>
                 <input
                   type="text"
+                  className={style.inputForm}
                   name="city"
                   placeholder="City"
                   style={{
@@ -328,6 +332,7 @@ const Profile = () => {
                 <small style={{ color: '#9B96AB' }}>Address</small>
                 <input
                   type="text"
+                  className={style.inputForm}
                   name="address"
                   placeholder="Address"
                   style={{
@@ -341,6 +346,7 @@ const Profile = () => {
                 <small style={{ color: '#9B96AB' }}>Post Code</small>
                 <input
                   type="number"
+                  className={style.inputForm}
                   name="postalcode"
                   placeholder="Post Code"
                   style={{
