@@ -36,7 +36,7 @@
   * [Installation](#installation)
 * [Screenshots](#screenshots)
 * [Related Project](#related-project)
-* [Contact](#contact)
+* [Contributors](#Contributors)
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
