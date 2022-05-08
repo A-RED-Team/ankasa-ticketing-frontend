@@ -3,7 +3,7 @@ import React from 'react';
 import Navbar from '../../components/customer/Navbar';
 import Footer from '../../components/customer/Footer';
 
-import Flight from '../../assets/images/flightIcon.svg';
+import Flight from '../../assets/icons/flightIcon.svg';
 
 const MyBooking = () => {
   return (

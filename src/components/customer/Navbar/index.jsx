@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Modal from '../Search';
 import {
   Container,
   Navbar,
@@ -10,21 +11,14 @@ import {
   NavItem,
   NavLink
 } from 'reactstrap';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-// import './navbar.css';
 
 import logo from '../../../assets/icons/illustration.svg';
 import toggle from '../../../assets/icons/align-right.svg';
 import search from '../../../assets/icons/search.svg';
-
-// const Section = styled.section`
-//   font-family: 'Poppins', sans-serif;
-//   padding-top: 20px;
-//   background-color: #fff;
-//   padding-bottom: 20px;
-// `;
 
 const Search = styled.div`
   border-radius: 10px;
@@ -89,50 +83,58 @@ const Button = styled.button`
 `;
 
 const index = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [modal, setModal] = useState(false);
 
   return (
-    <Navbar color="white" expand="lg" className="fixed-top" light>
-      <Container>
-        <img src={logo} alt="Ankasa Ticketing" className="mr-2" />
-        <NavbarBrand href="#">ankasa</NavbarBrand>
-        <NavbarToggler
-          onClick={() => {
-            setIsOpen(!isOpen);
-          }}>
-          <img src={toggle} alt="toggle" />
-        </NavbarToggler>
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="m-auto" navbar>
-            <form>
-              <Search className="p-1 pl-4">
-                <Icon>
-                  <img src={search} alt="Search" />
-                </Icon>
-                <input
-                  type="search"
-                  className="form-control"
-                  style={{
-                    backgroundColor: 'transparent',
-                    border: 'none',
-                    outline: 'none',
-                    boxShadow: 'none'
-                  }}
-                  placeholder="Where you want to go ?"
-                />
-              </Search>
-            </form>
-            <NavItem>
-              <NavLink href="#">find ticket</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="#">my booking</NavLink>
-            </NavItem>
-          </Nav>
-          <Button>Sign Up</Button>
-        </Collapse>
-      </Container>
-    </Navbar>
+    <>
+      <Navbar color="white" expand="lg" className="fixed-top" light>
+        <Container>
+          <img src={logo} alt="Ankasa Ticketing" className="mr-2" />
+          <NavbarBrand href="#">ankasa</NavbarBrand>
+          <NavbarToggler onClick={() => setIsOpen(!isOpen)}>
+            <img src={toggle} alt="toggle" />
+          </NavbarToggler>
+          <Collapse isOpen={isOpen} navbar>
+            <Nav className="m-auto" navbar>
+              <form>
+                <Search className="p-1 pl-4">
+                  <Icon>
+                    <img src={search} alt="Search" />
+                  </Icon>
+                  <input
+                    type="search"
+                    className="form-control"
+                    style={{
+                      backgroundColor: 'transparent',
+                      border: 'none',
+                      outline: 'none',
+                      boxShadow: 'none'
+                    }}
+                    placeholder="Where you want to go ?"
+                  />
+                </Search>
+              </form>
+              <NavItem>
+                <NavLink onClick={() => setModal(!modal)}>find ticket</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  tag={Link}
+                  to="/profile/booking"
+                  active={location.pathname === '/profile/booking'}>
+                  my booking
+                </NavLink>
+              </NavItem>
+            </Nav>
+            <Button onClick={() => navigate('/register')}>Sign Up</Button>
+          </Collapse>
+        </Container>
+      </Navbar>
+      {modal ? <Modal /> : null}
+    </>
   );
 };
 

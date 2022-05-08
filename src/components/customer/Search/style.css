@@ -1,0 +1,123 @@
+.search-page {
+  position: absolute;
+  top: 50px;
+  right: 250px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  height: 750px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  z-index: 99;
+}
+.search {
+  width: 400px;
+  height: 100%;
+  background-color: #fff;
+  margin-top: 100px;
+  box-shadow: 0px 8px 27px rgba(14, 63, 108, 0.19);
+  border-radius: 12px;
+  padding: 30px;
+  /* display: grid; */
+  /* justify-content: center; */
+}
+.search p:nth-child(2) {
+  font-size: 20px;
+  margin-top: -10px;
+}
+.recent-search {
+  display: flex;
+  justify-content: space-between;
+}
+.recent-search p {
+  color: #2395ff;
+}
+.recent-search img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.search-route {
+  box-shadow: 0px 8px 27px rgba(14, 63, 108, 0.19);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.route-box {
+  height: 110px;
+  padding: 6px 15px;
+}
+.search-route p:nth-child(1),
+.search-route p:nth-child(3) {
+  font-size: 15px !important;
+  font-weight: 100;
+}
+.search-route img {
+  width: 30px;
+  height: 30px;
+}
+.route button {
+  font-size: 23px !important;
+  margin-bottom: -15px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: rgb(63, 63, 63);
+  padding: 0 5px;
+  font-size: 20px !important;
+}
+.route button:hover {
+  color: #2395ff;
+}
+.route button:active {
+  background-color: transparent !important;
+  color: #2395ff !important;
+}
+.route-box:nth-child(3) {
+  text-align: right;
+}
+.button-typetrip {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.button-typetrip button:nth-child(2) {
+  border: #ab8585;
+}
+.btn-main {
+  border: 0;
+  border-radius: 5px;
+  padding: 15px 40px;
+  font-weight: 600;
+}
+.depature .depature-select {
+  margin-top: -10px;
+}
+.person-select {
+  display: flex;
+  margin-top: -8px;
+  gap: 25px;
+}
+.class-select p {
+  margin-bottom: 2px;
+}
+.close-search {
+  display: none !important;
+}
+.btn-submit {
+  width: 100%;
+  padding: 15px;
+  background-color: #2395ff;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 0;
+  box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3);
+  border-radius: 8px;
+}
+@media screen and (max-width: 992px) {
+  .close-search {
+    display: unset !important;
+  }
+}

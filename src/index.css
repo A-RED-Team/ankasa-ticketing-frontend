@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700');
-@import '@fontsource/poppins';
 @import '@fortawesome/fontawesome-free/css/all.min.css';
+
+body::-webkit-scrollbar {
+  width: 6px;
+  background: #fafcff;
+}
+body::-webkit-scrollbar-thumb {
+  background: #2395ff;
+  border-radius: 2px;
+}
 
 /* body {
   margin: 0;
