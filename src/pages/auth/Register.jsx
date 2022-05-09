@@ -1,10 +1,45 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from '../../assets/styles/input.module.css';
 import Plane from '../../assets/images/plane.svg';
 import Icon from '../../assets/images/icon.svg';
+import swal from 'sweetalert2';
+import { register } from '../../redux/actions/auth';
+
 const Register = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({
+    username: '',
+    email: '',
+    password: ''
+  });
+  useEffect(() => {
+    if (token) {
+      return navigate('/');
+    }
+  }, []);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    console.log(form);
+    register(form)
+      .then((res) => {
+        setLoading(false);
+        swal({
+          title: 'Success!',
+          text: res.message,
+          icon: 'success'
+        }).then(() => {
+          navigate('/login');
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const token = localStorage.getItem('token');
   return (
     <>
       <div style={{ width: '100%', height: '100vh', display: 'flex' }}>
@@ -47,13 +82,14 @@ const Register = () => {
                 flexDirection: 'column',
                 marginTop: '150px'
               }}>
-              <form>
+              <form onSubmit={(e) => onSubmit(e)}>
                 <h2 style={{ marginBottom: '30px' }}>Register</h2>
                 <input
                   type="text"
                   name="fullname"
                   className={styles.inputForm}
                   placeholder="Full Name"
+                  onChange={(e) => setForm({ ...form, username: e.target.value })}
                   style={{
                     width: '95%',
                     marginBottom: '10px',
@@ -67,6 +103,7 @@ const Register = () => {
                   name="email"
                   className={styles.inputForm}
                   placeholder="Email"
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
                   style={{
                     width: '95%',
                     marginBottom: '10px',
@@ -81,6 +118,7 @@ const Register = () => {
                     name="password"
                     className={styles.inputForm}
                     placeholder="Password"
+                    onChange={(e) => setForm({ ...form, password: e.target.value })}
                     style={{
                       width: '95%',
                       marginBottom: '20px',
