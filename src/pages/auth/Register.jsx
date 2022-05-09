@@ -1,10 +1,61 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from '../../assets/styles/input.module.css';
 import Plane from '../../assets/images/plane.svg';
 import Icon from '../../assets/images/icon.svg';
+import swal from 'sweetalert2';
+import { register } from '../../redux/actions/auth';
 const Register = () => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+  const [form, setForm] = useState({
+    username: '',
+    email: '',
+    password: '',
+    terms: ''
+  });
+  useEffect(() => {
+    if (token) {
+      return navigate('/');
+    }
+  }, []);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (form.terms !== true) {
+      swal.fire({
+        title: 'Error!',
+        text: 'You must agree terms & conditions',
+        icon: 'error'
+      });
+    } else if (form.username === '' || form.email === '' || form.password === '') {
+      swal.fire({
+        title: 'Error!',
+        text: 'All field must be filled!',
+        icon: 'error'
+      });
+    } else {
+      register(form)
+        .then((res) => {
+          swal
+            .fire({
+              title: 'Success!',
+              text: res.message,
+              icon: 'success'
+            })
+            .then(() => {
+              navigate('/login');
+            });
+        })
+        .catch((err) => {
+          swal.fire({
+            title: 'Error!',
+            text: err.response.data.error[0],
+            icon: 'error'
+          });
+        });
+    }
+  };
   return (
     <>
       <div style={{ width: '100%', height: '100vh', display: 'flex' }}>
@@ -47,11 +98,12 @@ const Register = () => {
                 flexDirection: 'column',
                 marginTop: '150px'
               }}>
-              <form>
+              <form onSubmit={(e) => onSubmit(e)}>
                 <h2 style={{ marginBottom: '30px' }}>Register</h2>
                 <input
                   type="text"
                   name="fullname"
+                  onChange={(e) => setForm({ ...form, username: e.target.value })}
                   className={styles.inputForm}
                   placeholder="Full Name"
                   style={{
@@ -65,6 +117,7 @@ const Register = () => {
                 <input
                   type="text"
                   name="email"
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
                   className={styles.inputForm}
                   placeholder="Email"
                   style={{
@@ -79,6 +132,7 @@ const Register = () => {
                   <input
                     type={passwordVisibility ? 'text' : 'password'}
                     name="password"
+                    onChange={(e) => setForm({ ...form, password: e.target.value })}
                     className={styles.inputForm}
                     placeholder="Password"
                     style={{
@@ -124,6 +178,7 @@ const Register = () => {
                   <input
                     type="checkbox"
                     name="terms"
+                    onChange={(e) => setForm({ ...form, terms: e.target.checked })}
                     style={{
                       marginRight: '15px'
                     }}
