@@ -16,7 +16,7 @@ export const login = (data) => {
 export const register = (data) => {
   return new Promise((resolve, reject) => {
     axios
-      .post('auth/register', data)
+      .post(`auth/register`, data)
       .then((res) => {
         resolve(res.data);
       })
