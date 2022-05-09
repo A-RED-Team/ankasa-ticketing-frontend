@@ -1,90 +1,50 @@
-.search-page {
-  position: absolute;
-  top: 50px;
-  right: 250px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: bold;
-  height: 750px;
-  background-color: transparent;
-  display: flex;
-  justify-content: center;
-  z-index: 99;
-}
-.search {
-  width: 400px;
-  height: 100%;
-  background-color: #fff;
-  margin-top: 100px;
-  box-shadow: 0px 8px 27px rgba(14, 63, 108, 0.19);
-  border-radius: 12px;
-  padding: 30px;
-  /* display: grid; */
-  /* justify-content: center; */
-}
-.search p:nth-child(2) {
-  font-size: 20px;
-  margin-top: -10px;
-}
 .recent-search {
-  display: flex;
-  justify-content: space-between;
 }
 .recent-search p {
-  color: #2395ff;
 }
 .recent-search img {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
 }
 .search-route {
-  box-shadow: 0px 8px 27px rgba(14, 63, 108, 0.19);
-  border-radius: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 .route-box {
-  height: 110px;
-  padding: 6px 15px;
 }
-.search-route p:nth-child(1),
-.search-route p:nth-child(3) {
-  font-size: 15px !important;
-  font-weight: 100;
-}
-.search-route img {
-  width: 30px;
-  height: 30px;
+.search-route .search-route img {
 }
 .route button {
-  font-size: 23px !important;
-  margin-bottom: -15px;
-  padding: 0;
-  border: none;
-  background-color: transparent;
-  color: rgb(63, 63, 63);
-  padding: 0 5px;
-  font-size: 20px !important;
 }
 .route button:hover {
-  color: #2395ff;
 }
 .route button:active {
-  background-color: transparent !important;
-  color: #2395ff !important;
 }
 .route-box:nth-child(3) {
-  text-align: right;
 }
 .button-typetrip {
+}
+input[type='radio'] {
+  display: none;
+}
+
+input[type='radio'] + label:before {
+  content: '';
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  padding: 6px;
+  margin-right: 3px;
+  background-clip: content-box;
+  border: 2px solid var(--text-blue);
+  background-color: none;
+  border-radius: 50%;
+}
+
+input[type='radio']:checked + label:before {
+  background-color: var(--text-blue);
+}
+/* label {
   display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-.button-typetrip button:nth-child(2) {
-  border: #ab8585;
-}
+  align-items: center;
+  background-color: blue;
+} */
 .btn-main {
   border: 0;
   border-radius: 5px;
