@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+// import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { getCityTrending } from '../../../redux/actions/city';
 
 import tokyo from '../../../assets/images/tokyo.svg';
 import barcelona from '../../../assets/images/barcelona.svg';
@@ -92,6 +96,18 @@ const Button = styled.div`
 `;
 
 const index = () => {
+  // const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // eslint-disable-next-line no-unused-vars
+  const cityTrending = useSelector((state) => {
+    return state.cityTrending;
+  });
+  // console.log(cityTrending);
+  useEffect(() => {
+    dispatch(getCityTrending());
+    console.log(cityTrending);
+  }, []);
+
   const [destinations] = useState([
     {
       id: 1,
