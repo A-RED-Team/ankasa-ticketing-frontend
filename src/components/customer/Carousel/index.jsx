@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { APP_PROD } from '../../../helper/env';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import '../../../assets/styles/swiper.css';
 
 import bg from '../../../assets/images/vector 3.png';
-import paris from '../../../assets/images/paris.png';
-import bali from '../../../assets/images/bali.png';
-import singapore from '../../../assets/images/singapore.png';
-import agra from '../../../assets/images/agra.png';
-import sidney from '../../../assets/images/sidney.png';
+// import paris from '../../../assets/images/paris.png';
+// import bali from '../../../assets/images/bali.png';
+// import singapore from '../../../assets/images/singapore.png';
+// import agra from '../../../assets/images/agra.png';
+// import sidney from '../../../assets/images/sidney.png';
 
 const Section = styled.section`
   height: 100vh;
@@ -77,59 +78,14 @@ const Caption = styled.p`
   font-size: 1.2em;
 `;
 
-const index = () => {
-  const [destinations] = useState([
-    {
-      id: 1,
-      image: paris,
-      city: 'Paris'
-    },
-    {
-      id: 2,
-      image: bali,
-      city: 'Bali'
-    },
-    {
-      id: 3,
-      image: singapore,
-      city: 'Singapore'
-    },
-    {
-      id: 4,
-      image: agra,
-      city: 'Agra'
-    },
-    {
-      id: 5,
-      image: sidney,
-      city: 'Sidney'
-    },
-    {
-      id: 6,
-      image: paris,
-      city: 'Paris'
-    },
-    {
-      id: 7,
-      image: bali,
-      city: 'Bali'
-    },
-    {
-      id: 8,
-      image: singapore,
-      city: 'Singapore'
-    },
-    {
-      id: 9,
-      image: agra,
-      city: 'Agra'
-    },
-    {
-      id: 10,
-      image: sidney,
-      city: 'Sidney'
+const index = ({ destination }) => {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    // mengecek jika destination datanya ada dan loading menjadi false
+    if (destination) {
+      setLoading(false);
     }
-  ]);
+  }, [destination]);
 
   return (
     <Section>
@@ -146,16 +102,24 @@ const index = () => {
             navigation={true}
             modules={[Navigation]}
             className="mySwiper">
-            {destinations.map((item) => (
-              <SwiperSlide key={item.id}>
-                <div>
-                  <Decoration>
-                    <Image src={item.image} alt={item.city} />
-                  </Decoration>
-                  <Caption className="mt-4">{item.city}</Caption>
-                </div>
-              </SwiperSlide>
-            ))}
+            {loading ? (
+              <div></div>
+            ) : (
+              destination.data.map((item) => (
+                <SwiperSlide key={item.city_id}>
+                  <div>
+                    <Decoration>
+                      <Image
+                        src={`${APP_PROD}uploads/cities/${item.image}`}
+                        alt={`${item.city_name}`}
+                        style={{ width: '120px', height: '120px', objectFit: 'center' }}
+                      />
+                    </Decoration>
+                    <Caption className="mt-4">{item.city_name}</Caption>
+                  </div>
+                </SwiperSlide>
+              ))
+            )}
           </Swiper>
         </Carousel>
       </Wrapper>

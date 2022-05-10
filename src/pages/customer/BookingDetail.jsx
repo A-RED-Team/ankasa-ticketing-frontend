@@ -22,7 +22,7 @@ const Card = styled.div`
   width: 60%;
   margin-top: 85px;
 
-  @media and (max-width: 567px) {
+  @media screen and (max-width: 567px) {
     width: 90%;
   }
 `;
@@ -54,9 +54,10 @@ const Right = styled.div`
 `;
 
 const BookingDetail = () => {
+  const token = localStorage.getItem('token');
   return (
     <>
-      <Navbar />
+      <Navbar isLogin={token} />
       <Section>
         <div className="row justify-content-center align-items-center">
           <h4 className="font-weight-bold mb-4 ml-5 d-md-none text-white mt-4">Booking Pass</h4>

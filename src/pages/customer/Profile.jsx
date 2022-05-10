@@ -4,9 +4,10 @@ import Navbar from '../../components/customer/Navbar';
 import Footer from '../../components/customer/Footer';
 import style from '../../assets/styles/input.module.css';
 const Profile = () => {
+  const token = localStorage.getItem('token');
   return (
     <>
-      <Navbar />
+      <Navbar isLogin={token} />
       <div
         className="container-fluid"
         style={{
