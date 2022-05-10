@@ -20,6 +20,8 @@ const Home = () => {
   useEffect(() => {
     dispatch(getTrendingCity('cities.created_at', 'DESC', 5));
     dispatch(getDestinationCity('cities.created_at', 'ASC', 10));
+    console.log(trending);
+    console.log(destination);
   }, []);
 
   return (
