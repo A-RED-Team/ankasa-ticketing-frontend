@@ -45,6 +45,7 @@ const Profile = () => {
       });
     }
   }, [detailUser]);
+
   const onSubmit = (e) => {
     e.preventDefault();
     setLoading(false);
