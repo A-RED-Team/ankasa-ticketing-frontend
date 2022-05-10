@@ -1,13 +1,7 @@
 import { combineReducers } from 'redux';
 
-import booking from './booking';
-import city from './city';
-import flight from './flight';
-import user from './user';
+import trending from './trending';
 
 export default combineReducers({
-  booking,
-  city,
-  flight,
-  user
+  trending
 });

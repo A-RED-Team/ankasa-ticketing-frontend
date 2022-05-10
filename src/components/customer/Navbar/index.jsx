@@ -15,6 +15,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import '../../../utils/navbar.js';
 
 import logo from '../../../assets/icons/illustration.svg';
 import toggle from '../../../assets/icons/align-right.svg';

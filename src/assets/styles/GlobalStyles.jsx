@@ -12,13 +12,19 @@ const GlobalStyles = createGlobalStyle`
     --text-sliver: #979797;
     --text-blue: #2395FF;
     --text-white: #FFFFFF;
+    --shadow-black-100: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --shadow-black-300: 0 5px 15px rgba(0, 0, 0, 0.3);
   }
 
   .navbar {
     background: var(--text-white);
     padding: 20px 0;
-    transition: all 0.5 ease;
+    transition: all 0.5s ease;
     text-decoration: none;
+  }
+
+  .navbar.navbar-shrink {
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
   }
 
   .navbar .navbar-brand {
