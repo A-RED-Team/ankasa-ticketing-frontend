@@ -5,6 +5,7 @@ export const login = (data) => {
     axios
       .post('auth/login', data)
       .then((res) => {
+        localStorage.setItem('token', res.data.token);
         resolve(res.data);
       })
       .catch((err) => {
@@ -16,7 +17,7 @@ export const login = (data) => {
 export const register = (data) => {
   return new Promise((resolve, reject) => {
     axios
-      .post('auth/register', data)
+      .post(`auth/register`, data)
       .then((res) => {
         resolve(res.data);
       })
