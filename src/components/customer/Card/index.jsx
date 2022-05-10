@@ -99,7 +99,6 @@ const Button = styled.div`
   }
 `;
 
-
 const index = ({ trending }) => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {

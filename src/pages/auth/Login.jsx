@@ -22,25 +22,33 @@ const Login = () => {
   }, []);
   const onSubmit = (e) => {
     e.preventDefault();
-    login(form)
-      .then((res) => {
-        swal
-          .fire({
-            title: 'Success!',
-            text: res.message,
-            icon: 'success'
-          })
-          .then(() => {
-            navigate('/');
-          });
-      })
-      .catch((err) => {
-        swal.fire({
-          title: 'Error!',
-          text: err.response.data.message,
-          icon: 'error'
-        });
+    if (form.username === '' || form.password === '') {
+      swal.fire({
+        title: 'Error!',
+        text: 'All field must be filled!',
+        icon: 'error'
       });
+    } else {
+      login(form)
+        .then((res) => {
+          swal
+            .fire({
+              title: 'Success!',
+              text: res.message,
+              icon: 'success'
+            })
+            .then(() => {
+              navigate('/');
+            });
+        })
+        .catch((err) => {
+          swal.fire({
+            title: 'Error!',
+            text: err.response.data.message,
+            icon: 'error'
+          });
+        });
+    }
   };
   const [passwordVisibility, setPasswordVisibility] = useState(false);
 
