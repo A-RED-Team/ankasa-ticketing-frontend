@@ -33,12 +33,12 @@ const router = () => {
           <Route path="forgot-password" element={<ForgotPassword />} />
           <Route path="*" element={<NotFound />} />
         </Route>
-        <Route path="booking/">
+        <Route path="booking/" element={<PrivateRoute />}>
           <Route index element={<SearchResult />} />
           <Route path="detail" element={<BookingDetail />} />
           <Route path="add" element={<FlightDetail />} />
         </Route>
-        <Route path="profile/">
+        <Route path="profile/" element={<PrivateRoute />}>
           <Route index element={<Profile />} />
           <Route path="booking" element={<MyBooking />} />
         </Route>

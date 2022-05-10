@@ -10,7 +10,9 @@ axiosApiIntances.interceptors.request.use(
   function (config) {
     // Do something before request is sent
     // Set up config token
-    config.headers = `${localStorage.getItem('token')}`;
+    config.headers = {
+      token: `${localStorage.getItem('token')}`
+    };
     return config;
   },
   function (error) {
