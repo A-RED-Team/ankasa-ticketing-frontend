@@ -2,15 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import swal from 'sweetalert2';
+import jwt_decode from 'jwt-decode';
+
 import styles from '../../assets/styles/input.module.css';
 import Plane from '../../assets/images/plane.svg';
 import Icon from '../../assets/images/icon.svg';
 import Google from '../../assets/images/google.svg';
 import Facebook from '../../assets/images/facebook.svg';
 import { login } from '../../redux/actions/auth';
+
 const Login = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     username: '',
     password: ''
@@ -22,25 +26,40 @@ const Login = () => {
   }, []);
   const onSubmit = (e) => {
     e.preventDefault();
-    login(form)
-      .then((res) => {
-        swal
-          .fire({
+    setLoading(true);
+    if (form.username === '' || form.password === '') {
+      swal.fire({
+        title: 'Error!',
+        text: 'All field must be filled!',
+        icon: 'error'
+      });
+      setLoading(false);
+    } else {
+      login(form)
+        .then((res) => {
+          const decoded = jwt_decode(token);
+          if (decoded.level === 0) {
+            navigate('/');
+          } else {
+            navigate('/admin');
+          }
+          swal.fire({
             title: 'Success!',
             text: res.message,
             icon: 'success'
-          })
-          .then(() => {
-            navigate('/');
           });
-      })
-      .catch((err) => {
-        swal.fire({
-          title: 'Error!',
-          text: err.response.data.message,
-          icon: 'error'
+        })
+        .catch((err) => {
+          swal.fire({
+            title: 'Error!',
+            text: err.response.data.message,
+            icon: 'error'
+          });
+        })
+        .finally(() => {
+          setLoading(false);
         });
-      });
+    }
   };
   const [passwordVisibility, setPasswordVisibility] = useState(false);
 
@@ -133,21 +152,44 @@ const Login = () => {
                       style={{ fontSize: '18px' }}></i>
                   )}
                 </div>
-                <input
-                  type="submit"
-                  value="Sign in"
-                  style={{
-                    width: '100%',
-                    marginBottom: '10px',
-                    height: '50px',
-                    backgroundColor: '#2395FF',
-                    color: 'white',
-                    borderRadius: '10px',
-                    border: 'none',
-                    fontSize: '17px',
-                    fontWeight: 'bold'
-                  }}
-                />
+                {loading ? (
+                  <button
+                    type="submit"
+                    style={{
+                      width: '100%',
+                      marginBottom: '10px',
+                      height: '50px',
+                      backgroundColor: '#2395FF',
+                      color: 'white',
+                      borderRadius: '10px',
+                      border: 'none',
+                      fontSize: '17px',
+                      fontWeight: 'bold'
+                    }}
+                    disabled>
+                    <span
+                      className="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    style={{
+                      width: '100%',
+                      marginBottom: '10px',
+                      height: '50px',
+                      backgroundColor: '#2395FF',
+                      color: 'white',
+                      borderRadius: '10px',
+                      border: 'none',
+                      fontSize: '17px',
+                      fontWeight: 'bold'
+                    }}>
+                    Sign In
+                  </button>
+                )}
               </form>
             </div>
             <small>Did you forgot your password?</small>
@@ -189,4 +231,3 @@ const Login = () => {
   );
 };
 export default Login;
-// denny

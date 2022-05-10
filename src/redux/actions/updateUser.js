@@ -1,9 +1,9 @@
 import axios from '../../utils/axios';
 
-export const payBooking = (data) => {
+export const updateUser = (data) => {
   return new Promise((resolve, reject) => {
     axios
-      .put(`booking/payment/${data}`)
+      .put(`/users/update/profile`, data)
       .then((res) => {
         resolve(res.data);
       })

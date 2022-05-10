@@ -33,7 +33,6 @@ const Home = () => {
                 <div className="small-box bg-info">
                   <div className="inner">
                     <h3>150</h3>
-
                     <p>Airlines</p>
                   </div>
                   <div className="icon">
