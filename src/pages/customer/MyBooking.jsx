@@ -11,7 +11,13 @@ const MyBooking = () => {
       <Navbar />
       <div
         className="container-fluid"
-        style={{ width: '100%', height: '85vh', backgroundColor: '#F5F6FA', display: 'flex' }}>
+        style={{
+          width: '100%',
+          height: '85vh',
+          backgroundColor: '#F5F6FA',
+          display: 'flex',
+          marginTop: '90px'
+        }}>
         <div className="leftArea" style={{ width: '30%', height: '100%', display: 'flex' }}>
           <div
             style={{
