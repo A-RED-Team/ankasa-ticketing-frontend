@@ -1,12 +1,51 @@
-import React from 'react';
-
+import React, { useState, useEffect } from 'react';
+import swal from 'sweetalert2';
+import { getMyBooking } from '../../redux/actions/myBooking';
+import { payBooking } from '../../redux/actions/booking';
+import { useDispatch, useSelector } from 'react-redux';
+import ContentLoader from 'react-content-loader';
+import moment from 'moment';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Navbar from '../../components/customer/Navbar';
 import Footer from '../../components/customer/Footer';
 
 import Flight from '../../assets/icons/flightIcon.svg';
 
 const MyBooking = () => {
+  const dispatch = useDispatch();
+  const myBookings = useSelector((state) => state.myBookings);
   const token = localStorage.getItem('token');
+  const [idBooking, setIdBooking] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = (idBook) => {
+    setIsOpen(!isOpen);
+    setIdBooking(idBook);
+  };
+  const confirmPayment = (data) => {
+    setIsOpen(!isOpen);
+    payBooking(data)
+      .then((res) => {
+        swal
+          .fire({
+            title: 'Success!',
+            text: res.message,
+            icon: 'success'
+          })
+          .then(() => {
+            dispatch(getMyBooking());
+          });
+      })
+      .catch((err) => {
+        swal.fire({
+          title: 'Error!',
+          text: err.response.data.message,
+          icon: 'error'
+        });
+      });
+  };
+  useEffect(() => {
+    dispatch(getMyBooking());
+  }, []);
   return (
     <>
       <Navbar isLogin={token} />
@@ -266,132 +305,140 @@ const MyBooking = () => {
               </h6>
             </div>
           </div>
-          <div
-            style={{
-              width: '95%',
-              border: 'none',
-              borderRadius: '15px',
-              backgroundColor: '#FFFFFF',
-              display: 'flex',
-              flexDirection: 'column',
-              padding: '30px 25px',
-              marginBottom: '20px'
-            }}>
-            <small
-              style={{
-                marginBottom: '15px',
-                fontSize: '14px'
-              }}>
-              Monday, 20 July ‘20 - 12:33
-            </small>
-            <div style={{ display: 'flex' }}>
-              <h5 style={{ fontWeight: '600' }}>IDN</h5>
-              <img src={Flight} style={{ marginLeft: '20px', marginRight: '20px' }} />
-              <h5 style={{ fontWeight: '600' }}>JPN</h5>
-            </div>
-            <small style={{ fontSize: '14px', color: '#979797' }}>Garuda Indonesia, AB-221</small>
-            <hr style={{ height: '1px', backgroundColor: '#E6E6E6' }} />
-            <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-              <small
-                style={{
-                  fontSize: '14px',
-                  color: '#7A7A7A',
-                  fontWeight: '600',
-                  marginLeft: '0px'
+          {/* My Booking goes here */}
+          {myBookings.isLoading ? (
+            <ContentLoader />
+          ) : myBookings.isError ? (
+            <div>{myBookings.message}</div>
+          ) : myBookings.data ? (
+            myBookings.data.map((e, i) => {
+              return (
+                <div
+                  key={i}
+                  style={{
+                    width: '95%',
+                    border: 'none',
+                    borderRadius: '15px',
+                    backgroundColor: '#FFFFFF',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    padding: '30px 25px',
+                    marginBottom: '20px'
+                  }}>
+                  <small
+                    style={{
+                      marginBottom: '15px',
+                      fontSize: '14px'
+                    }}>
+                    {moment(e.departure_date).format('dddd, DD MMMM YYYY')}
+                  </small>
+                  <div style={{ display: 'flex' }}>
+                    <h5 style={{ fontWeight: '600' }}>{e.from_contry}</h5>
+                    <img src={Flight} style={{ marginLeft: '20px', marginRight: '20px' }} />
+                    <h5 style={{ fontWeight: '600' }}>{e.to_contry}</h5>
+                  </div>
+                  <small style={{ fontSize: '14px', color: '#979797' }}>
+                    {e.airline_name}, {e.terminal + '-' + e.gate}
+                  </small>
+                  <hr style={{ height: '1px', backgroundColor: '#E6E6E6' }} />
+                  <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+                    <small
+                      style={{
+                        fontSize: '14px',
+                        color: '#7A7A7A',
+                        fontWeight: '600',
+                        marginLeft: '0px'
+                      }}>
+                      Status
+                    </small>
+                    {e.payment_status === 0 ? (
+                      <>
+                        <div
+                          style={{
+                            padding: '7px 18px',
+                            backgroundColor: '#FF7F23',
+                            width: 'auto',
+                            height: 'auto',
+                            color: '#FFFFFF',
+                            borderRadius: '6px',
+                            marginLeft: '60px',
+                            marginRight: 'auto'
+                          }}>
+                          <small style={{ fontSize: '14px', fontWeight: '600' }}>
+                            Waiting for payment
+                          </small>
+                        </div>
+                        <input
+                          type="button"
+                          value="Pay now"
+                          onClick={() => {
+                            toggle(e.booking_id);
+                          }}
+                          style={{
+                            padding: '7px 18px',
+                            backgroundColor: '#2395FF',
+                            width: 'auto',
+                            height: 'auto',
+                            color: '#FFFFFF',
+                            borderRadius: '6px',
+                            marginLeft: 'auto',
+                            marginRight: '15px',
+                            border: 'none'
+                          }}
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <div
+                          style={{
+                            padding: '7px 18px',
+                            backgroundColor: '#4FCF4D',
+                            width: 'auto',
+                            height: 'auto',
+                            color: '#FFFFFF',
+                            borderRadius: '6px',
+                            marginLeft: '60px',
+                            marginRight: 'auto'
+                          }}>
+                          <small style={{ fontSize: '14px', fontWeight: '600' }}>
+                            Eticket issued
+                          </small>
+                        </div>
+                        <small
+                          style={{
+                            fontSize: '16px',
+                            color: '#2395FF',
+                            fontWeight: '600',
+                            marginLeft: 'auto',
+                            marginRight: '15px'
+                          }}>
+                          View Details
+                        </small>
+                      </>
+                    )}
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            <>No Booking Found</>
+          )}
+          <Modal isOpen={isOpen} toggle={toggle}>
+            <ModalHeader toggle={toggle}>Booking payment</ModalHeader>
+            <ModalBody>Confirm your payment ?</ModalBody>
+            <ModalFooter>
+              <Button
+                color="primary"
+                onClick={() => {
+                  confirmPayment(idBooking);
                 }}>
-                Status
-              </small>
-              <div
-                style={{
-                  padding: '7px 18px',
-                  backgroundColor: '#FF7F23',
-                  width: 'auto',
-                  height: 'auto',
-                  color: '#FFFFFF',
-                  borderRadius: '6px',
-                  marginLeft: '60px',
-                  marginRight: 'auto'
-                }}>
-                <small style={{ fontSize: '14px', fontWeight: '600' }}>Waiting for payment</small>
-              </div>
-              <small
-                style={{
-                  fontSize: '16px',
-                  color: '#2395FF',
-                  fontWeight: '600',
-                  marginLeft: 'auto',
-                  marginRight: '15px'
-                }}>
-                View Details
-              </small>
-              <i
-                className="fa-solid fa-angle-down"
-                style={{ color: '#2395FF', marginRight: '0px' }}></i>
-            </div>
-          </div>
-          <div
-            style={{
-              width: '95%',
-              border: 'none',
-              borderRadius: '15px',
-              backgroundColor: '#FFFFFF',
-              display: 'flex',
-              flexDirection: 'column',
-              padding: '30px 25px',
-              marginBottom: '20px'
-            }}>
-            <small
-              style={{
-                marginBottom: '15px',
-                fontSize: '14px'
-              }}>
-              Monday, 20 July ‘20 - 12:33
-            </small>
-            <div style={{ display: 'flex' }}>
-              <h5 style={{ fontWeight: '600' }}>IDN</h5>
-              <img src={Flight} style={{ marginLeft: '20px', marginRight: '20px' }} />
-              <h5 style={{ fontWeight: '600' }}>JPN</h5>
-            </div>
-            <small style={{ fontSize: '14px', color: '#979797' }}>Garuda Indonesia, AB-221</small>
-            <hr style={{ height: '1px', backgroundColor: '#E6E6E6' }} />
-            <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-              <small
-                style={{
-                  fontSize: '14px',
-                  color: '#7A7A7A',
-                  fontWeight: '600',
-                  marginLeft: '0px'
-                }}>
-                Status
-              </small>
-              <div
-                style={{
-                  padding: '7px 18px',
-                  backgroundColor: '#4FCF4D',
-                  width: 'auto',
-                  height: 'auto',
-                  color: '#FFFFFF',
-                  borderRadius: '6px',
-                  marginLeft: '60px',
-                  marginRight: 'auto'
-                }}>
-                <small style={{ fontSize: '14px', fontWeight: '600' }}>Eticket issued</small>
-              </div>
-              <small
-                style={{
-                  fontSize: '16px',
-                  color: '#2395FF',
-                  fontWeight: '600',
-                  marginLeft: 'auto',
-                  marginRight: '15px'
-                }}>
-                View Details
-              </small>
-              <i
-                className="fa-solid fa-angle-down"
-                style={{ color: '#2395FF', marginRight: '0px' }}></i>
-            </div>
-          </div>
+                Confirm
+              </Button>{' '}
+              <Button color="danger" onClick={toggle}>
+                Cancel
+              </Button>
+            </ModalFooter>
+          </Modal>
         </div>
       </div>
       <Footer />
