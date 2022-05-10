@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { APP_PROD } from '../../../helper/env';
 
-import tokyo from '../../../assets/images/tokyo.svg';
+// import tokyo from '../../../assets/images/tokyo.svg';
 // import barcelona from '../../../assets/images/barcelona.svg';
 import back from '../../../assets/icons/btnback.svg';
 
