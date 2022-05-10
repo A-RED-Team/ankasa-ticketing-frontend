@@ -7,6 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import '../../../assets/styles/swiper.css';
 
+import bg from '../../../assets/images/vector 3.png';
 import paris from '../../../assets/images/paris.png';
 import bali from '../../../assets/images/bali.png';
 import singapore from '../../../assets/images/singapore.png';
@@ -29,8 +30,11 @@ const Carousel = styled.div`
   height: 85%;
   width: 85%;
   background-color: var(--text-blue);
+  background-image: url(${bg});
+  background-repeat: no-repeat;
+  background-size: 550px !important;
+  background-position: left bottom;
   border-radius: 60px;
-  /* background: url("../../assets/hero/carousel-bg.png") no-repeat; */
   background-size: contain;
   display: flex;
   flex-direction: column;

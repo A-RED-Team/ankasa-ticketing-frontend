@@ -1,13 +1,49 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from 'reactstrap';
+import swal from 'sweetalert2';
 import styles from '../../assets/styles/input.module.css';
 import Plane from '../../assets/images/plane.svg';
 import Icon from '../../assets/images/icon.svg';
 import Google from '../../assets/images/google.svg';
 import Facebook from '../../assets/images/facebook.svg';
+import { login } from '../../redux/actions/auth';
 const Login = () => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+  const [form, setForm] = useState({
+    username: '',
+    password: ''
+  });
+  useEffect(() => {
+    if (token) {
+      return navigate('/');
+    }
+  }, []);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    login(form)
+      .then((res) => {
+        swal
+          .fire({
+            title: 'Success!',
+            text: res.message,
+            icon: 'success'
+          })
+          .then(() => {
+            navigate('/');
+          });
+      })
+      .catch((err) => {
+        swal.fire({
+          title: 'Error!',
+          text: err.response.data.message,
+          icon: 'error'
+        });
+      });
+  };
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+
   return (
     <>
       <div style={{ width: '100%', height: '100vh', display: 'flex' }}>
@@ -50,12 +86,13 @@ const Login = () => {
                 flexDirection: 'column',
                 marginTop: '150px'
               }}>
-              <form>
+              <form onSubmit={(e) => onSubmit(e)}>
                 <h2 style={{ marginBottom: '30px' }}>Login</h2>
                 <input
                   type="text"
                   name="username"
                   className={styles.inputForm}
+                  onChange={(e) => setForm({ ...form, username: e.target.value })}
                   placeholder="Username"
                   style={{
                     width: '95%',
@@ -70,6 +107,7 @@ const Login = () => {
                     type={passwordVisibility ? 'text' : 'password'}
                     name="password"
                     className={styles.inputForm}
+                    onChange={(e) => setForm({ ...form, password: e.target.value })}
                     placeholder="Password"
                     style={{
                       width: '95%',
@@ -151,3 +189,4 @@ const Login = () => {
   );
 };
 export default Login;
+// denny
