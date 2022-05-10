@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import JwtDecode from 'jwt-decode';
-import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert2';
 import ContentLoader from 'react-content-loader';
 
@@ -17,50 +16,38 @@ const Profile = () => {
   const detailUser = useSelector((state) => state.detailUser);
 
   // for input
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [city, setCity] = useState('');
-  const [address, setAddress] = useState('');
-  const [postCode, setPostCode] = useState('');
   const [loading, setLoading] = useState(true);
 
   const token = localStorage.getItem('token');
-  const navigate = useNavigate();
+
   const decoded = JwtDecode(token);
   const [form, setForm] = useState({
     username: '',
     email: '',
-    phoneNumber: '',
+    phone: '',
     city: '',
     address: '',
     postCode: ''
   });
   useEffect(() => {
-    if (!token) {
-      return navigate('/register');
-    }
     dispatch(getDetailUser(decoded.id));
-    if (detailUser.data.data) {
-      setUsername(detailUser.data.data.username);
-      setEmail(detailUser.data.data.email);
-      setPhoneNumber(detailUser.data.data.phone_number);
-      setCity(detailUser.data.data.city);
-      setAddress(detailUser.data.data.address);
-      setPostCode(detailUser.data.data.post_code);
-    }
-    setLoading(false);
   }, []);
+  useEffect(() => {
+    if (detailUser.data.data) {
+      setForm({
+        ...form,
+        username: detailUser.data.data.username,
+        email: detailUser.data.data.email,
+        phone: detailUser.data.data.phone_number,
+        city: detailUser.data.data.city,
+        address: detailUser.data.data.address,
+        postCode: detailUser.data.data.post_code
+      });
+    }
+  }, [detailUser]);
+
   const onSubmit = (e) => {
     e.preventDefault();
-    setForm({
-      username: username,
-      email: email,
-      phone: phoneNumber,
-      city: city,
-      address: address,
-      postCode: postCode
-    });
     setLoading(false);
     if (loading == false) {
       if (form.username === '') {
@@ -87,7 +74,7 @@ const Profile = () => {
                 icon: 'success'
               })
               .then(() => {
-                navigate('/profile');
+                dispatch(getDetailUser(decoded.id));
               });
           })
           .catch((err) => {
@@ -105,7 +92,7 @@ const Profile = () => {
   };
   return (
     <>
-      <Navbar />
+      <Navbar isLogin={token} />
       {detailUser.isLoading ? (
         // untuk membuat loading page
         <ContentLoader />
@@ -157,7 +144,7 @@ const Profile = () => {
                     backgroundColor: '#FFF',
                     border: 'none',
                     borderRadius: '100px',
-                    backgroundImage: `url(${process.env.REACT_APP_PROD}uploads/users/${detailUser.data.data.photo})`,
+                    backgroundImage: `url(${process.env.REACT_APP_PROD}uploads/users/${detailUser.data?.data?.photo})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover'
                   }}></div>
@@ -178,12 +165,10 @@ const Profile = () => {
                 Select Photo
               </button>
               {/* for username */}
-              <h5 style={{ fontWeight: 'bold' }}>
-                {detailUser.data.data.username || 'Your Username'}
-              </h5>
+              <h5 style={{ fontWeight: 'bold' }}>{detailUser.data?.data?.username}</h5>
               {/* for address */}
               <small style={{ color: '#6B6B6B', marginBottom: '20px' }}>
-                {detailUser.data.data.address || 'Your Address'}
+                {detailUser.data?.data?.address || 'Your Address'}
               </small>
               <div style={{ display: 'flex', width: '80%' }}>
                 <h6
@@ -372,8 +357,8 @@ const Profile = () => {
                       className={style.inputForm}
                       name="email"
                       placeholder="Email"
-                      value={email || ''}
-                      onChange={(e) => setEmail(e.target.value)}
+                      value={form.email || ''}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
                       style={{
                         width: '100%',
                         height: '40px',
@@ -388,8 +373,8 @@ const Profile = () => {
                       className={style.inputForm}
                       name="phone"
                       placeholder="Phone Number"
-                      value={phoneNumber || ''}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      value={form.phone || ''}
+                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
                       style={{
                         width: '100%',
                         height: '40px',
@@ -430,8 +415,8 @@ const Profile = () => {
                       className={style.inputForm}
                       name="username"
                       placeholder="Username"
-                      value={username || ''}
-                      onChange={(e) => setUsername(e.target.value)}
+                      value={form.username || ''}
+                      onChange={(e) => setForm({ ...form, username: e.target.value })}
                       style={{
                         width: '100%',
                         height: '40px',
@@ -446,8 +431,8 @@ const Profile = () => {
                       className={style.inputForm}
                       name="city"
                       placeholder="City"
-                      value={city || ''}
-                      onChange={(e) => setCity(e.target.value)}
+                      value={form.city || ''}
+                      onChange={(e) => setForm({ ...form, city: e.target.value })}
                       style={{
                         width: '100%',
                         height: '40px',
@@ -462,8 +447,8 @@ const Profile = () => {
                       className={style.inputForm}
                       name="address"
                       placeholder="Address"
-                      value={address || ''}
-                      onChange={(e) => setAddress(e.target.value)}
+                      value={form.address || ''}
+                      onChange={(e) => setForm({ ...form, address: e.target.value })}
                       style={{
                         width: '100%',
                         height: '40px',
@@ -478,8 +463,8 @@ const Profile = () => {
                       className={style.inputForm}
                       name="postalcode"
                       placeholder="Post Code"
-                      value={postCode || ''}
-                      onChange={(e) => setPostCode(e.target.value)}
+                      value={form.postCode || ''}
+                      onChange={(e) => setForm({ ...form, postCode: e.target.value })}
                       style={{
                         width: '100%',
                         height: '40px',
@@ -489,43 +474,21 @@ const Profile = () => {
                       }}
                     />
                     <div style={{ width: '100%', display: 'flex' }}>
-                      {loading ? (
-                        <input
-                          disabled
-                          type="submit"
-                          value="Save"
-                          className="spinner-border spinner-border-sm"
-                          role="status"
-                          aria-hidden="true"
-                          style={{
-                            width: '150px',
-                            height: '50px',
-                            marginLeft: 'auto',
-                            marginRight: '0px',
-                            backgroundColor: '#2395FF',
-                            color: 'white',
-                            borderRadius: '10px',
-                            border: 'none',
-                            fontWeight: 'bold'
-                          }}
-                        />
-                      ) : (
-                        <input
-                          type="submit"
-                          value="Save"
-                          style={{
-                            width: '150px',
-                            height: '50px',
-                            marginLeft: 'auto',
-                            marginRight: '0px',
-                            backgroundColor: '#2395FF',
-                            color: 'white',
-                            borderRadius: '10px',
-                            border: 'none',
-                            fontWeight: 'bold'
-                          }}
-                        />
-                      )}
+                      <input
+                        type="submit"
+                        value="Save"
+                        style={{
+                          width: '150px',
+                          height: '50px',
+                          marginLeft: 'auto',
+                          marginRight: '0px',
+                          backgroundColor: '#2395FF',
+                          color: 'white',
+                          borderRadius: '10px',
+                          border: 'none',
+                          fontWeight: 'bold'
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
@@ -814,8 +777,8 @@ const Profile = () => {
     //                   className={style.inputForm}
     //                   name="phone"
     //                   placeholder="Phone Number"
-    //                   value={phoneNumber || ''}
-    //                   onChange={(e) => setPhoneNumber(e.target.value)}
+    //                   value={phone || ''}
+    //                   onChange={(e) => setphone(e.target.value)}
     //                   style={{
     //                     width: '100%',
     //                     height: '40px',

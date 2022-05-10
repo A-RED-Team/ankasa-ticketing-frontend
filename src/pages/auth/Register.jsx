@@ -105,7 +105,7 @@ const Register = () => {
                   name="fullname"
                   onChange={(e) => setForm({ ...form, username: e.target.value })}
                   className={styles.inputForm}
-                  placeholder="Full Name"
+                  placeholder="Username"
                   style={{
                     width: '95%',
                     marginBottom: '10px',
