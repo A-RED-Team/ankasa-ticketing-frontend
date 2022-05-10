@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { APP_STAGING, APP_DEV, APP_PROD } from '../../../helper/env';
 
-// import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { getCityTrending } from '../../../redux/actions/city';
-
-import tokyo from '../../../assets/images/tokyo.svg';
-import barcelona from '../../../assets/images/barcelona.svg';
+// import tokyo from '../../../assets/images/tokyo.svg';
+// import barcelona from '../../../assets/images/barcelona.svg';
 import back from '../../../assets/icons/btnback.svg';
 
 const Section = styled.section`
@@ -74,7 +71,10 @@ const Top = styled.div`
   border-radius: 20px;
   font-size: 12px;
   width: 88px;
-  height: 28px;
+  height: 30px;
+  line-height: 30px;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Detail = styled.div`
@@ -87,64 +87,27 @@ const Button = styled.div`
   margin-top: 20%;
   background: rgba(255, 255, 255, 0.17);
   border-radius: 50%;
-  height: 20px;
+  height: 28px;
   width: 20px;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
-const index = () => {
-  // const navigate = useNavigate();
-  const dispatch = useDispatch();
-  // eslint-disable-next-line no-unused-vars
-  const cityTrending = useSelector((state) => {
-    return state.cityTrending;
-  });
-  // console.log(cityTrending);
-  useEffect(() => {
-    dispatch(getCityTrending());
-    console.log(cityTrending);
-  }, []);
 
-  const [destinations] = useState([
-    {
-      id: 1,
-      image: tokyo,
-      airline: 15,
-      city: 'Tokyo',
-      country: 'Japan'
-    },
-    {
-      id: 2,
-      image: barcelona,
-      airline: 22,
-      city: 'Barcelona',
-      country: 'Spain'
-    },
-    {
-      id: 3,
-      image: tokyo,
-      airline: 15,
-      city: 'Tokyo',
-      country: 'Japan'
-    },
-    {
-      id: 4,
-      image: barcelona,
-      airline: 22,
-      city: 'Barcelona',
-      country: 'Spain'
-    },
-    {
-      id: 5,
-      image: tokyo,
-      airline: 15,
-      city: 'Tokyo',
-      country: 'Japan'
+const index = ({ trending }) => {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    // mengecek jika trending datanya ada dan loading menjadi false
+    if (trending) {
+      setLoading(false);
     }
-  ]);
+  }, [trending]);
 
   return (
     <Section>
@@ -156,24 +119,36 @@ const index = () => {
         <ViewAll className="mb-0">View all</ViewAll>
       </Container>
       <Wrapper className="d-flex justify-content-evenly mt-5">
-        {destinations.map((item) => (
-          <Card style={{ background: `url(${item.image})` }} key={item.id}>
-            <Top className="mt-3 ml-3">
-              <p className="ml-3 mt-1">
-                <b>{item.airline}</b> Airlines
-              </p>
-            </Top>
-            <Detail className="row">
-              <div className="col-sm-8">
-                <p>{item.city},</p>
-                <h4 h4>{item.country}</h4>
-              </div>
-              <Button className="col-sm-2">
-                <img src={back} alt="Back" />
-              </Button>
-            </Detail>
-          </Card>
-        ))}
+        {loading ? (
+          <div></div>
+        ) : (
+          trending.data.map((item) => (
+            <Card
+              style={{
+                background: `${
+                  APP_STAGING === 'dev'
+                    ? `${APP_DEV}uploads/cities/${item.image}`
+                    : `${APP_PROD}uploads/cities/${item.image}`
+                }`
+              }}
+              key={item.city_id}>
+              <Top className="mt-3 ml-3">
+                <p className="ml-3 mt-1">
+                  <b>15</b> Airlines
+                </p>
+              </Top>
+              <Detail className="row">
+                <div className="col-sm-8">
+                  <p>{item.city_name},</p>
+                  <h4 h4>{item.country_name}</h4>
+                </div>
+                <Button className="col-sm-2">
+                  <img src={back} alt="Back" />
+                </Button>
+              </Detail>
+            </Card>
+          ))
+        )}
       </Wrapper>
     </Section>
   );
