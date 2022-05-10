@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { APP_STAGING, APP_DEV, APP_PROD } from '../../../helper/env';
+// import { APP_STAGING, APP_DEV, APP_PROD } from '../../../helper/env';
 
-// import tokyo from '../../../assets/images/tokyo.svg';
+import tokyo from '../../../assets/images/tokyo.svg';
 // import barcelona from '../../../assets/images/barcelona.svg';
 import back from '../../../assets/icons/btnback.svg';
 
@@ -124,11 +124,7 @@ const index = ({ trending }) => {
           trending.data.map((item) => (
             <Card
               style={{
-                background: `${
-                  APP_STAGING === 'dev'
-                    ? `${APP_DEV}uploads/cities/${item.image}`
-                    : `${APP_PROD}uploads/cities/${item.image}`
-                }`
+                background: `url(${tokyo})`
               }}
               key={item.city_id}>
               <Top className="mt-3 ml-3">

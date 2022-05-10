@@ -6,7 +6,7 @@ const initialState = {
   message: ''
 };
 
-export default function recipe(state = initialState, action) {
+export default function city(state = initialState, action) {
   switch (action.type) {
     case 'GET_CITY_TRENDING_PENDING':
       return {
