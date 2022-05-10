@@ -13,6 +13,7 @@ import 'admin-lte/dist/js/adminlte.min.js';
 import '../../utils/customTable';
 
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { APP_NAME } from '../../helper/env';
 import Navbar from '../../components/admin/Navbar';
 import Sidebar from '../../components/admin/Sidebar';
@@ -78,6 +79,11 @@ const Airlines = () => {
                       </tbody>
                     </table>
                   </div>
+                </div>
+                <div className="">
+                  <Link className="text-decoration-none text-black" to="addairlines">
+                    Add Airlines
+                  </Link>
                 </div>
               </div>
             </div>

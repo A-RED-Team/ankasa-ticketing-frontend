@@ -49,6 +49,7 @@ const Profile = () => {
       setAddress(detailUser.data.data.address);
       setPostCode(detailUser.data.data.post_code);
     }
+    setLoading(false);
   }, []);
   const onSubmit = (e) => {
     e.preventDefault();
