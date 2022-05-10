@@ -6,9 +6,9 @@ const initialState = {
   message: ''
 };
 
-export default function city(state = initialState, action) {
+export default function destination(state = initialState, action) {
   switch (action.type) {
-    case 'GET_CITY_TRENDING_PENDING':
+    case 'GET_CITY_DESTINATION_PENDING':
       return {
         ...state,
         isError: false,
@@ -16,7 +16,7 @@ export default function city(state = initialState, action) {
         message: '',
         pageInfo: {}
       };
-    case 'GET_CITY_TRENDING_FULFILLED':
+    case 'GET_CITY_DESTINATION_FULFILLED':
       return {
         ...state,
         isError: false,
@@ -24,7 +24,7 @@ export default function city(state = initialState, action) {
         data: action.payload.data.data,
         message: action.payload.data.message
       };
-    case 'GET_CITY_TRENDING_REJECTED': {
+    case 'GET_CITY_DESTINATION_REJECTED': {
       return {
         ...state,
         isError: true,
