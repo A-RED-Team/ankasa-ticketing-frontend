@@ -36,6 +36,7 @@ const router = () => {
         <Route path="booking/">
           <Route index element={<SearchResult />} />
           <Route path="detail" element={<BookingDetail />} />
+          <Route path="detail/:id" element={<BookingDetail />} />
           <Route path="add" element={<FlightDetail />} />
         </Route>
         <Route path="profile/">

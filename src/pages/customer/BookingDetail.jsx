@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Navbar from '../../components/customer/Navbar';
 import Footer from '../../components/customer/Footer';
+import { useSelector, useDispatch } from 'react-redux';
+// eslint-disable-next-line no-unused-vars
+import { useParams, useNavigate } from 'react-router-dom';
+import moment from 'moment';
+import { APP_PROD } from '../../helper/env';
+// import Swal from 'sweetalert2';
+import { getDetailBooking } from '../../redux/actions/detailBooking';
 
 // Import Images
 import logo from '../../assets/images/Group 1125.svg';
 import plane from '../../assets/icons/Vector.svg';
-import qrcode from '../../assets/images/QR Code 1.svg';
 
 const Section = styled.section`
   background-color: #2395ff;
@@ -54,6 +60,32 @@ const Right = styled.div`
 `;
 
 const BookingDetail = () => {
+  // const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const detailBooking = useSelector((state) => state.detailBooking);
+  const { id } = useParams();
+  const date = moment(detailBooking.data.departure_date).format(`dddd, DD MMMM 'YY`);
+  const time = detailBooking.data.departure_time;
+  const clas =
+    detailBooking.data.class == 0
+      ? 'Economy'
+      : detailBooking.data.class == 1
+      ? 'Buisiness'
+      : 'Firts Class';
+  // const logo = detailBooking.data.image
+
+  useEffect(() => {
+    dispatch(getDetailBooking(id));
+    // if (detailBooking.data.code != 200) {
+    //   Swal.fire({
+    //     icon: 'error',
+    //     title: 'Oops...',
+    //     text: 'Please make payment first!'
+    //   });
+    //   // navigate('/booking/');
+    // }
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -76,39 +108,51 @@ const BookingDetail = () => {
                 <Left className="col-sm-7">
                   <div className="row">
                     <div className="col-8">
-                      <img src={logo} alt="Garuda Indonesia" />
+                      <img
+                        src={logo}
+                        //src={`${APP_PROD}uploads/airlines${logo}`}
+                        alt="Garuda Indonesia"
+                      />
                     </div>
                     <div className="col-4">
-                      <Country className="mr-2">IDN</Country>
+                      <Country className="mr-2">{detailBooking.data.from_contry}</Country>
                       <img src={plane} alt="Departure" />
-                      <Country className="ml-2">JPN</Country>
+                      <Country className="ml-2">{detailBooking.data.to_contry}</Country>
                     </div>
                   </div>
                   <div className="row mt-4">
                     <div className="col-4">
                       <b className="small text-muted">Code</b>
-                      <p className="small">AB-221</p>
+                      <p className="small">
+                        {detailBooking.data.terminal} - {detailBooking.data.gate}
+                      </p>
                     </div>
                     <div className="col-4">
                       <b className="small text-muted">Class</b>
-                      <p className="small">Economy</p>
+                      <p className="small">{clas}</p>
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-4">
                       <b className="small text-muted">Terminal</b>
-                      <p className="small">A</p>
+                      <p className="small">{detailBooking.data.terminal}</p>
                     </div>
                     <div className="col-4">
                       <b className="small text-muted">Gate</b>
-                      <p className="small">221</p>
+                      <p className="small">{detailBooking.data.gate}</p>
                     </div>
                   </div>
                   <b className="small text-muted">Departure</b>
-                  <p className="small">Monday, 20 July ‘20 - 12:33</p>
+                  <p className="small">
+                    {date} - {time}
+                  </p>
                 </Left>
                 <Right className="col-sm-3">
-                  <img src={qrcode} alt="QR Code" />
+                  <img
+                    // src={`${APP_PROD}qrcode/${id}.png`}
+                    src={`${APP_PROD}qrcode/6dee2567-ee39-4aad-b855-51cf7f7eed15.png`}
+                    alt="QR Code"
+                  />
                 </Right>
               </div>
             </div>
