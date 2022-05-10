@@ -6,9 +6,10 @@ import Footer from '../../components/customer/Footer';
 import Flight from '../../assets/icons/flightIcon.svg';
 
 const MyBooking = () => {
+  const token = localStorage.getItem('token');
   return (
     <>
-      <Navbar />
+      <Navbar isLogin={token} />
       <div
         className="container-fluid"
         style={{
