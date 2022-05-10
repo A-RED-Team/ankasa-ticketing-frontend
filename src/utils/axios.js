@@ -11,7 +11,7 @@ axiosApiIntances.interceptors.request.use(
     // Do something before request is sent
     // Set up config token
     config.headers = {
-      Authorization: `Bearer ${localStorage.getItem('token')}`
+      token: `${localStorage.getItem('token')}`
     };
     return config;
   },

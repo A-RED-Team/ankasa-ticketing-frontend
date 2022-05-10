@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
     --text-sliver: #979797;
     --text-blue: #2395FF;
     --text-white: #FFFFFF;
-    --shadow-black-100: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --shadow-black-100: 0 5px 15px rgba(0, 0, 0, 1);
     --shadow-black-300: 0 5px 15px rgba(0, 0, 0, 0.3);
   }
 

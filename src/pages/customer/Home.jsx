@@ -13,6 +13,7 @@ import { getDestinationCity } from '../../redux/actions/topDestination';
 
 const Home = () => {
   const dispatch = useDispatch();
+  const token = localStorage.getItem('token');
   const trending = useSelector((state) => state.trending);
   const destination = useSelector((state) => state.topDestination);
 
@@ -23,7 +24,7 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar isLogin={token} />
       <Hero />
       {trending.isLoading ? (
         // untuk membuat loading page

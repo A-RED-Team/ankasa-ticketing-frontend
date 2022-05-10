@@ -12,14 +12,21 @@ import {
   NavLink
 } from 'reactstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+import { APP_STAGING, APP_DEV, APP_PROD } from '../../../helper/env';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import '../../../utils/navbar.js';
+import './navbar.css';
 
 import logo from '../../../assets/icons/illustration.svg';
 import toggle from '../../../assets/icons/align-right.svg';
 import search from '../../../assets/icons/search.svg';
+import mail from '../../../assets/icons/ic_round-mail-outline.svg';
+import bell from '../../../assets/icons/bell.svg';
+import profile from '../../../assets/icons/user.png';
+import exit from '../../../assets/icons/log-out.png';
 
 const Search = styled.div`
   border-radius: 10px;
@@ -83,11 +90,46 @@ const Button = styled.button`
   }
 `;
 
-const index = () => {
+const Profile = styled.div`
+  display: flex;
+  width: 200px;
+  height: 27px;
+  justify-content: space-between;
+`;
+
+// const Photo = styled.img`
+//   width: 45px;
+//   height: 45px;
+//   margin-top: -10px;
+//   border: 2px solid #2395ff;
+//   border-radius: 25px;
+//   overflow: hidden;
+//   padding: 3px;
+// `;
+
+const index = ({ isLogin = false }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [modal, setModal] = useState(false);
+  // const [isLogin, setIsLogin] = useState(false);
+  // const token = localStorage.getItem('token');
+  // let decoded = '';
+
+  let decoded = '';
+  if (isLogin) {
+    decoded = jwt_decode(isLogin);
+  }
+
+  const menuToggle = () => {
+    const toggleMenu = document.querySelector('.menu');
+    toggleMenu.classList.toggle('active');
+  };
+
+  const logout = () => {
+    localStorage.clear();
+    navigate('/login');
+  };
 
   return (
     <>
@@ -130,7 +172,39 @@ const index = () => {
                 </NavLink>
               </NavItem>
             </Nav>
-            <Button onClick={() => navigate('/register')}>Sign Up</Button>
+            {isLogin ? (
+              <Profile>
+                <img src={mail} alt="Message" />
+                <img src={bell} alt="Notification" />
+                <div className="action">
+                  <div className="profile" onClick={menuToggle}>
+                    <img
+                      src={`${
+                        APP_STAGING === 'dev'
+                          ? `${APP_DEV}uploads/users/${decoded.photo}`
+                          : `${APP_PROD}uploads/users/${decoded.photo}`
+                      }`}
+                      alt={decoded.name}
+                    />
+                  </div>
+                  <div className="menu">
+                    <h3>{decoded.username}</h3>
+                    <ul>
+                      <li>
+                        <img src={profile} alt="My Profile" />
+                        <a href="#">My Profile</a>
+                      </li>
+                      <li>
+                        <img src={exit} alt="Logout" />
+                        <a onClick={logout}>Logout</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </Profile>
+            ) : (
+              <Button onClick={() => navigate('/register')}>Sign Up</Button>
+            )}
           </Collapse>
         </Container>
       </Navbar>
