@@ -5,6 +5,7 @@ export const login = (data) => {
     axios
       .post('auth/login', data)
       .then((res) => {
+        localStorage.setItem('token', res.data.token);
         resolve(res.data);
       })
       .catch((err) => {
