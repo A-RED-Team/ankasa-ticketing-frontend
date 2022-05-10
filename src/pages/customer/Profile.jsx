@@ -156,7 +156,7 @@ const Profile = () => {
                     backgroundColor: '#FFF',
                     border: 'none',
                     borderRadius: '100px',
-                    backgroundImage: `url(${process.env.REACT_APP_PROD}uploads/users/${detailUser.data.data.photo})`,
+//                     backgroundImage: `url(${process.env.REACT_APP_PROD}uploads/users/${detailUser.data.data.photo})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover'
                   }}></div>
