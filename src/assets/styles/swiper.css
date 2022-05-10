@@ -30,8 +30,8 @@
   object-fit: cover;
 }
 
-.swiper-button-prev {
-  background-image: url('../../assets/icons/btnback-white.svg');
+.swiper-button-prev,
+.swiper-button-next {
   background-repeat: no-repeat;
   background-size: 25%;
   background-position: center;
@@ -42,8 +42,16 @@
   width: 60px;
 }
 
+.swiper-button-prev {
+  background-image: url('../../assets/icons/btnprev-white.svg');
+}
+
 .swiper-button-next {
-  background-image: url('../../assets/icons/btnback-blue.svg');
+  background-image: url('../../assets/icons/btnnext-white.svg');
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
   background-repeat: no-repeat;
   background-size: 25%;
   background-position: center;
@@ -52,6 +60,14 @@
   background-color: #ffffff;
   margin-top: 4em !important;
   width: 60px;
+}
+
+.swiper-button-prev:hover {
+  background-image: url('../../assets/icons/btnprev-blue.svg');
+}
+
+.swiper-button-next:hover {
+  background-image: url('../../assets/icons/btnnext-blue.svg');
 }
 
 .swiper-button-prev::after {
