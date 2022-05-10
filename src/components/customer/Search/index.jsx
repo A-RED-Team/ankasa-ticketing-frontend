@@ -229,7 +229,7 @@ const index = () => {
         </div>
         <div className="class-select">
           <p className="text-secondary mb-3">Which class do you want?</p>
-          <div className="position-relative d-flex space-between bg-dark">
+          <div>
             <input type="radio" name="radio" id="radio1" />
             <label htmlFor="radio1">Economy</label>
             <input type="radio" name="radio" id="radio2" />
