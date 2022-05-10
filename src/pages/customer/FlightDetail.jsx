@@ -156,9 +156,10 @@ const Button = styled.button`
 `;
 
 const FlightDetail = () => {
+  const token = localStorage.getItem('token');
   return (
     <>
-      <Navbar />
+      <Navbar isLogin={token} />
       <Section className="d-sm-block d-none">
         <Header className="no-gutters pl-5 text-white">
           <div className="col-8">

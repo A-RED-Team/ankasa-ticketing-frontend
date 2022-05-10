@@ -12,6 +12,7 @@ import { getTrendingCity } from '../../redux/actions/trending';
 
 const Home = () => {
   const dispatch = useDispatch();
+  const token = localStorage.getItem('token');
   const trending = useSelector((state) => state.trending);
 
   useEffect(() => {
@@ -20,7 +21,7 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar isLogin={token} />
       <Hero />
       {trending.isLoading ? (
         // untuk membuat loading page
