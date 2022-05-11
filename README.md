@@ -84,7 +84,7 @@ REACT_APP_VERSION=1.0.0
 
 # mode
 REACT_APP_DEV=http://localhost:4000/
-REACT_APP_PROD=https://ankasa-ticketing.herokuapp.com/
+REACT_APP_PROD=https://ankasa-ticketing-app.herokuapp.com/
 REACT_APP_STAGING=prod / dev
 ```
 4. Start the Application

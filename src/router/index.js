@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PrivateRoute from '../utils/privateRoute';
-import ScrollToTop from '../utils/scrollToTop';
+// import ScrollToTop from '../utils/scrollToTop';
 
 // Auth
 import Login from '../pages/auth/Login';
@@ -21,6 +21,7 @@ import MyBooking from '../pages/customer/MyBooking';
 import Dashboard from '../pages/admin/Home';
 import NotFoundPage from '../pages/admin/NotFound';
 import Airlines from '../pages/admin/Airlines';
+import AddAirlines from '../pages/admin/AddAirlines';
 
 const router = () => {
   return (
@@ -36,6 +37,7 @@ const router = () => {
         <Route path="booking/" element={<PrivateRoute />}>
           <Route index element={<SearchResult />} />
           <Route path="detail" element={<BookingDetail />} />
+          <Route path="detail/:id" element={<BookingDetail />} />
           <Route path="add" element={<FlightDetail />} />
         </Route>
         <Route path="profile/" element={<PrivateRoute />}>
@@ -45,10 +47,11 @@ const router = () => {
         <Route path="admin/" element={<PrivateRoute />}>
           <Route index element={<Dashboard />} />
           <Route path="airlines" element={<Airlines />} />
+          <Route path="airlines/addairlines" element={<AddAirlines />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
-      <ScrollToTop />
+      {/* <ScrollToTop /> */}
     </BrowserRouter>
   );
 };

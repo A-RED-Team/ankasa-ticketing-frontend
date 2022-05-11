@@ -4,17 +4,17 @@ const initialState = {
   isError: false
 };
 
-const destinationCityReducer = (state = initialState, action) => {
+const userDetailReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'GET_DESTINATION_CITY_PENDING':
+    case 'GET_DETAIL_USER_PENDING':
       return { ...state, isLoading: true };
-    case 'GET_DESTINATION_CITY_FULFILLED':
+    case 'GET_DETAIL_USER_FULFILLED':
       return { ...state, isLoading: false, isError: false, data: action.payload.data };
-    case 'GET_DESTINATION_CITY_REJECTED':
+    case 'GET_DETAIL_USER_REJECTED':
       return { ...state, isLoading: false, isError: true };
     default:
       return state;
   }
 };
 
-export default destinationCityReducer;
+export default userDetailReducer;

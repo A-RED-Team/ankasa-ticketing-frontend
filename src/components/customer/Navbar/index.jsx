@@ -136,7 +136,7 @@ const index = ({ isLogin = false }) => {
       <Navbar color="white" expand="lg" className="fixed-top" light>
         <Container>
           <img src={logo} alt="Ankasa Ticketing" className="mr-2" />
-          <NavbarBrand href="#">ankasa</NavbarBrand>
+          <NavbarBrand href="/">ankasa</NavbarBrand>
           <NavbarToggler onClick={() => setIsOpen(!isOpen)}>
             <img src={toggle} alt="toggle" />
           </NavbarToggler>
@@ -192,7 +192,7 @@ const index = ({ isLogin = false }) => {
                     <ul>
                       <li>
                         <img src={profile} alt="My Profile" />
-                        <a href="#">My Profile</a>
+                        <Link to="/profile">My Profile</Link>
                       </li>
                       <li>
                         <img src={exit} alt="Logout" />
