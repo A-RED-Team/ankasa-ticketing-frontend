@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 
-import Navbar from '../../components/customer/Navbar';
-import Hero from '../../components/customer/Hero';
-import Card from '../../components/customer/Card';
-import Carousel from '../../components/customer/Carousel';
-import Footer from '../../components/customer/Footer';
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
+import Card from '../components/Card';
+import Carousel from '../components/Carousel';
+import Footer from '../components/Footer';
 
 import ContentLoader from 'react-content-loader';
 import { useSelector, useDispatch } from 'react-redux';
-import { getTrendingCity } from '../../redux/actions/trending';
-import { getDestinationCity } from '../../redux/actions/topDestination';
+import { getTrendingCity } from '../redux/actions/trending';
+import { getDestinationCity } from '../redux/actions/topDestination';
 
-const Home = () => {
+const Explore = () => {
   const dispatch = useDispatch();
   const token = localStorage.getItem('token');
   const trending = useSelector((state) => state.trending);
@@ -54,4 +54,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Explore;

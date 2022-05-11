@@ -10,8 +10,8 @@ import ContentLoader from 'react-content-loader';
 import moment from 'moment';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-import Navbar from '../../components/customer/Navbar';
-import Footer from '../../components/customer/Footer';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 
 import Flight from '../../assets/icons/flightIcon.svg';
 

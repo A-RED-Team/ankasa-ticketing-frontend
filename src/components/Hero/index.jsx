@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import hero2 from '../../../assets/images/hero-1.svg';
-import hero1 from '../../../assets/images/hero-2.svg';
-import vector from '../../../assets/images/vector 6.svg';
+import hero2 from '../../assets/images/hero-1.svg';
+import hero1 from '../../assets/images/hero-2.svg';
+import vector from '../../assets/images/vector 6.svg';
 
 const Section = styled.section`
   height: 130vh;
