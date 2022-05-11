@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { APP_PROD } from '../../../helper/env';
+import { APP_PROD } from '../../helper/env';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
-import '../../../assets/styles/swiper.css';
+import '../../assets/styles/swiper.css';
 
-import bg from '../../../assets/images/vector 3.png';
+import bg from '../../assets/images/vector 3.png';
 // import paris from '../../../assets/images/paris.png';
 // import bali from '../../../assets/images/bali.png';
 // import singapore from '../../../assets/images/singapore.png';

@@ -2,11 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import './style.css';
 
-import back from '../../../assets/icons/btn-back.svg';
-import arrow from '../../../assets/icons/arrow.svg';
-import plane from '../../../assets/icons/one-way.svg';
-import select from '../../../assets/icons/iconright.svg';
-import '../../../utils/datetimepicker';
+import back from '../../assets/icons/btn-back.svg';
+import arrow from '../../assets/icons/arrow.svg';
+import plane from '../../assets/icons/one-way.svg';
+import select from '../../assets/icons/iconright.svg';
 
 // import go from '../../../assets/icons/white-arrow.svg';
 

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { APP_PROD } from '../../../helper/env';
+import { APP_PROD } from '../../helper/env';
 
 // import tokyo from '../../../assets/images/tokyo.svg';
 // import barcelona from '../../../assets/images/barcelona.svg';
-import back from '../../../assets/icons/btnback.svg';
+import back from '../../assets/icons/btnback.svg';
 
 const Section = styled.section`
   height: 70vh;

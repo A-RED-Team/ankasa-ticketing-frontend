@@ -3,8 +3,8 @@ import JwtDecode from 'jwt-decode';
 import swal from 'sweetalert2';
 import ContentLoader from 'react-content-loader';
 
-import Navbar from '../../components/customer/Navbar';
-import Footer from '../../components/customer/Footer';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 import style from '../../assets/styles/input.module.css';
 
 import { useSelector, useDispatch } from 'react-redux';
