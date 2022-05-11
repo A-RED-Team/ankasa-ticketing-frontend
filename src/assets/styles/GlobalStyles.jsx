@@ -35,6 +35,10 @@ const GlobalStyles = createGlobalStyle`
     text-transform: capitalize;
   }
 
+  .ff-poppins {
+    font-family: 'Poppins', 'sans-serif';
+  }
+
   .navbar .navbar-nav {
     gap: 5px;
   }
