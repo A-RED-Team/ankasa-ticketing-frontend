@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import swal from 'sweetalert2';
 import JwtDecode from 'jwt-decode';
 import { getDetailUser } from '../../redux/actions/user';
@@ -419,16 +420,18 @@ const MyBooking = () => {
                             Eticket issued
                           </small>
                         </div>
-                        <small
-                          style={{
-                            fontSize: '16px',
-                            color: '#2395FF',
-                            fontWeight: '600',
-                            marginLeft: 'auto',
-                            marginRight: '15px'
-                          }}>
-                          View Details
-                        </small>
+                        <Link to={'/booking/detail/' + e.booking_id}>
+                          <small
+                            style={{
+                              fontSize: '16px',
+                              color: '#2395FF',
+                              fontWeight: '600',
+                              marginLeft: 'auto',
+                              marginRight: '15px'
+                            }}>
+                            View Details
+                          </small>
+                        </Link>
                       </>
                     )}
                   </div>
