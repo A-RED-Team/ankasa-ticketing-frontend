@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Modal from '../Search';
-import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink } from 'reactstrap';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+// import Modal from '../Search';
+import { Link, useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import { APP_STAGING, APP_DEV, APP_PROD } from '../../helper/env';
 
@@ -97,10 +96,8 @@ const Profile = styled.div`
 // `;
 
 const index = ({ isLogin = false }) => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
-  const [modal, setModal] = useState(false);
+  // const [modal, setModal] = useState(false);
   // const [isLogin, setIsLogin] = useState(false);
   // const token = localStorage.getItem('token');
   // let decoded = '';
@@ -282,7 +279,7 @@ const index = ({ isLogin = false }) => {
           </Collapse>
         </Container>
       </Navbar> */}
-      {modal ? <Modal /> : null}
+      {/* {modal ? <Modal /> : null} */}
     </>
   );
 };
