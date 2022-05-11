@@ -3,14 +3,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fontsource/poppins';
 
 // import image
-import logo from '../../../assets/icons/illustration.svg';
-import google from '../../../assets/images/apple-app-store-travel-awards-globestamp-7 2.svg';
-import app from '../../../assets/images/apple-app-store-travel-awards-globestamp-7 3.svg';
-import facebook from '../../../assets/icons/facebook.svg';
-import twitter from '../../../assets/icons/twitter.svg';
-import instagram from '../../../assets/icons/instagram.svg';
-import youtube from '../../../assets/icons/youtube.svg';
-import map from '../../../assets/icons/map-pin.svg';
+import logo from '../../assets/icons/illustration.svg';
+import google from '../../assets/images/apple-app-store-travel-awards-globestamp-7 2.svg';
+import app from '../../assets/images/apple-app-store-travel-awards-globestamp-7 3.svg';
+import facebook from '../../assets/icons/facebook.svg';
+import twitter from '../../assets/icons/twitter.svg';
+import instagram from '../../assets/icons/instagram.svg';
+import youtube from '../../assets/icons/youtube.svg';
+import map from '../../assets/icons/map-pin.svg';
 
 const index = () => {
   return (

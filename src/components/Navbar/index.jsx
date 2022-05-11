@@ -13,20 +13,20 @@ import {
 } from 'reactstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
-import { APP_STAGING, APP_DEV, APP_PROD } from '../../../helper/env';
+import { APP_STAGING, APP_DEV, APP_PROD } from '../../helper/env';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-import '../../../utils/navbar.js';
+import '../../utils/navbar.js';
 import './navbar.css';
 
-import logo from '../../../assets/icons/illustration.svg';
-import toggle from '../../../assets/icons/align-right.svg';
-import search from '../../../assets/icons/search.svg';
-import mail from '../../../assets/icons/ic_round-mail-outline.svg';
-import bell from '../../../assets/icons/bell.svg';
-import profile from '../../../assets/icons/user.png';
-import exit from '../../../assets/icons/log-out.png';
+import logo from '../../assets/icons/illustration.svg';
+import toggle from '../../assets/icons/align-right.svg';
+import search from '../../assets/icons/search.svg';
+import mail from '../../assets/icons/ic_round-mail-outline.svg';
+import bell from '../../assets/icons/bell.svg';
+import profile from '../../assets/icons/user.png';
+import exit from '../../assets/icons/log-out.png';
 
 const Search = styled.div`
   border-radius: 10px;

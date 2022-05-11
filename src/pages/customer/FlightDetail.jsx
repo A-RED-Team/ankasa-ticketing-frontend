@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Navbar from '../../components/customer/Navbar';
-import Footer from '../../components/customer/Footer';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 
 import bg from '../../assets/images/vector 2.png';
 import line from '../../assets/icons/Line 16.svg';

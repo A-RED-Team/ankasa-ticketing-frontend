@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import Navbar from '../../components/customer/Navbar';
-import Footer from '../../components/customer/Footer';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 import { useSelector, useDispatch } from 'react-redux';
 // eslint-disable-next-line no-unused-vars
 import { useParams, useNavigate } from 'react-router-dom';

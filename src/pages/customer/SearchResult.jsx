@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Navbar from '../../components/customer/Navbar';
-import Footer from '../../components/customer/Footer';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 
 import bg from '../../assets/images/vector 2.png';
 import bgIcon from '../../assets/images/bgicon.svg';
-import garuda from '../../assets/img/garuda.png';
-import lion from '../../assets/img/lion-air.png';
-import airAsia from '../../assets/img/air-asia.png';
+import garuda from '../../assets/images/garuda.png';
+import lion from '../../assets/images/lion-air.png';
+import airAsia from '../../assets/images/air-asia.png';
 import flightIconSmall from '../../assets/images/flightIconSmall.svg';
 
 const Section = styled.section`
