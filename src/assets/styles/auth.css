@@ -23,6 +23,14 @@
 
 .auth-title {
   margin-left: 15px;
+  color: #414141;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.auth-header {
+  font-weight: 600;
+  font-size: 36px;
 }
 
 .auth-content {
@@ -107,4 +115,48 @@
 
 .btn-social-media:hover {
   background-color: var(--text-blue);
+}
+
+input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  margin-right: 15px;
+}
+
+input[type='checkbox']:hover {
+  cursor: pointer;
+}
+
+input[type='checkbox']:checked {
+  background-color: var(--text-blue);
+  border: none;
+}
+
+.btn-auth-secondary {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--text-white);
+  color: var(--text-blue);
+  border-radius: 10px;
+  border: 1px solid var(--text-blue);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.btn-auth-secondary:hover {
+  background-color: var(--text-blue);
+  color: var(--text-white);
+}
+
+/* Responsive */
+@media screen and (max-width: 576px) {
+  .right-side {
+    height: 100vh;
+  }
+  .right-content {
+    width: 100%;
+  }
+  .auth-content {
+    margin-top: 60px;
+  }
 }

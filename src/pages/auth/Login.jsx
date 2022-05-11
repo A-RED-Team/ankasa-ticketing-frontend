@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert2';
 import jwt_decode from 'jwt-decode';
+import { APP_NAME } from '../../helper/env';
+import { toastr } from '../../utils/toastr';
 
 import Banner from '../../components/Banner';
 import Icon from '../../assets/images/icon.svg';
@@ -18,11 +20,15 @@ const Login = () => {
     username: '',
     password: ''
   });
+
   useEffect(() => {
+    document.title = `${APP_NAME} - Login Page`;
+
     if (token) {
       return navigate('/');
     }
   }, []);
+
   const onSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -49,11 +55,16 @@ const Login = () => {
           });
         })
         .catch((err) => {
-          swal.fire({
-            title: 'Error!',
-            text: err.response.data.message,
-            icon: 'error'
-          });
+          if (err.response.data.message === 'validation failed') {
+            const error = err.response.data.error;
+            error.map((e) => toastr(e, 'error'));
+          } else {
+            swal.fire({
+              title: 'Error!',
+              text: err.response.data.message,
+              icon: 'error'
+            });
+          }
         })
         .finally(() => {
           setLoading(false);
@@ -75,35 +86,33 @@ const Login = () => {
               </div>
               <div className="auth-content">
                 <form onSubmit={(e) => onSubmit(e)}>
-                  <h2 className="mb-4">Login</h2>
+                  <h2 className="mb-4 auth-header">Login</h2>
                   <input
                     type="text"
                     name="username"
                     placeholder="Username"
                     onChange={(e) => setForm({ ...form, username: e.target.value })}
                   />
-                  <div>
-                    <input
-                      type={passwordVisibility ? 'text' : 'password'}
-                      name="password"
-                      placeholder="Password"
-                      onChange={(e) => setForm({ ...form, password: e.target.value })}
-                    />
-                    <div className="p-viewer">
-                      {passwordVisibility ? (
-                        <i
-                          className="fa-solid fa-eye"
-                          onClick={() => {
-                            setPasswordVisibility(!passwordVisibility);
-                          }}></i>
-                      ) : (
-                        <i
-                          className="fa-solid fa-eye-slash"
-                          onClick={() => {
-                            setPasswordVisibility(!passwordVisibility);
-                          }}></i>
-                      )}
-                    </div>
+                  <input
+                    type={passwordVisibility ? 'text' : 'password'}
+                    name="password"
+                    placeholder="Password"
+                    onChange={(e) => setForm({ ...form, password: e.target.value })}
+                  />
+                  <div className="p-viewer">
+                    {passwordVisibility ? (
+                      <i
+                        className="fa-solid fa-eye"
+                        onClick={() => {
+                          setPasswordVisibility(!passwordVisibility);
+                        }}></i>
+                    ) : (
+                      <i
+                        className="fa-solid fa-eye-slash"
+                        onClick={() => {
+                          setPasswordVisibility(!passwordVisibility);
+                        }}></i>
+                    )}
                   </div>
                   {loading ? (
                     <button type="submit" className="btn-auth" disabled>

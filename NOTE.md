@@ -6,3 +6,6 @@
 Jika ada waktu menambahkan notification dan mail
 =======
 >>>>>>> 93a118560cf7b8d2522be7b9a01ed31eb77f5bd0
+1. Responsive Login & Register
+
+npm uninstall @eonasdan/tempus-dominus @popperjs/core admin-lte react-responsive-carousel tempusdominus-bootstrap-4
