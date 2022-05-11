@@ -1,22 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Modal from '../Search';
-import {
-  Container,
-  Navbar,
-  NavbarBrand,
-  NavbarToggler,
-  Collapse,
-  Nav,
-  NavItem,
-  NavLink
-} from 'reactstrap';
+import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink } from 'reactstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import { APP_STAGING, APP_DEV, APP_PROD } from '../../helper/env';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
 import '../../utils/navbar.js';
 import './navbar.css';
 
@@ -133,7 +122,92 @@ const index = ({ isLogin = false }) => {
 
   return (
     <>
-      <Navbar color="white" expand="lg" className="fixed-top" light>
+      <nav className="navbar navbar-expand-lg navbar-light bg-white">
+        <div className="container">
+          <img src={logo} alt="Ankasa Ticketing" className="mr-2" />
+          <a className="navbar-brand" href="/">
+            ankasa
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+            <img src={toggle} alt="toggle" />
+          </button>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav m-auto">
+              <form>
+                <Search className="p-1 pl-4">
+                  <Icon>
+                    <img src={search} alt="Search" />
+                  </Icon>
+                  <input
+                    type="search"
+                    className="form-control"
+                    style={{
+                      backgroundColor: 'transparent',
+                      border: 'none',
+                      outline: 'none',
+                      boxShadow: 'none'
+                    }}
+                    placeholder="Where you want to go ?"
+                  />
+                </Search>
+              </form>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  find ticket
+                </a>
+              </li>
+              {isLogin && (
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    my booking
+                  </a>
+                </li>
+              )}
+            </ul>
+            {isLogin ? (
+              <Profile>
+                <img src={mail} alt="Message" />
+                <img src={bell} alt="Notification" />
+                <div className="action">
+                  <div className="profile" onClick={menuToggle}>
+                    <img
+                      src={`${
+                        APP_STAGING === 'dev'
+                          ? `${APP_DEV}uploads/users/${decoded.photo}`
+                          : `${APP_PROD}uploads/users/${decoded.photo}`
+                      }`}
+                      alt={decoded.name}
+                    />
+                  </div>
+                  <div className="menu">
+                    <h3>{decoded.username}</h3>
+                    <ul>
+                      <li>
+                        <img src={profile} alt="My Profile" />
+                        <Link to="/profile">My Profile</Link>
+                      </li>
+                      <li>
+                        <img src={exit} alt="Logout" />
+                        <a onClick={logout}>Logout</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </Profile>
+            ) : (
+              <Button onClick={() => navigate('/register')}>Sign Up</Button>
+            )}
+          </div>
+        </div>
+      </nav>
+      {/* <Navbar color="white" expand="lg" className="fixed-top" light>
         <Container>
           <img src={logo} alt="Ankasa Ticketing" className="mr-2" />
           <NavbarBrand href="/">ankasa</NavbarBrand>
@@ -207,7 +281,7 @@ const index = ({ isLogin = false }) => {
             )}
           </Collapse>
         </Container>
-      </Navbar>
+      </Navbar> */}
       {modal ? <Modal /> : null}
     </>
   );

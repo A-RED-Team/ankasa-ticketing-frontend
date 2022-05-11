@@ -1,14 +1,3 @@
-* {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  font-family: 'poppins', 'sans-serif';
-}
-
-body {
-  padding: 0;
-  margin: 0;
-}
-
 #notfound {
   position: relative;
   height: 100vh;
