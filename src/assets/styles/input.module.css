@@ -1,3 +1,6 @@
 .inputForm:focus {
   outline: none;
 }
+.logout:hover {
+  cursor: pointer;
+}

@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from '../Search';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { getDetailUser } from '../../redux/actions/user';
 import jwt_decode from 'jwt-decode';
 import { APP_STAGING, APP_DEV, APP_PROD } from '../../helper/env';
 import '../../utils/navbar.js';
@@ -14,12 +16,18 @@ import bell from '../../assets/icons/bell.svg';
 const index = ({ isLogin = false }) => {
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
+  const dispatch = useDispatch();
+  const detailUser = useSelector((state) => state.detailUser);
 
   let decoded = '';
   if (isLogin) {
     decoded = jwt_decode(isLogin);
   }
-
+  useEffect(() => {
+    if (decoded) {
+      dispatch(getDetailUser(decoded.id));
+    }
+  }, []);
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light fixed-top bg-white">
@@ -82,10 +90,10 @@ const index = ({ isLogin = false }) => {
                     <img
                       src={`${
                         APP_STAGING === 'dev'
-                          ? `${APP_DEV}uploads/users/${decoded.photo}`
-                          : `${APP_PROD}uploads/users/${decoded.photo}`
+                          ? `${APP_DEV}uploads/users/${detailUser.data?.data?.photo}`
+                          : `${APP_PROD}uploads/users/${detailUser.data?.data?.photo}`
                       }`}
-                      alt={decoded.name}
+                      alt={detailUser.data?.data?.username}
                     />
                   </Link>
                 </div>

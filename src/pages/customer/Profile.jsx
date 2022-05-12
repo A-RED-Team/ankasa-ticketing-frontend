@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import JwtDecode from 'jwt-decode';
 import swal from 'sweetalert2';
 import ContentLoader from 'react-content-loader';
+import { useNavigate } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -12,6 +13,7 @@ import { getDetailUser } from '../../redux/actions/user';
 import { updateUser, updatePhoto } from '../../redux/actions/updateUser';
 
 const Profile = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const detailUser = useSelector((state) => state.detailUser);
 
@@ -31,6 +33,10 @@ const Profile = () => {
     address: '',
     postCode: ''
   });
+  const logout = () => {
+    localStorage.clear();
+    return navigate('/login');
+  };
   useEffect(() => {
     dispatch(getDetailUser(decoded.id));
   }, []);
@@ -369,6 +375,10 @@ const Profile = () => {
                   style={{ marginLeft: 'auto', marginRight: '0px' }}></i>
               </div>
               <div
+                className={style.logout}
+                onClick={() => {
+                  logout();
+                }}
                 style={{
                   display: 'flex',
                   width: '70%',
