@@ -70,7 +70,7 @@ const BookingDetail = () => {
     detailBooking.data.class == 0
       ? 'Economy'
       : detailBooking.data.class == 1
-      ? 'Buisiness'
+      ? 'Business'
       : 'Firts Class';
   const logo = detailBooking.data.image;
   console.log(logo);
@@ -111,7 +111,6 @@ const BookingDetail = () => {
                   <div className="row">
                     <div className="col-8">
                       <img
-                        // src={logo}
                         src={`${APP_PROD}uploads/airlines/${logo}`}
                         style={{ width: '90px', height: '40px', objectFit: 'center' }}
                         alt={`${logo}`}
@@ -119,7 +118,7 @@ const BookingDetail = () => {
                     </div>
                     <div className="col-4">
                       <Country className="mr-2">{detailBooking.data.from_contry}</Country>
-                      <img src={plane} alt="Departure" />
+                      <img className="m-2" src={plane} alt="Departure" />
                       <Country className="ml-2">{detailBooking.data.to_contry}</Country>
                     </div>
                   </div>
