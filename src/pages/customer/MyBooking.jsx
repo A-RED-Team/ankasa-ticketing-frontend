@@ -279,8 +279,7 @@ const MyBooking = () => {
                   display: 'flex',
                   width: '70%',
                   alignItems: 'center',
-                  marginBottom: '30px',
-                  color: '#2395FF'
+                  marginBottom: '30px'
                 }}>
                 <i className="fa-solid fa-circle-user" style={{ marginLeft: '0px' }}></i>
                 <small
