@@ -9,18 +9,20 @@ import style from '../../assets/styles/input.module.css';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getDetailUser } from '../../redux/actions/user';
-import { updateUser } from '../../redux/actions/updateUser';
+import { updateUser, updatePhoto } from '../../redux/actions/updateUser';
 
 const Profile = () => {
   const dispatch = useDispatch();
   const detailUser = useSelector((state) => state.detailUser);
 
   // for input
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const token = localStorage.getItem('token');
 
   const decoded = JwtDecode(token);
+  const [photo, setPhoto] = useState('');
+  const [buttonVisibility, setButtonVisibility] = useState(false);
   const [form, setForm] = useState({
     username: '',
     email: '',
@@ -45,7 +47,42 @@ const Profile = () => {
       });
     }
   }, [detailUser]);
-
+  const photoSubmit = (e) => {
+    e.preventDefault();
+    setLoading(false);
+    if (loading == false) {
+      setLoading(true);
+      const formData = new FormData();
+      formData.append('image', photo);
+      updatePhoto(formData)
+        .then((res) => {
+          swal
+            .fire({
+              title: 'Success!',
+              text: res.message,
+              icon: 'success'
+            })
+            .then(() => {
+              setButtonVisibility(!buttonVisibility);
+              dispatch(getDetailUser(decoded.id));
+            });
+        })
+        .catch((err) => {
+          swal
+            .fire({
+              title: 'Error!',
+              text: err.response.data.error,
+              icon: 'error'
+            })
+            .then(() => {
+              setButtonVisibility(!buttonVisibility);
+            });
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
   const onSubmit = (e) => {
     e.preventDefault();
     setLoading(false);
@@ -149,21 +186,61 @@ const Profile = () => {
                     backgroundSize: 'cover'
                   }}></div>
               </div>
-              <button
-                type="button"
-                style={{
-                  width: '135px',
-                  height: '40px',
-                  backgroundColor: '#FFFFFF',
-                  border: '1px solid #2395FF',
-                  color: '#2395FF',
-                  borderRadius: '10px',
-                  fontWeight: 'bold',
-                  fontSize: '15px',
-                  marginBottom: '20px'
-                }}>
-                Select Photo
-              </button>
+              <form id="form" onSubmit={(e) => photoSubmit(e)}>
+                <input
+                  type="file"
+                  id="photo"
+                  onChange={(e) => {
+                    setPhoto(e.target.files[0]);
+                    setButtonVisibility(!buttonVisibility);
+                  }}
+                  style={{ display: 'none' }}
+                />
+                <input type="submit" id="submit" style={{ display: 'none' }} />
+              </form>
+              {buttonVisibility ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      document.getElementById('submit').click();
+                    }}
+                    style={{
+                      width: '135px',
+                      height: '40px',
+                      backgroundColor: '#FFFFFF',
+                      border: '1px solid #2395FF',
+                      color: '#2395FF',
+                      borderRadius: '10px',
+                      fontWeight: 'bold',
+                      fontSize: '15px',
+                      marginBottom: '20px'
+                    }}>
+                    {loading ? 'Loading..' : 'Confirm Upload'}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      document.getElementById('photo').click();
+                    }}
+                    style={{
+                      width: '135px',
+                      height: '40px',
+                      backgroundColor: '#FFFFFF',
+                      border: '1px solid #2395FF',
+                      color: '#2395FF',
+                      borderRadius: '10px',
+                      fontWeight: 'bold',
+                      fontSize: '15px',
+                      marginBottom: '20px'
+                    }}>
+                    Select Photo
+                  </button>
+                </>
+              )}
               {/* for username */}
               <h5 style={{ fontWeight: 'bold' }}>{detailUser.data?.data?.username}</h5>
               {/* for address */}
