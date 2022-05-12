@@ -1,7 +1,6 @@
 import '../../assets/styles/explore.css';
 import React from 'react';
 import styled from 'styled-components';
-import { APP_NAME } from '../../helper/env';
 
 import hero2 from '../../assets/images/hero-1.svg';
 import hero1 from '../../assets/images/hero-2.svg';
