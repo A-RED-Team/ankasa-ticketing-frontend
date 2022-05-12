@@ -2,7 +2,6 @@ import '../../assets/styles/auth.css';
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert2';
-import jwt_decode from 'jwt-decode';
 import { APP_NAME } from '../../helper/env';
 import { toastr } from '../../utils/toastr';
 
@@ -31,28 +30,26 @@ const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
+
     if (form.username === '' || form.password === '') {
       swal.fire({
         title: 'Error!',
         text: 'All field must be filled!',
         icon: 'error'
       });
-      setLoading(false);
     } else {
+      setLoading(true);
       login(form)
         .then((res) => {
-          const decoded = jwt_decode(token);
-          if (decoded.level === 0) {
-            navigate('/');
-          } else {
-            navigate('/admin');
-          }
-          swal.fire({
-            title: 'Success!',
-            text: res.message,
-            icon: 'success'
-          });
+          swal
+            .fire({
+              title: 'Success!',
+              text: res.message,
+              icon: 'success'
+            })
+            .then(() => {
+              navigate('/');
+            });
         })
         .catch((err) => {
           if (err.response.data.message === 'validation failed') {
