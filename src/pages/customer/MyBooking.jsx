@@ -5,7 +5,7 @@ import JwtDecode from 'jwt-decode';
 import { getDetailUser } from '../../redux/actions/user';
 import { getMyBooking } from '../../redux/actions/myBooking';
 import { updatePhoto } from '../../redux/actions/updateUser';
-import { payBooking } from '../../redux/actions/booking';
+import { payBooking, cancelTheBooking } from '../../redux/actions/booking';
 import { useDispatch, useSelector } from 'react-redux';
 import ContentLoader from 'react-content-loader';
 import moment from 'moment';
@@ -26,12 +26,17 @@ const MyBooking = () => {
   const decoded = JwtDecode(token);
   const [idBooking, setIdBooking] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenCancel, setIsOpenCancel] = useState(false);
   const [loading, setLoading] = useState(false);
   const [photo, setPhoto] = useState('');
   const [buttonVisibility, setButtonVisibility] = useState(false);
   const logout = () => {
     localStorage.clear();
     return navigate('/login');
+  };
+  const toggle1 = (idBook) => {
+    setIsOpenCancel(!isOpenCancel);
+    setIdBooking(idBook);
   };
   const toggle = (idBook) => {
     setIsOpen(!isOpen);
@@ -40,6 +45,28 @@ const MyBooking = () => {
   const confirmPayment = (data) => {
     setIsOpen(!isOpen);
     payBooking(data)
+      .then((res) => {
+        swal
+          .fire({
+            title: 'Success!',
+            text: res.message,
+            icon: 'success'
+          })
+          .then(() => {
+            dispatch(getMyBooking());
+          });
+      })
+      .catch((err) => {
+        swal.fire({
+          title: 'Error!',
+          text: err.response.data.message,
+          icon: 'error'
+        });
+      });
+  };
+  const cancelBooking = (data) => {
+    setIsOpenCancel(!isOpenCancel);
+    cancelTheBooking(data)
       .then((res) => {
         swal
           .fire({
@@ -106,7 +133,6 @@ const MyBooking = () => {
         className="container-fluid"
         style={{
           width: '100%',
-          height: '85vh',
           backgroundColor: '#F5F6FA',
           display: 'flex',
           marginTop: '90px'
@@ -131,7 +157,9 @@ const MyBooking = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
+                paddingTop: '30px',
+                paddingBottom: '30px'
               }}>
               <div
                 style={{
@@ -375,7 +403,6 @@ const MyBooking = () => {
           }}>
           <div
             style={{
-              height: '13%',
               width: '95%',
               border: 'none',
               borderRadius: '15px',
@@ -456,7 +483,25 @@ const MyBooking = () => {
                       }}>
                       Status
                     </small>
-                    {e.payment_status === 0 ? (
+                    {e.is_active === 0 ? (
+                      <>
+                        <div
+                          style={{
+                            padding: '7px 18px',
+                            backgroundColor: '#DC3545',
+                            width: 'auto',
+                            height: 'auto',
+                            color: '#FFFFFF',
+                            borderRadius: '6px',
+                            marginLeft: '60px',
+                            marginRight: 'auto'
+                          }}>
+                          <small style={{ fontSize: '14px', fontWeight: '600' }}>
+                            Booking Cancelled
+                          </small>
+                        </div>
+                      </>
+                    ) : e.payment_status === 0 ? (
                       <>
                         <div
                           style={{
@@ -473,24 +518,59 @@ const MyBooking = () => {
                             Waiting for payment
                           </small>
                         </div>
-                        <input
-                          type="button"
-                          value="Pay now"
-                          onClick={() => {
-                            toggle(e.booking_id);
-                          }}
+                        <div
                           style={{
-                            padding: '7px 18px',
-                            backgroundColor: '#2395FF',
-                            width: 'auto',
-                            height: 'auto',
-                            color: '#FFFFFF',
-                            borderRadius: '6px',
+                            width: '25%',
+                            display: 'flex',
+                            alignItems: 'center',
                             marginLeft: 'auto',
-                            marginRight: '15px',
-                            border: 'none'
-                          }}
-                        />
+                            marginRight: '15px'
+                          }}>
+                          <input
+                            type="button"
+                            value="Pay now"
+                            onClick={() => {
+                              toggle(e.booking_id);
+                            }}
+                            style={{
+                              padding: '7px 18px',
+                              backgroundColor: '#2395FF',
+                              width: 'auto',
+                              height: 'auto',
+                              color: '#FFFFFF',
+                              borderRadius: '6px',
+                              marginLeft: '0px',
+                              border: 'none'
+                            }}
+                          />
+                          <small
+                            style={{
+                              fontSize: '14px',
+                              color: '#7A7A7A',
+                              fontWeight: '600',
+                              marginLeft: 'auto',
+                              marginRight: 'auto'
+                            }}>
+                            Or
+                          </small>
+                          <input
+                            type="button"
+                            value="Cancel Booking"
+                            onClick={() => {
+                              toggle1(e.booking_id);
+                            }}
+                            style={{
+                              padding: '7px 18px',
+                              backgroundColor: '#dc3545',
+                              width: 'auto',
+                              height: 'auto',
+                              color: '#FFFFFF',
+                              borderRadius: '6px',
+                              marginRight: '0px',
+                              border: 'none'
+                            }}
+                          />
+                        </div>
                       </>
                     ) : (
                       <>
@@ -543,6 +623,22 @@ const MyBooking = () => {
               </Button>{' '}
               <Button color="danger" onClick={toggle}>
                 Cancel
+              </Button>
+            </ModalFooter>
+          </Modal>
+          <Modal isOpen={isOpenCancel} toggle={toggle1}>
+            <ModalHeader toggle={toggle1}>Cancel Booking</ModalHeader>
+            <ModalBody>Are you sure to cancel this booking ?</ModalBody>
+            <ModalFooter>
+              <Button
+                color="danger"
+                onClick={() => {
+                  cancelBooking(idBooking);
+                }}>
+                Confirm
+              </Button>{' '}
+              <Button color="secondary" onClick={toggle1}>
+                Back
               </Button>
             </ModalFooter>
           </Modal>

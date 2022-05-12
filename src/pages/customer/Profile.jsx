@@ -147,10 +147,10 @@ const Profile = () => {
           className="container-fluid"
           style={{
             width: '100%',
-            height: '85vh',
             backgroundColor: '#F5F6FA',
             display: 'flex',
-            marginTop: '90px'
+            marginTop: '90px',
+            paddingBottom: '30px'
           }}>
           <div className="leftArea" style={{ width: '30%', height: '100%', display: 'flex' }}>
             <div
@@ -165,7 +165,9 @@ const Profile = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
+                paddingTop: '30px',
+                paddingBottom: '30px'
               }}>
               <div
                 style={{
@@ -406,11 +408,11 @@ const Profile = () => {
             style={{
               width: '70%',
               height: '100%',
-              display: 'flex'
+              display: 'flex',
+              flexDirection: 'column'
             }}>
             <div
               style={{
-                height: '75%',
                 width: '95%',
                 border: 'none',
                 borderRadius: '15px',
@@ -431,7 +433,7 @@ const Profile = () => {
               </small>
               <form onSubmit={(e) => onSubmit(e)}>
                 <h4 style={{ fontWeight: '600', marginBottom: '30px' }}>Profile</h4>
-                <div style={{ width: '100%', display: 'flex', height: '100px' }}>
+                <div style={{ width: '100%', display: 'flex' }}>
                   <div
                     style={{
                       width: '50%',
@@ -470,7 +472,6 @@ const Profile = () => {
                         marginBottom: '30px'
                       }}
                     />
-
                     <div
                       style={{
                         color: '#2395FF',

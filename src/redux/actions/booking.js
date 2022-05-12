@@ -12,3 +12,15 @@ export const payBooking = (data) => {
       });
   });
 };
+export const cancelTheBooking = (data) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(`booking/canceled/${data}`)
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
