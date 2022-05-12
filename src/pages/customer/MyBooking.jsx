@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert2';
 import JwtDecode from 'jwt-decode';
 import { getDetailUser } from '../../redux/actions/user';
 import { getMyBooking } from '../../redux/actions/myBooking';
+import { updatePhoto } from '../../redux/actions/updateUser';
 import { payBooking } from '../../redux/actions/booking';
 import { useDispatch, useSelector } from 'react-redux';
 import ContentLoader from 'react-content-loader';
@@ -12,10 +13,12 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import style from '../../assets/styles/input.module.css';
 
 import Flight from '../../assets/icons/flightIcon.svg';
 
 const MyBooking = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const myBookings = useSelector((state) => state.myBookings);
   const detailUser = useSelector((state) => state.detailUser);
@@ -23,6 +26,13 @@ const MyBooking = () => {
   const decoded = JwtDecode(token);
   const [idBooking, setIdBooking] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [photo, setPhoto] = useState('');
+  const [buttonVisibility, setButtonVisibility] = useState(false);
+  const logout = () => {
+    localStorage.clear();
+    return navigate('/login');
+  };
   const toggle = (idBook) => {
     setIsOpen(!isOpen);
     setIdBooking(idBook);
@@ -48,6 +58,42 @@ const MyBooking = () => {
           icon: 'error'
         });
       });
+  };
+  const photoSubmit = (e) => {
+    e.preventDefault();
+    setLoading(false);
+    if (loading == false) {
+      setLoading(true);
+      const formData = new FormData();
+      formData.append('image', photo);
+      updatePhoto(formData)
+        .then((res) => {
+          swal
+            .fire({
+              title: 'Success!',
+              text: res.message,
+              icon: 'success'
+            })
+            .then(() => {
+              setButtonVisibility(!buttonVisibility);
+              dispatch(getDetailUser(decoded.id));
+            });
+        })
+        .catch((err) => {
+          swal
+            .fire({
+              title: 'Error!',
+              text: err.response.data.error,
+              icon: 'error'
+            })
+            .then(() => {
+              setButtonVisibility(!buttonVisibility);
+            });
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   };
   useEffect(() => {
     dispatch(getMyBooking());
@@ -112,21 +158,61 @@ const MyBooking = () => {
                     backgroundSize: 'cover'
                   }}></div>
               </div>
-              <button
-                type="button"
-                style={{
-                  width: '135px',
-                  height: '40px',
-                  backgroundColor: '#FFFFFF',
-                  border: '1px solid #2395FF',
-                  color: '#2395FF',
-                  borderRadius: '10px',
-                  fontWeight: 'bold',
-                  fontSize: '15px',
-                  marginBottom: '20px'
-                }}>
-                Select Photo
-              </button>
+              <form id="form" onSubmit={(e) => photoSubmit(e)}>
+                <input
+                  type="file"
+                  id="photo"
+                  onChange={(e) => {
+                    setPhoto(e.target.files[0]);
+                    setButtonVisibility(!buttonVisibility);
+                  }}
+                  style={{ display: 'none' }}
+                />
+                <input type="submit" id="submit" style={{ display: 'none' }} />
+              </form>
+              {buttonVisibility ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      document.getElementById('submit').click();
+                    }}
+                    style={{
+                      width: '135px',
+                      height: '40px',
+                      backgroundColor: '#FFFFFF',
+                      border: '1px solid #2395FF',
+                      color: '#2395FF',
+                      borderRadius: '10px',
+                      fontWeight: 'bold',
+                      fontSize: '15px',
+                      marginBottom: '20px'
+                    }}>
+                    {loading ? 'Loading..' : 'Confirm Upload'}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      document.getElementById('photo').click();
+                    }}
+                    style={{
+                      width: '135px',
+                      height: '40px',
+                      backgroundColor: '#FFFFFF',
+                      border: '1px solid #2395FF',
+                      color: '#2395FF',
+                      borderRadius: '10px',
+                      fontWeight: 'bold',
+                      fontSize: '15px',
+                      marginBottom: '20px'
+                    }}>
+                    Select Photo
+                  </button>
+                </>
+              )}
               <h5 style={{ fontWeight: 'bold' }}>{detailUser.data?.data?.username}</h5>
               <small style={{ color: '#6B6B6B', marginBottom: '20px' }}>
                 {detailUser.data?.data?.address || 'Your Address'}
@@ -253,6 +339,10 @@ const MyBooking = () => {
                   style={{ marginLeft: 'auto', marginRight: '0px' }}></i>
               </div>
               <div
+                className={style.logout}
+                onClick={() => {
+                  logout();
+                }}
                 style={{
                   display: 'flex',
                   width: '70%',
