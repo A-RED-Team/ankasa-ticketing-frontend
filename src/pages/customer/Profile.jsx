@@ -16,7 +16,7 @@ const Profile = () => {
   const detailUser = useSelector((state) => state.detailUser);
 
   // for input
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const token = localStorage.getItem('token');
 
@@ -68,11 +68,15 @@ const Profile = () => {
             });
         })
         .catch((err) => {
-          swal.fire({
-            title: 'Error!',
-            text: err.response.data.message,
-            icon: 'error'
-          });
+          swal
+            .fire({
+              title: 'Error!',
+              text: err.response.data.error,
+              icon: 'error'
+            })
+            .then(() => {
+              setButtonVisibility(!buttonVisibility);
+            });
         })
         .finally(() => {
           setLoading(false);
@@ -212,7 +216,7 @@ const Profile = () => {
                       fontSize: '15px',
                       marginBottom: '20px'
                     }}>
-                    Confirm Upload
+                    {loading ? 'Loading..' : 'Confirm Upload'}
                   </button>
                 </>
               ) : (
