@@ -16,6 +16,16 @@ const GlobalStyles = createGlobalStyle`
     --shadow-black-300: 0 5px 15px rgba(0, 0, 0, 0.3);
   }
 
+  /* Fonts */
+  .ff-poppins {
+    font-family: 'Poppins', 'sans-serif';
+  }
+
+  .ff-lato {
+    font-family: 'Lato', 'sans-serif';
+  }
+
+  /* Navbar Start */
   .navbar {
     background: var(--text-white);
     padding: 20px 0;
@@ -78,11 +88,83 @@ const GlobalStyles = createGlobalStyle`
   }
 
   .navbar .nav-item .nav-link:hover,
+  .navbar .nav-item .nav-link.active,
   .navbar .nav-item .nav-link.active::before,
   .navbar .nav-item .nav-link:hover::before {
     font-weight: 700;
     transform: scale(1);
   }
+
+  .navbar-search {
+    border-radius: 10px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    background-color: #efefef;
+    margin-right: 20px;
+  }
+
+  .navbar-search input {
+    font-family: 'Lato', 'sans-serif';
+    font-weight: 400;
+    font-size: 14px;
+    margin-left: 25px;
+  }
+
+  .navbar-icon-search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .navbar-icon-search img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 7px;
+    margin: auto;
+  }
+
+  .navbar-profile {
+    display: flex;
+    width: 200px;
+    height: 27px;
+    justify-content: space-between;
+  }
+
+  .navbar-button {
+    background-color: var(--text-blue);
+    color: var(--text-white);
+    padding: 11px 13px;
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    text-transform: capitalize;
+    transition: all 0.5 ease;
+    font-weight: 500;
+    text-decoration: none;
+    width: 130px;
+    text-align: center;
+  }
+
+  .navbar-button:hover {
+    box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3);
+  }
+
+  .navbar-photo img {
+    width: 45px;
+    height: 45px;
+    margin-top: -10px;
+    border: 2px solid #2395ff;
+    border-radius: 25px;
+    overflow: hidden;
+    padding: 3px;
+  }
+
+  /* Navbar End */
 
   .switch {
     position: relative;
@@ -156,6 +238,18 @@ input:checked + .slider:before {
     }
     .navbar .nav-item .nav-link::before {
       top: 35px;
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    .navbar-search {
+      width: 100%;
+      margin: 10px 0;
+    }
+    .navbar-button {
+      display: block;
+      margin: 0 auto;
+      margin-top: 10px;
     }
   }
 `;
