@@ -14,6 +14,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import style from '../../assets/styles/input.module.css';
+import mybookingStayle from '../../assets/styles/mybooking.module.css';
 
 import Flight from '../../assets/icons/flightIcon.svg';
 
@@ -137,7 +138,11 @@ const MyBooking = () => {
           display: 'flex',
           marginTop: '90px'
         }}>
-        <div className="leftArea" style={{ width: '30%', height: '100%', display: 'flex' }}>
+        <div
+          // className="leftArea"
+          className={`${mybookingStayle.leftContent} leftArea`}
+          // style={{ width: '30%', height: '100%', display: 'flex' }}
+        >
           {detailUser.isLoading ? (
             // untuk membuat loading page
             <ContentLoader />
@@ -394,13 +399,15 @@ const MyBooking = () => {
           )}
         </div>
         <div
-          className="rightArea"
-          style={{
-            width: '70%',
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column'
-          }}>
+          // className="rightArea"
+          className={`${mybookingStayle.rightContent} rightArea`}
+          // style={{
+          //   width: '70%',
+          //   height: '100%',
+          //   display: 'flex',
+          //   flexDirection: 'column'
+          // }}
+        >
           <div
             style={{
               width: '95%',
