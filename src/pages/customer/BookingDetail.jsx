@@ -3,15 +3,14 @@ import styled from 'styled-components';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { useSelector, useDispatch } from 'react-redux';
-// eslint-disable-next-line no-unused-vars
 import { useParams, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import { APP_PROD } from '../../helper/env';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import { getDetailBooking } from '../../redux/actions/detailBooking';
 
 // Import Images
-import logo from '../../assets/images/Group 1125.svg';
+// import logo from '../../assets/images/Group 1125.svg';
 import plane from '../../assets/icons/Vector.svg';
 
 const Section = styled.section`
@@ -60,7 +59,7 @@ const Right = styled.div`
 `;
 
 const BookingDetail = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const token = localStorage.getItem('token');
   const detailBooking = useSelector((state) => state.detailBooking);
@@ -71,20 +70,22 @@ const BookingDetail = () => {
     detailBooking.data.class == 0
       ? 'Economy'
       : detailBooking.data.class == 1
-      ? 'Buisiness'
+      ? 'Business'
       : 'Firts Class';
-  // const logo = detailBooking.data.image
+  const logo = detailBooking.data.image;
+  console.log(logo);
 
   useEffect(() => {
     dispatch(getDetailBooking(id));
-    // if (detailBooking.data.code != 200) {
-    //   Swal.fire({
-    //     icon: 'error',
-    //     title: 'Oops...',
-    //     text: 'Please make payment first!'
-    //   });
-    //   // navigate('/booking/');
-    // }
+    if (detailBooking.data.is_active == 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please make payment first!'
+      }).then(() => {
+        navigate('/profile/booking');
+      });
+    }
   }, []);
 
   return (
@@ -110,14 +111,14 @@ const BookingDetail = () => {
                   <div className="row">
                     <div className="col-8">
                       <img
-                        src={logo}
-                        //src={`${APP_PROD}uploads/airlines${logo}`}
-                        alt="Garuda Indonesia"
+                        src={`${APP_PROD}uploads/airlines/${logo}`}
+                        style={{ width: '90px', height: '40px', objectFit: 'center' }}
+                        alt={`${logo}`}
                       />
                     </div>
                     <div className="col-4">
                       <Country className="mr-2">{detailBooking.data.from_contry}</Country>
-                      <img src={plane} alt="Departure" />
+                      <img className="m-2" src={plane} alt="Departure" />
                       <Country className="ml-2">{detailBooking.data.to_contry}</Country>
                     </div>
                   </div>
@@ -150,8 +151,8 @@ const BookingDetail = () => {
                 </Left>
                 <Right className="col-sm-3">
                   <img
-                    // src={`${APP_PROD}qrcode/${id}.png`}
-                    src={`${APP_PROD}qrcode/6dee2567-ee39-4aad-b855-51cf7f7eed15.png`}
+                    src={`${APP_PROD}qrcode/${id}.png`}
+                    // src={`${APP_PROD}qrcode/6dee2567-ee39-4aad-b855-51cf7f7eed15.png`}
                     alt="QR Code"
                   />
                 </Right>
