@@ -31,7 +31,7 @@ const Register = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
+
     if (form.terms !== true) {
       swal.fire({
         title: 'Error!',
@@ -46,6 +46,7 @@ const Register = () => {
         icon: 'error'
       });
     } else {
+      setLoading(true);
       register(form)
         .then((res) => {
           swal

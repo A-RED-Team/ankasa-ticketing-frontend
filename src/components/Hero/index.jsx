@@ -1,3 +1,4 @@
+import '../../assets/styles/explore.css';
 import React from 'react';
 import styled from 'styled-components';
 
