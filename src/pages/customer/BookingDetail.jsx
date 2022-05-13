@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -61,6 +61,7 @@ const Right = styled.div`
 const BookingDetail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [getQrcode, setGetQrcode] = useState('');
   const token = localStorage.getItem('token');
   const detailBooking = useSelector((state) => state.detailBooking);
   const { id } = useParams();
@@ -73,7 +74,6 @@ const BookingDetail = () => {
       ? 'Business'
       : 'Firts Class';
   const logo = detailBooking.data.image;
-  console.log(logo);
 
   useEffect(() => {
     dispatch(getDetailBooking(id));
@@ -86,6 +86,19 @@ const BookingDetail = () => {
         navigate('/profile/booking');
       });
     }
+    const requestImage = async () => {
+      try {
+        const response = await fetch(`${APP_PROD}qrcode/${id}.png`);
+        if (response.status != 200) {
+          setGetQrcode(`${APP_PROD}qrcode/6dee2567-ee39-4aad-b855-51cf7f7eed15.png`);
+        } else {
+          setGetQrcode(`${APP_PROD}qrcode/${id}.png`);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    requestImage();
   }, []);
 
   return (
@@ -151,7 +164,7 @@ const BookingDetail = () => {
                 </Left>
                 <Right className="col-sm-3">
                   <img
-                    src={`${APP_PROD}qrcode/${id}.png`}
+                    src={getQrcode}
                     // src={`${APP_PROD}qrcode/6dee2567-ee39-4aad-b855-51cf7f7eed15.png`}
                     alt="QR Code"
                   />
