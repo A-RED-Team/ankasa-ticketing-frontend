@@ -179,6 +179,7 @@ const FlightDetail = () => {
   const detailFlight = useSelector((state) => state.detailFlightReducer);
   const detailUser = useSelector((state) => state.detailUser);
   const allCountry = useSelector((state) => state.allCountry);
+  const [sameAsContact, setSameAsContact] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
   const [insurance, setInsurance] = useState(false);
   const [form, setForm] = useState({
@@ -336,6 +337,13 @@ const FlightDetail = () => {
       setTotalPrice(detailFlight.data.data.price * totalPax);
     }
   }, [insurance]);
+  useEffect(() => {
+    if (sameAsContact) {
+      setForm({ ...form, paxName: form.fullName });
+    } else {
+      setForm({ ...form, paxName: '' });
+    }
+  }, [sameAsContact]);
   return (
     <>
       <Navbar isLogin={token} />
@@ -441,7 +449,7 @@ const FlightDetail = () => {
                               <input
                                 type="checkbox"
                                 onChange={(e) => {
-                                  console.log(e);
+                                  setSameAsContact(e.target.checked);
                                 }}
                               />
                               <span className="slider round"></span>
@@ -471,6 +479,7 @@ const FlightDetail = () => {
                         onChange={(e) => {
                           setForm({ ...form, paxName: e.target.value });
                         }}
+                        value={form.paxName}
                         required
                       />
                       <label htmlFor="fullname">Full Name</label>
