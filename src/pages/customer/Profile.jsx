@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import style from '../../assets/styles/input.module.css';
+import profileStyle from '../../assets/styles/profile.module.css';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getDetailUser } from '../../redux/actions/user';
@@ -152,7 +153,11 @@ const Profile = () => {
             marginTop: '90px',
             paddingBottom: '30px'
           }}>
-          <div className="leftArea" style={{ width: '30%', height: '100%', display: 'flex' }}>
+          <div
+            // className="leftArea"
+            className={`${profileStyle.leftContent} leftArea`}
+            // style={{ width: '30%', height: '100%', display: 'flex' }}
+          >
             <div
               style={{
                 height: '80%',
@@ -404,13 +409,15 @@ const Profile = () => {
             </div>
           </div>
           <div
-            className="rightArea"
-            style={{
-              width: '70%',
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column'
-            }}>
+            // className="rightArea"
+            className={`${profileStyle.rightContent} rightArea`}
+            // style={{
+            //   width: '70%',
+            //   height: '100%',
+            //   display: 'flex',
+            //   flexDirection: 'column'
+            //     }}
+          >
             <div
               style={{
                 width: '95%',

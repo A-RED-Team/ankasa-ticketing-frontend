@@ -14,7 +14,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import style from '../../assets/styles/input.module.css';
-import mybookingStayle from '../../assets/styles/mybooking.module.css';
+import mybookingStyle from '../../assets/styles/mybooking.module.css';
 
 import Flight from '../../assets/icons/flightIcon.svg';
 
@@ -140,7 +140,7 @@ const MyBooking = () => {
         }}>
         <div
           // className="leftArea"
-          className={`${mybookingStayle.leftContent} leftArea`}
+          className={`${mybookingStyle.leftContent} leftArea`}
           // style={{ width: '30%', height: '100%', display: 'flex' }}
         >
           {detailUser.isLoading ? (
@@ -400,7 +400,7 @@ const MyBooking = () => {
         </div>
         <div
           // className="rightArea"
-          className={`${mybookingStayle.rightContent} rightArea`}
+          className={`${mybookingStyle.rightContent} rightArea`}
           // style={{
           //   width: '70%',
           //   height: '100%',
