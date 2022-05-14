@@ -16,3 +16,12 @@ export const addAirlines = (data) => {
       });
   });
 };
+export const getAllAirlines = () => {
+  return {
+    type: 'GET_ALL_AIRLINES',
+    payload: axios({
+      url: `airline-active`,
+      method: 'GET'
+    })
+  };
+};

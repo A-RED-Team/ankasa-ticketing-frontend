@@ -24,3 +24,15 @@ export const cancelTheBooking = (data) => {
       });
   });
 };
+export const createBooking = (data) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`booking`, data)
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
