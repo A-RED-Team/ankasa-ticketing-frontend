@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import ContentLoader from 'react-content-loader';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import searchStyle from '../../assets/styles/searchResult.module.css';
-import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
+// import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
 import style from '../../assets/styles/input.module.css';
 
 import Navbar from '../../components/Navbar';
@@ -149,32 +149,12 @@ const SearchResult = () => {
               width: '10%',
               display: 'flex'
             }}>
-            <img
-              className={searchStyle.imagePlane}
-              src={bgIcon}
-              // style={{ marginLeft: 'auto', marginRight: '0px' }}
-            />
+            <img className={searchStyle.imagePlane} src={bgIcon} />
           </div>
-          <div
-            className={searchStyle.headerMain}
-            // style={{ width: '20%', display: 'flex', flexDirection: 'column', paddingLeft: '20px' }}
-          >
-            <div
-              className={searchStyle.mainFromTo}
-              // style={{ width: '100%', display: 'flex' }}
-            >
-              <p
-                className={searchStyle.mainFrom}
-                // style={{ marginLeft: '0px', marginRight: 'auto', fontSize: '12px' }}
-              >
-                From
-              </p>
-              <p
-                className={searchStyle.mainTo}
-                // style={{ marginLeft: 'auto', marginRight: '0px', fontSize: '12px' }}
-              >
-                To
-              </p>
+          <div className={searchStyle.headerMain}>
+            <div className={searchStyle.mainFromTo}>
+              <p className={searchStyle.mainFrom}>From</p>
+              <p className={searchStyle.mainTo}>To</p>
             </div>
             <div
               style={{
@@ -206,17 +186,12 @@ const SearchResult = () => {
               </small>
             </div>
           </div>
-          <div
-            className={searchStyle.divChangeSearch}
-            // style={{ width: '70%', display: 'flex', paddingRight: '70px' }}
-          >
+          <div className={searchStyle.divChangeSearch}>
             <h6
               className={`${searchStyle.changeSearch} ${style.logout}`}
-              // style={{ marginLeft: 'auto', marginRight: '0px' }}
               onClick={(e) => {
                 search(e);
               }}>
-            >
               Change Search
             </h6>
           </div>
@@ -229,15 +204,7 @@ const SearchResult = () => {
             display: 'flex'
           }}>
           {/* Start Left Filter */}
-          <div
-            className={searchStyle.leftContent}
-            // style={{
-            //   width: '25%',
-            //   display: 'flex',
-            //   flexDirection: 'column',
-            //   padding: '30px 25px 30px 70px'
-            // }}
-          >
+          <div className={searchStyle.leftContent}>
             <div
               style={{
                 display: 'flex',
@@ -827,9 +794,7 @@ const SearchResult = () => {
             ) : allFlight.data ? (
               allFlight.data.map((e, i) => {
                 return (
-                  <div
-                    key={i}
-                    className={searchStyle.divSearchResult}
+                  <div key={i} className={searchStyle.divSearchResult}>
                     <div
                       style={{
                         width: '100%',
@@ -877,8 +842,7 @@ const SearchResult = () => {
                           {moment(e.arrival_time, 'HH:mm:ss').format('HH:mm')}
                         </h6>
                       </div>
-                      <div
-                        className={searchStyle.longTime}>
+                      <div className={searchStyle.longTime}>
                         <h6 style={{ fontSize: '16px', color: '#595959' }}>
                           {parseInt(
                             moment
@@ -905,8 +869,7 @@ const SearchResult = () => {
                           ({e.direct ? 'Direct' : e.more_transit ? '2 Transit' : '1 Transit'})
                         </h6>
                       </div>
-                      <div
-                        className={searchStyle.iconFeature}>
+                      <div className={searchStyle.iconFeature}>
                         {e.luggage ? (
                           <>
                             <i
@@ -941,15 +904,12 @@ const SearchResult = () => {
                         </h6>
                       </div>
                       <Link to={`/booking/add/${e.flightid}?adult=${adult}&child=${child}`}>
-                        <button
-                          type="button"
-                          className={searchStyle.buttonSelect}>
+                        <button type="button" className={searchStyle.buttonSelect}>
                           Select
                         </button>
                       </Link>
                     </div>
-                    <div
-                      className={searchStyle.divViewDetail}>
+                    <div className={searchStyle.divViewDetail}>
                       <h6 style={{ fontWeight: '600', fontSize: '16px' }}>View Details</h6>
                       <i
                         className="fa-solid fa-angle-down"
