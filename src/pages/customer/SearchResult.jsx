@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import serchStyle from '../../assets/styles/searchResult.module.css';
 
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
