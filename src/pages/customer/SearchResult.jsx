@@ -7,15 +7,20 @@ import { getAllAirlines } from '../../redux/actions/airline';
 import styled from 'styled-components';
 import ContentLoader from 'react-content-loader';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import searchStyle from '../../assets/styles/searchResult.module.css';
 import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
 import style from '../../assets/styles/input.module.css';
-// import serchStyle from '../../assets/styles/searchResult.module.css';
 
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
 import bg from '../../assets/images/vector 2.png';
 import bgIcon from '../../assets/images/bgicon.svg';
+
+// import garuda from '../../assets/images/garuda.png';
+// import lion from '../../assets/images/lion-air.png';
+// import airAsia from '../../assets/images/air-asia.png';
+
 import flightIconSmall from '../../assets/images/flightIconSmall.svg';
 
 const Section = styled.section`
@@ -137,20 +142,39 @@ const SearchResult = () => {
   return (
     <>
       <Navbar isLogin={token} />
-      <Section className="d-sm-block d-none">
-        <Header className="no-gutters pl-5 text-white">
+      <Section className="">
+        <Header className={`no-gutters pl-5 text-white ${searchStyle.header}`}>
           <div
             style={{
               width: '10%',
               display: 'flex'
             }}>
-            <img src={bgIcon} style={{ marginLeft: 'auto', marginRight: '0px' }} />
+            <img
+              className={searchStyle.imagePlane}
+              src={bgIcon}
+              // style={{ marginLeft: 'auto', marginRight: '0px' }}
+            />
           </div>
           <div
-            style={{ width: '20%', display: 'flex', flexDirection: 'column', paddingLeft: '20px' }}>
-            <div style={{ width: '100%', display: 'flex' }}>
-              <p style={{ marginLeft: '0px', marginRight: 'auto', fontSize: '12px' }}>From</p>
-              <p style={{ marginLeft: 'auto', marginRight: '0px', fontSize: '12px' }}>To</p>
+            className={searchStyle.headerMain}
+            // style={{ width: '20%', display: 'flex', flexDirection: 'column', paddingLeft: '20px' }}
+          >
+            <div
+              className={searchStyle.mainFromTo}
+              // style={{ width: '100%', display: 'flex' }}
+            >
+              <p
+                className={searchStyle.mainFrom}
+                // style={{ marginLeft: '0px', marginRight: 'auto', fontSize: '12px' }}
+              >
+                From
+              </p>
+              <p
+                className={searchStyle.mainTo}
+                // style={{ marginLeft: 'auto', marginRight: '0px', fontSize: '12px' }}
+              >
+                To
+              </p>
             </div>
             <div
               style={{
@@ -182,13 +206,17 @@ const SearchResult = () => {
               </small>
             </div>
           </div>
-          <div style={{ width: '70%', display: 'flex', paddingRight: '70px' }}>
+          <div
+            className={searchStyle.divChangeSearch}
+            // style={{ width: '70%', display: 'flex', paddingRight: '70px' }}
+          >
             <h6
-              className={style.logout}
-              style={{ marginLeft: 'auto', marginRight: '0px' }}
+              className={`${searchStyle.changeSearch} ${style.logout}`}
+              // style={{ marginLeft: 'auto', marginRight: '0px' }}
               onClick={(e) => {
                 search(e);
               }}>
+            >
               Change Search
             </h6>
           </div>
@@ -202,12 +230,14 @@ const SearchResult = () => {
           }}>
           {/* Start Left Filter */}
           <div
-            style={{
-              width: '25%',
-              display: 'flex',
-              flexDirection: 'column',
-              padding: '30px 25px 30px 70px'
-            }}>
+            className={searchStyle.leftContent}
+            // style={{
+            //   width: '25%',
+            //   display: 'flex',
+            //   flexDirection: 'column',
+            //   padding: '30px 25px 30px 70px'
+            // }}
+          >
             <div
               style={{
                 display: 'flex',
@@ -727,20 +757,27 @@ const SearchResult = () => {
 
           {/* End Left Filter */}
           <div
-            style={{
-              width: '75%',
-              display: 'flex',
-              flexDirection: 'column',
-              padding: '30px 70px 40px 0px'
-            }}>
+            className={searchStyle.startRightContent}
+            // style={{
+            //   width: '75%',
+            //   display: 'flex',
+            //   flexDirection: 'column',
+            //   padding: '30px 70px 40px 0px'
+            // }}
+          >
             <div
-              style={{
-                width: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                marginBottom: '25px'
-              }}>
-              <h5 style={{ marginLeft: '0px', fontWeight: '500', fontSize: '24px' }}>
+              className={searchStyle.divSelectTicket}
+              // style={{
+              //   width: '100%',
+              //   display: 'flex',
+              //   alignItems: 'center',
+              //   marginBottom: '25px'
+              // }}
+            >
+              <h5
+                className={searchStyle.selectTicket}
+                // style={{ marginLeft: '0px', fontWeight: '500', fontSize: '24px' }}
+              >
                 Select Ticket
               </h5>
               &nbsp;
@@ -792,15 +829,7 @@ const SearchResult = () => {
                 return (
                   <div
                     key={i}
-                    style={{
-                      width: '100%',
-                      backgroundColor: '#FFFFFF',
-                      borderRadius: '15px',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      padding: '25px',
-                      marginBottom: '20px'
-                    }}>
+                    className={searchStyle.divSearchResult}
                     <div
                       style={{
                         width: '100%',
@@ -814,7 +843,7 @@ const SearchResult = () => {
                         onError={(e) => {
                           e.target.src = `${process.env.REACT_APP_PROD}uploads/airlines/airlines-default.png`;
                         }}
-                        style={{ width: '100px', marginRight: '30px' }}
+                        className={searchStyle.imgAirline}
                       />
                       <h6>{e.airlinesname}</h6>
                     </div>
@@ -849,14 +878,7 @@ const SearchResult = () => {
                         </h6>
                       </div>
                       <div
-                        style={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          marginLeft: 'auto',
-                          marginRight: 'auto'
-                        }}>
+                        className={searchStyle.longTime}>
                         <h6 style={{ fontSize: '16px', color: '#595959' }}>
                           {parseInt(
                             moment
@@ -884,10 +906,7 @@ const SearchResult = () => {
                         </h6>
                       </div>
                       <div
-                        style={{
-                          fontSize: '25px',
-                          color: '#979797'
-                        }}>
+                        className={searchStyle.iconFeature}>
                         {e.luggage ? (
                           <>
                             <i
@@ -912,7 +931,7 @@ const SearchResult = () => {
                           ''
                         )}
                       </div>
-                      <div style={{ display: 'flex', marginRight: '45px', marginLeft: 'auto' }}>
+                      <div className={searchStyle.price}>
                         <h6 style={{ color: '#2395FF', fontSize: '16px', fontWeight: '500' }}>
                           $ {Intl.NumberFormat('en-US').format(e.price)}
                         </h6>
@@ -924,24 +943,13 @@ const SearchResult = () => {
                       <Link to={`/booking/add/${e.flightid}?adult=${adult}&child=${child}`}>
                         <button
                           type="button"
-                          style={{
-                            height: '50px',
-                            width: '150px',
-                            backgroundColor: '#2395FF',
-                            color: '#FFFFFF',
-                            borderRadius: '10px',
-                            border: 'none',
-                            marginRight: '0px'
-                          }}>
+                          className={searchStyle.buttonSelect}>
                           Select
                         </button>
                       </Link>
                     </div>
                     <div
-                      style={{
-                        display: 'flex',
-                        color: '#2395FF'
-                      }}>
+                      className={searchStyle.divViewDetail}>
                       <h6 style={{ fontWeight: '600', fontSize: '16px' }}>View Details</h6>
                       <i
                         className="fa-solid fa-angle-down"
@@ -953,7 +961,6 @@ const SearchResult = () => {
             ) : (
               <div>No Flight Found</div>
             )}
-            {/* ============================================================== */}
           </div>
         </div>
       </Section>
