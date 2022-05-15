@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import style from '../../assets/styles/input.module.css';
+import profileStyle from '../../assets/styles/profile.module.css';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getDetailUser } from '../../redux/actions/user';
@@ -144,7 +145,7 @@ const Profile = () => {
         <div>Error</div>
       ) : (
         <div
-          className="container-fluid"
+          className={`${profileStyle.container} container-fluid`}
           style={{
             width: '100%',
             backgroundColor: '#F5F6FA',
@@ -152,23 +153,29 @@ const Profile = () => {
             marginTop: '90px',
             paddingBottom: '30px'
           }}>
-          <div className="leftArea" style={{ width: '30%', height: '100%', display: 'flex' }}>
+          <div
+            // className="leftArea"
+            className={`${profileStyle.leftContent} leftArea`}
+            // style={{ width: '30%', height: '100%', display: 'flex' }}
+          >
             <div
-              style={{
-                height: '80%',
-                width: '85%',
-                border: 'none',
-                borderRadius: '15px',
-                backgroundColor: '#FFFFFF',
-                marginTop: '35px',
-                marginLeft: '40px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                paddingTop: '30px',
-                paddingBottom: '30px'
-              }}>
+              className={profileStyle.leftLeftcontent}
+              // style={{
+              //   height: '80%',
+              //   width: '85%',
+              //   border: 'none',
+              //   borderRadius: '15px',
+              //   backgroundColor: '#FFFFFF',
+              //   marginTop: '35px',
+              //   marginLeft: '40px',
+              //   display: 'flex',
+              //   flexDirection: 'column',
+              //   justifyContent: 'center',
+              //   alignItems: 'center',
+              //   paddingTop: '30px',
+              //   paddingBottom: '30px'
+              //     }}
+            >
               <div
                 style={{
                   height: '125px',
@@ -404,13 +411,15 @@ const Profile = () => {
             </div>
           </div>
           <div
-            className="rightArea"
-            style={{
-              width: '70%',
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column'
-            }}>
+            // className="rightArea"
+            className={`${profileStyle.rightContent} rightArea`}
+            // style={{
+            //   width: '70%',
+            //   height: '100%',
+            //   display: 'flex',
+            //   flexDirection: 'column'
+            //     }}
+          >
             <div
               style={{
                 width: '95%',
@@ -433,28 +442,33 @@ const Profile = () => {
               </small>
               <form onSubmit={(e) => onSubmit(e)}>
                 <h4 style={{ fontWeight: '600', marginBottom: '30px' }}>Profile</h4>
-                <div style={{ width: '100%', display: 'flex' }}>
+                <div
+                  className={profileStyle.profileContent}
+                  // style={{ width: '100%', display: 'flex' }}
+                >
                   <div
-                    style={{
-                      width: '50%',
-                      paddingRight: '25px'
-                    }}>
+                    className={profileStyle.profileMainContent}
+                    // style={{
+                    //   width: '50%',
+                    //   paddingRight: '25px'
+                    //     }}
+                  >
                     <h6 style={{ fontWeight: '600' }}>Contact</h6>
                     <small style={{ color: '#9B96AB' }}>Email</small>
                     <input
                       type="text"
-                      className={style.inputForm}
+                      className={`${style.inputForm} ${profileStyle.emailProfile}`}
                       name="email"
                       placeholder="Email"
                       value={form.email || ''}
                       onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      style={{
-                        width: '100%',
-                        height: '40px',
-                        border: 'none',
-                        borderBottom: '2px solid #D2C2FF',
-                        marginBottom: '30px'
-                      }}
+                      // style={{
+                      //   width: '100%',
+                      //   height: '40px',
+                      //   border: 'none',
+                      //   borderBottom: '2px solid #D2C2FF',
+                      //   marginBottom: '30px'
+                      // }}
                     />
                     <small style={{ color: '#9B96AB' }}>Phone Number</small>
                     <input
@@ -492,10 +506,12 @@ const Profile = () => {
                     </div>
                   </div>
                   <div
-                    style={{
-                      width: '50%',
-                      paddingLeft: '0px'
-                    }}>
+                    className={profileStyle.profileSecondContent}
+                    // style={{
+                    //   width: '50%',
+                    //   paddingLeft: '0px'
+                    //     }}
+                  >
                     <h6 style={{ fontWeight: '600' }}>Biodata</h6>
                     <small style={{ color: '#9B96AB' }}>Username</small>
                     <input
