@@ -2,25 +2,30 @@ import React, { useEffect, useState } from 'react';
 import JwtDecode from 'jwt-decode';
 import swal from 'sweetalert2';
 import ContentLoader from 'react-content-loader';
+import { useNavigate } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import style from '../../assets/styles/input.module.css';
+import profileStyle from '../../assets/styles/profile.module.css';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getDetailUser } from '../../redux/actions/user';
-import { updateUser } from '../../redux/actions/updateUser';
+import { updateUser, updatePhoto } from '../../redux/actions/updateUser';
 
 const Profile = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const detailUser = useSelector((state) => state.detailUser);
 
   // for input
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const token = localStorage.getItem('token');
 
   const decoded = JwtDecode(token);
+  const [photo, setPhoto] = useState('');
+  const [buttonVisibility, setButtonVisibility] = useState(false);
   const [form, setForm] = useState({
     username: '',
     email: '',
@@ -29,6 +34,10 @@ const Profile = () => {
     address: '',
     postCode: ''
   });
+  const logout = () => {
+    localStorage.clear();
+    return navigate('/login');
+  };
   useEffect(() => {
     dispatch(getDetailUser(decoded.id));
   }, []);
@@ -45,7 +54,42 @@ const Profile = () => {
       });
     }
   }, [detailUser]);
-
+  const photoSubmit = (e) => {
+    e.preventDefault();
+    setLoading(false);
+    if (loading == false) {
+      setLoading(true);
+      const formData = new FormData();
+      formData.append('image', photo);
+      updatePhoto(formData)
+        .then((res) => {
+          swal
+            .fire({
+              title: 'Success!',
+              text: res.message,
+              icon: 'success'
+            })
+            .then(() => {
+              setButtonVisibility(!buttonVisibility);
+              dispatch(getDetailUser(decoded.id));
+            });
+        })
+        .catch((err) => {
+          swal
+            .fire({
+              title: 'Error!',
+              text: err.response.data.error,
+              icon: 'error'
+            })
+            .then(() => {
+              setButtonVisibility(!buttonVisibility);
+            });
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
   const onSubmit = (e) => {
     e.preventDefault();
     setLoading(false);
@@ -101,29 +145,37 @@ const Profile = () => {
         <div>Error</div>
       ) : (
         <div
-          className="container-fluid"
+          className={`${profileStyle.container} container-fluid`}
           style={{
             width: '100%',
-            height: '85vh',
             backgroundColor: '#F5F6FA',
             display: 'flex',
-            marginTop: '90px'
+            marginTop: '90px',
+            paddingBottom: '30px'
           }}>
-          <div className="leftArea" style={{ width: '30%', height: '100%', display: 'flex' }}>
+          <div
+            // className="leftArea"
+            className={`${profileStyle.leftContent} leftArea`}
+            // style={{ width: '30%', height: '100%', display: 'flex' }}
+          >
             <div
-              style={{
-                height: '80%',
-                width: '85%',
-                border: 'none',
-                borderRadius: '15px',
-                backgroundColor: '#FFFFFF',
-                marginTop: '35px',
-                marginLeft: '40px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}>
+              className={profileStyle.leftLeftcontent}
+              // style={{
+              //   height: '80%',
+              //   width: '85%',
+              //   border: 'none',
+              //   borderRadius: '15px',
+              //   backgroundColor: '#FFFFFF',
+              //   marginTop: '35px',
+              //   marginLeft: '40px',
+              //   display: 'flex',
+              //   flexDirection: 'column',
+              //   justifyContent: 'center',
+              //   alignItems: 'center',
+              //   paddingTop: '30px',
+              //   paddingBottom: '30px'
+              //     }}
+            >
               <div
                 style={{
                   height: '125px',
@@ -149,21 +201,61 @@ const Profile = () => {
                     backgroundSize: 'cover'
                   }}></div>
               </div>
-              <button
-                type="button"
-                style={{
-                  width: '135px',
-                  height: '40px',
-                  backgroundColor: '#FFFFFF',
-                  border: '1px solid #2395FF',
-                  color: '#2395FF',
-                  borderRadius: '10px',
-                  fontWeight: 'bold',
-                  fontSize: '15px',
-                  marginBottom: '20px'
-                }}>
-                Select Photo
-              </button>
+              <form id="form" onSubmit={(e) => photoSubmit(e)}>
+                <input
+                  type="file"
+                  id="photo"
+                  onChange={(e) => {
+                    setPhoto(e.target.files[0]);
+                    setButtonVisibility(!buttonVisibility);
+                  }}
+                  style={{ display: 'none' }}
+                />
+                <input type="submit" id="submit" style={{ display: 'none' }} />
+              </form>
+              {buttonVisibility ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      document.getElementById('submit').click();
+                    }}
+                    style={{
+                      width: '135px',
+                      height: '40px',
+                      backgroundColor: '#FFFFFF',
+                      border: '1px solid #2395FF',
+                      color: '#2395FF',
+                      borderRadius: '10px',
+                      fontWeight: 'bold',
+                      fontSize: '15px',
+                      marginBottom: '20px'
+                    }}>
+                    {loading ? 'Loading..' : 'Confirm Upload'}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      document.getElementById('photo').click();
+                    }}
+                    style={{
+                      width: '135px',
+                      height: '40px',
+                      backgroundColor: '#FFFFFF',
+                      border: '1px solid #2395FF',
+                      color: '#2395FF',
+                      borderRadius: '10px',
+                      fontWeight: 'bold',
+                      fontSize: '15px',
+                      marginBottom: '20px'
+                    }}>
+                    Select Photo
+                  </button>
+                </>
+              )}
               {/* for username */}
               <h5 style={{ fontWeight: 'bold' }}>{detailUser.data?.data?.username}</h5>
               {/* for address */}
@@ -292,6 +384,10 @@ const Profile = () => {
                   style={{ marginLeft: 'auto', marginRight: '0px' }}></i>
               </div>
               <div
+                className={style.logout}
+                onClick={() => {
+                  logout();
+                }}
                 style={{
                   display: 'flex',
                   width: '70%',
@@ -315,15 +411,17 @@ const Profile = () => {
             </div>
           </div>
           <div
-            className="rightArea"
-            style={{
-              width: '70%',
-              height: '100%',
-              display: 'flex'
-            }}>
+            // className="rightArea"
+            className={`${profileStyle.rightContent} rightArea`}
+            // style={{
+            //   width: '70%',
+            //   height: '100%',
+            //   display: 'flex',
+            //   flexDirection: 'column'
+            //     }}
+          >
             <div
               style={{
-                height: '75%',
                 width: '95%',
                 border: 'none',
                 borderRadius: '15px',
@@ -344,28 +442,33 @@ const Profile = () => {
               </small>
               <form onSubmit={(e) => onSubmit(e)}>
                 <h4 style={{ fontWeight: '600', marginBottom: '30px' }}>Profile</h4>
-                <div style={{ width: '100%', display: 'flex', height: '100px' }}>
+                <div
+                  className={profileStyle.profileContent}
+                  // style={{ width: '100%', display: 'flex' }}
+                >
                   <div
-                    style={{
-                      width: '50%',
-                      paddingRight: '25px'
-                    }}>
+                    className={profileStyle.profileMainContent}
+                    // style={{
+                    //   width: '50%',
+                    //   paddingRight: '25px'
+                    //     }}
+                  >
                     <h6 style={{ fontWeight: '600' }}>Contact</h6>
                     <small style={{ color: '#9B96AB' }}>Email</small>
                     <input
                       type="text"
-                      className={style.inputForm}
+                      className={`${style.inputForm} ${profileStyle.emailProfile}`}
                       name="email"
                       placeholder="Email"
                       value={form.email || ''}
                       onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      style={{
-                        width: '100%',
-                        height: '40px',
-                        border: 'none',
-                        borderBottom: '2px solid #D2C2FF',
-                        marginBottom: '30px'
-                      }}
+                      // style={{
+                      //   width: '100%',
+                      //   height: '40px',
+                      //   border: 'none',
+                      //   borderBottom: '2px solid #D2C2FF',
+                      //   marginBottom: '30px'
+                      // }}
                     />
                     <small style={{ color: '#9B96AB' }}>Phone Number</small>
                     <input
@@ -383,7 +486,6 @@ const Profile = () => {
                         marginBottom: '30px'
                       }}
                     />
-
                     <div
                       style={{
                         color: '#2395FF',
@@ -404,10 +506,12 @@ const Profile = () => {
                     </div>
                   </div>
                   <div
-                    style={{
-                      width: '50%',
-                      paddingLeft: '0px'
-                    }}>
+                    className={profileStyle.profileSecondContent}
+                    // style={{
+                    //   width: '50%',
+                    //   paddingLeft: '0px'
+                    //     }}
+                  >
                     <h6 style={{ fontWeight: '600' }}>Biodata</h6>
                     <small style={{ color: '#9B96AB' }}>Username</small>
                     <input

@@ -1,23 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { useSelector, useDispatch } from 'react-redux';
-// eslint-disable-next-line no-unused-vars
 import { useParams, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import { APP_PROD } from '../../helper/env';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import { getDetailBooking } from '../../redux/actions/detailBooking';
 
 // Import Images
-import logo from '../../assets/images/Group 1125.svg';
+// import logo from '../../assets/images/Group 1125.svg';
 import plane from '../../assets/icons/Vector.svg';
 
 const Section = styled.section`
   background-color: #2395ff;
   overflow: hidden;
   height: 100vh;
+
+  @media screen and (max-width: 576px) {
+    height: 120vh;
+  }
 `;
 
 const Card = styled.div`
@@ -28,7 +31,7 @@ const Card = styled.div`
   width: 60%;
   margin-top: 85px;
 
-  @media screen and (max-width: 567px) {
+  @media screen and (max-width: 576px) {
     width: 90%;
   }
 `;
@@ -39,11 +42,39 @@ const Left = styled.div`
   border-radius: 10px;
   padding: 20px;
   margin-left: -20px;
+
+  @media screen and (max-width: 576px) {
+    border: 0.5px solid #e5e5e5;
+    border-bottom: 2px dashed #e5e5e5;
+  }
 `;
 
 const Country = styled.b`
   font-size: 20px;
   font-weight: bold;
+
+  @media screen and (max-width: 576px) {
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+const Plane = styled.div`
+  display: flex;
+
+  @media screen and (max-width: 576px) {
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+const Going = styled.div`
+  display: flex;
+
+  @media screen and (max-width: 576px) {
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const Right = styled.div`
@@ -57,11 +88,31 @@ const Right = styled.div`
   img {
     margin: 10% 0;
   }
+
+  @media screen and (max-width: 576px) {
+    margin-left: -16px;
+    height: 250px;
+    border: 0.5px solid #e5e5e5;
+    border-top: none;
+
+    img {
+      margin: 0 auto;
+    }
+  }
+`;
+
+const Pass = styled.div`
+  display: flex;
+
+  @media screen and (max-width: 576px) {
+    display: none;
+  }
 `;
 
 const BookingDetail = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [getQrcode, setGetQrcode] = useState('');
   const token = localStorage.getItem('token');
   const detailBooking = useSelector((state) => state.detailBooking);
   const { id } = useParams();
@@ -71,20 +122,34 @@ const BookingDetail = () => {
     detailBooking.data.class == 0
       ? 'Economy'
       : detailBooking.data.class == 1
-      ? 'Buisiness'
+      ? 'Business'
       : 'Firts Class';
-  // const logo = detailBooking.data.image
+  const logo = detailBooking.data.image;
 
   useEffect(() => {
     dispatch(getDetailBooking(id));
-    // if (detailBooking.data.code != 200) {
-    //   Swal.fire({
-    //     icon: 'error',
-    //     title: 'Oops...',
-    //     text: 'Please make payment first!'
-    //   });
-    //   // navigate('/booking/');
-    // }
+    if (detailBooking.data.is_active == 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please make payment first!'
+      }).then(() => {
+        navigate('/profile/booking');
+      });
+    }
+    const requestImage = async () => {
+      try {
+        const response = await fetch(`${APP_PROD}qrcode/${id}.png`);
+        if (response.status != 200) {
+          setGetQrcode(`${APP_PROD}qrcode/6dee2567-ee39-4aad-b855-51cf7f7eed15.png`);
+        } else {
+          setGetQrcode(`${APP_PROD}qrcode/${id}.png`);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    requestImage();
   }, []);
 
   return (
@@ -95,7 +160,7 @@ const BookingDetail = () => {
           <h4 className="font-weight-bold mb-4 ml-5 d-md-none text-white mt-4">Booking Pass</h4>
           <Card className="p-3">
             <div className="container mt-5">
-              <div className="row">
+              <Pass className="row">
                 <div className="col-10">
                   <h4 className="font-weight-bold mb-4 ml-5">Booking Pass</h4>
                 </div>
@@ -104,22 +169,25 @@ const BookingDetail = () => {
                     <i className="fa-solid fa-ellipsis-vertical"></i>
                   </h3>
                 </div>
-              </div>
-              <div className="row justify-content-center mb-5">
-                <Left className="col-sm-7">
+              </Pass>
+              <div className="row justify-content-center mb-5 ">
+                <Left className="col-sm-7 ">
                   <div className="row">
-                    <div className="col-8">
+                    <Plane className="col-sm-8 col-12 mb-4 mb-sm-0">
                       <img
-                        src={logo}
-                        //src={`${APP_PROD}uploads/airlines${logo}`}
-                        alt="Garuda Indonesia"
+                        src={`${APP_PROD}uploads/airlines/${logo}`}
+                        onError={(e) => {
+                          e.target.src = `${APP_PROD}uploads/airlines/airlines-default.png`;
+                        }}
+                        style={{ width: '90px', height: '40px', objectFit: 'center' }}
+                        alt={`${logo}`}
                       />
-                    </div>
-                    <div className="col-4">
+                    </Plane>
+                    <Going className="col-sm-4 col-12">
                       <Country className="mr-2">{detailBooking.data.from_contry}</Country>
-                      <img src={plane} alt="Departure" />
+                      <img className="m-2" src={plane} alt="Departure" />
                       <Country className="ml-2">{detailBooking.data.to_contry}</Country>
-                    </div>
+                    </Going>
                   </div>
                   <div className="row mt-4">
                     <div className="col-4">
@@ -148,10 +216,10 @@ const BookingDetail = () => {
                     {date} - {time}
                   </p>
                 </Left>
-                <Right className="col-sm-3">
+                <Right className="col-sm-3 ">
                   <img
-                    // src={`${APP_PROD}qrcode/${id}.png`}
-                    src={`${APP_PROD}qrcode/6dee2567-ee39-4aad-b855-51cf7f7eed15.png`}
+                    src={getQrcode}
+                    // src={`${APP_PROD}qrcode/6dee2567-ee39-4aad-b855-51cf7f7eed15.png`}
                     alt="QR Code"
                   />
                 </Right>

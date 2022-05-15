@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert2';
 import JwtDecode from 'jwt-decode';
 import { getDetailUser } from '../../redux/actions/user';
 import { getMyBooking } from '../../redux/actions/myBooking';
-import { payBooking } from '../../redux/actions/booking';
+import { updatePhoto } from '../../redux/actions/updateUser';
+import { payBooking, cancelTheBooking } from '../../redux/actions/booking';
 import { useDispatch, useSelector } from 'react-redux';
 import ContentLoader from 'react-content-loader';
 import moment from 'moment';
@@ -12,10 +13,13 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import style from '../../assets/styles/input.module.css';
+import mybookingStyle from '../../assets/styles/mybooking.module.css';
 
 import Flight from '../../assets/icons/flightIcon.svg';
 
 const MyBooking = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const myBookings = useSelector((state) => state.myBookings);
   const detailUser = useSelector((state) => state.detailUser);
@@ -23,6 +27,18 @@ const MyBooking = () => {
   const decoded = JwtDecode(token);
   const [idBooking, setIdBooking] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenCancel, setIsOpenCancel] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [photo, setPhoto] = useState('');
+  const [buttonVisibility, setButtonVisibility] = useState(false);
+  const logout = () => {
+    localStorage.clear();
+    return navigate('/login');
+  };
+  const toggle1 = (idBook) => {
+    setIsOpenCancel(!isOpenCancel);
+    setIdBooking(idBook);
+  };
   const toggle = (idBook) => {
     setIsOpen(!isOpen);
     setIdBooking(idBook);
@@ -49,6 +65,64 @@ const MyBooking = () => {
         });
       });
   };
+  const cancelBooking = (data) => {
+    setIsOpenCancel(!isOpenCancel);
+    cancelTheBooking(data)
+      .then((res) => {
+        swal
+          .fire({
+            title: 'Success!',
+            text: res.message,
+            icon: 'success'
+          })
+          .then(() => {
+            dispatch(getMyBooking());
+          });
+      })
+      .catch((err) => {
+        swal.fire({
+          title: 'Error!',
+          text: err.response.data.message,
+          icon: 'error'
+        });
+      });
+  };
+  const photoSubmit = (e) => {
+    e.preventDefault();
+    setLoading(false);
+    if (loading == false) {
+      setLoading(true);
+      const formData = new FormData();
+      formData.append('image', photo);
+      updatePhoto(formData)
+        .then((res) => {
+          swal
+            .fire({
+              title: 'Success!',
+              text: res.message,
+              icon: 'success'
+            })
+            .then(() => {
+              setButtonVisibility(!buttonVisibility);
+              dispatch(getDetailUser(decoded.id));
+            });
+        })
+        .catch((err) => {
+          swal
+            .fire({
+              title: 'Error!',
+              text: err.response.data.error,
+              icon: 'error'
+            })
+            .then(() => {
+              setButtonVisibility(!buttonVisibility);
+            });
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
   useEffect(() => {
     dispatch(getMyBooking());
     dispatch(getDetailUser(decoded.id));
@@ -60,12 +134,15 @@ const MyBooking = () => {
         className="container-fluid"
         style={{
           width: '100%',
-          height: '85vh',
           backgroundColor: '#F5F6FA',
           display: 'flex',
           marginTop: '90px'
         }}>
-        <div className="leftArea" style={{ width: '30%', height: '100%', display: 'flex' }}>
+        <div
+          // className="leftArea"
+          className={`${mybookingStyle.leftContent} leftArea`}
+          // style={{ width: '30%', height: '100%', display: 'flex' }}
+        >
           {detailUser.isLoading ? (
             // untuk membuat loading page
             <ContentLoader />
@@ -85,7 +162,9 @@ const MyBooking = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
+                paddingTop: '30px',
+                paddingBottom: '30px'
               }}>
               <div
                 style={{
@@ -112,21 +191,61 @@ const MyBooking = () => {
                     backgroundSize: 'cover'
                   }}></div>
               </div>
-              <button
-                type="button"
-                style={{
-                  width: '135px',
-                  height: '40px',
-                  backgroundColor: '#FFFFFF',
-                  border: '1px solid #2395FF',
-                  color: '#2395FF',
-                  borderRadius: '10px',
-                  fontWeight: 'bold',
-                  fontSize: '15px',
-                  marginBottom: '20px'
-                }}>
-                Select Photo
-              </button>
+              <form id="form" onSubmit={(e) => photoSubmit(e)}>
+                <input
+                  type="file"
+                  id="photo"
+                  onChange={(e) => {
+                    setPhoto(e.target.files[0]);
+                    setButtonVisibility(!buttonVisibility);
+                  }}
+                  style={{ display: 'none' }}
+                />
+                <input type="submit" id="submit" style={{ display: 'none' }} />
+              </form>
+              {buttonVisibility ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      document.getElementById('submit').click();
+                    }}
+                    style={{
+                      width: '135px',
+                      height: '40px',
+                      backgroundColor: '#FFFFFF',
+                      border: '1px solid #2395FF',
+                      color: '#2395FF',
+                      borderRadius: '10px',
+                      fontWeight: 'bold',
+                      fontSize: '15px',
+                      marginBottom: '20px'
+                    }}>
+                    {loading ? 'Loading..' : 'Confirm Upload'}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      document.getElementById('photo').click();
+                    }}
+                    style={{
+                      width: '135px',
+                      height: '40px',
+                      backgroundColor: '#FFFFFF',
+                      border: '1px solid #2395FF',
+                      color: '#2395FF',
+                      borderRadius: '10px',
+                      fontWeight: 'bold',
+                      fontSize: '15px',
+                      marginBottom: '20px'
+                    }}>
+                    Select Photo
+                  </button>
+                </>
+              )}
               <h5 style={{ fontWeight: 'bold' }}>{detailUser.data?.data?.username}</h5>
               <small style={{ color: '#6B6B6B', marginBottom: '20px' }}>
                 {detailUser.data?.data?.address || 'Your Address'}
@@ -193,8 +312,7 @@ const MyBooking = () => {
                   display: 'flex',
                   width: '70%',
                   alignItems: 'center',
-                  marginBottom: '30px',
-                  color: '#2395FF'
+                  marginBottom: '30px'
                 }}>
                 <i className="fa-solid fa-circle-user" style={{ marginLeft: '0px' }}></i>
                 <small
@@ -253,6 +371,10 @@ const MyBooking = () => {
                   style={{ marginLeft: 'auto', marginRight: '0px' }}></i>
               </div>
               <div
+                className={style.logout}
+                onClick={() => {
+                  logout();
+                }}
                 style={{
                   display: 'flex',
                   width: '70%',
@@ -277,16 +399,17 @@ const MyBooking = () => {
           )}
         </div>
         <div
-          className="rightArea"
-          style={{
-            width: '70%',
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column'
-          }}>
+          // className="rightArea"
+          className={`${mybookingStyle.rightContent} rightArea`}
+          // style={{
+          //   width: '70%',
+          //   height: '100%',
+          //   display: 'flex',
+          //   flexDirection: 'column'
+          // }}
+        >
           <div
             style={{
-              height: '13%',
               width: '95%',
               border: 'none',
               borderRadius: '15px',
@@ -357,7 +480,10 @@ const MyBooking = () => {
                     {e.airline_name}, {e.terminal + '-' + e.gate}
                   </small>
                   <hr style={{ height: '1px', backgroundColor: '#E6E6E6' }} />
-                  <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+                  <div
+                    className={mybookingStyle.divStatusPayment}
+                    // style={{ display: 'flex', alignItems: 'center', width: '100%' }}
+                  >
                     <small
                       style={{
                         fontSize: '14px',
@@ -367,56 +493,127 @@ const MyBooking = () => {
                       }}>
                       Status
                     </small>
-                    {e.payment_status === 0 ? (
+                    {e.is_active === 0 ? (
                       <>
                         <div
-                          style={{
-                            padding: '7px 18px',
-                            backgroundColor: '#FF7F23',
-                            width: 'auto',
-                            height: 'auto',
-                            color: '#FFFFFF',
-                            borderRadius: '6px',
-                            marginLeft: '60px',
-                            marginRight: 'auto'
-                          }}>
+                          className={`${mybookingStyle.bookingCanceled}`}
+                          // style={{
+                          //   padding: '7px 18px',
+                          //   backgroundColor: '#DC3545',
+                          //   width: 'auto',
+                          //   height: 'auto',
+                          //   color: '#FFFFFF',
+                          //   borderRadius: '6px',
+                          //   marginLeft: '60px',
+                          //   marginRight: 'auto'
+                          // }}
+                        >
                           <small style={{ fontSize: '14px', fontWeight: '600' }}>
-                            Waiting for payment
+                            Booking Cancelled
                           </small>
                         </div>
-                        <input
-                          type="button"
-                          value="Pay now"
-                          onClick={() => {
-                            toggle(e.booking_id);
-                          }}
-                          style={{
-                            padding: '7px 18px',
-                            backgroundColor: '#2395FF',
-                            width: 'auto',
-                            height: 'auto',
-                            color: '#FFFFFF',
-                            borderRadius: '6px',
-                            marginLeft: 'auto',
-                            marginRight: '15px',
-                            border: 'none'
-                          }}
-                        />
+                      </>
+                    ) : e.payment_status === 0 ? (
+                      <>
+                        <div className={mybookingStyle.waitingPayAndCancle}>
+                          <div
+                            className={`${mybookingStyle.bookingWaiting}`}
+                            // style={{
+                            //   padding: '7px 18px',
+                            //   backgroundColor: '#FF7F23',
+                            //   width: 'auto',
+                            //   height: 'auto',
+                            //   color: '#FFFFFF',
+                            //   borderRadius: '6px',
+                            //   marginLeft: '60px',
+                            //   marginRight: 'auto'
+                            //   }}
+                          >
+                            <small
+                              className={`${mybookingStyle.waitingForPayment}`}
+                              // style={{ fontSize: '14px', fontWeight: '600' }}
+                            >
+                              Waiting for payment
+                            </small>
+                          </div>
+                          <div
+                            className={`${mybookingStyle.divPayNow}`}
+                            // style={{
+                            //   width: '25%',
+                            //   display: 'flex',
+                            //   alignItems: 'center',
+                            //   marginLeft: 'auto',
+                            //   marginRight: '15px'
+                            //   }}
+                          >
+                            <input
+                              type="button"
+                              value="Pay now"
+                              onClick={() => {
+                                toggle(e.booking_id);
+                              }}
+                              // style={{
+                              //   padding: '7px 18px',
+                              //   backgroundColor: '#2395FF',
+                              //   width: 'auto',
+                              //   height: 'auto',
+                              //   color: '#FFFFFF',
+                              //   borderRadius: '6px',
+                              //   marginLeft: '0px',
+                              //   border: 'none'
+                              //   }}
+                              className={`${mybookingStyle.payNow}`}
+                            />
+                            {/* <small
+                              style={{
+                                fontSize: '14px',
+                                color: '#7A7A7A',
+                                fontWeight: '600',
+                                marginLeft: 'auto',
+                                marginRight: 'auto'
+                              }}>
+                              Or
+                            </small> */}
+                            <input
+                              type="button"
+                              value="Cancel Booking"
+                              onClick={() => {
+                                toggle1(e.booking_id);
+                              }}
+                              className={mybookingStyle.canceleBooking}
+                              // style={{
+                              //   padding: '7px 18px',
+                              //   backgroundColor: '#dc3545',
+                              //   width: 'auto',
+                              //   height: 'auto',
+                              //   color: '#FFFFFF',
+                              //   borderRadius: '6px',
+                              //   marginRight: '0px',
+                              //   border: 'none'
+                              // }}
+                            />
+                          </div>
+                        </div>
                       </>
                     ) : (
                       <>
                         <div
-                          style={{
-                            padding: '7px 18px',
-                            backgroundColor: '#4FCF4D',
-                            width: 'auto',
-                            height: 'auto',
-                            color: '#FFFFFF',
-                            borderRadius: '6px',
-                            marginLeft: '60px',
-                            marginRight: 'auto'
-                          }}>
-                          <small style={{ fontSize: '14px', fontWeight: '600' }}>
+                          className={`${mybookingStyle.bookingPayment}`}
+                          // style={{
+                          //   padding: '7px 18px',
+                          //   backgroundColor: '#4FCF4D',
+                          //   width: 'auto',
+                          //   height: 'auto',
+                          //   color: '#FFFFFF',
+                          //   borderRadius: '6px',
+                          //   marginLeft: '60px',
+                          //   marginRight: 'auto'
+                          //     }}
+                        >
+                          <small
+                            className={`${myBookings.eticketIssued}`}
+                            // style={{ fontSize: '14px', fontWeight: '600' }}
+                          >
                             Eticket issued
                           </small>
                         </div>
@@ -454,6 +651,22 @@ const MyBooking = () => {
               </Button>{' '}
               <Button color="danger" onClick={toggle}>
                 Cancel
+              </Button>
+            </ModalFooter>
+          </Modal>
+          <Modal isOpen={isOpenCancel} toggle={toggle1}>
+            <ModalHeader toggle={toggle1}>Cancel Booking</ModalHeader>
+            <ModalBody>Are you sure to cancel this booking ?</ModalBody>
+            <ModalFooter>
+              <Button
+                color="danger"
+                onClick={() => {
+                  cancelBooking(idBooking);
+                }}>
+                Confirm
+              </Button>{' '}
+              <Button color="secondary" onClick={toggle1}>
+                Back
               </Button>
             </ModalFooter>
           </Modal>
