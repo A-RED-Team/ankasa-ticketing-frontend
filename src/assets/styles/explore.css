@@ -1,57 +1,350 @@
 /* Hero Start */
-.hero {
-  display: grid;
-  grid-template-columns: 3fr 1.5fr;
+.explore {
   margin-top: 90px;
-  overflow-x: hidden;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
 }
 
-.hero-title {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 100px;
+.hero-wrapper {
   margin: 5em 4em 5em 7.4em;
 }
 
-.hero-title h1 {
+.hero-title {
   font-size: 54px;
   font-weight: 600;
-  margin-top: -100px;
   color: var(--text-gray);
 }
 
-.hero-title h1 span {
+.hero-title span {
   color: var(--text-blue);
 }
 
-.hero-vector {
-  padding-top: 100px;
+.hero-subtitle {
+  font-size: 18px;
+  color: var(--text-gainsboro);
 }
 
-.hero img:nth-child(3) {
-  margin-bottom: 100px;
-  margin-top: -150px;
+.hero-bg-large {
+  object-fit: cover;
+  margin-left: -12px;
+}
+
+.hero-image {
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-bg-medium {
+  object-fit: cover;
+}
+
+.hero-vector {
+  margin-top: 40em;
+  width: 250px;
+  height: 250px;
 }
 /* Hero End */
+
+/* Trending Start */
+
+.trending {
+  margin-top: 50px;
+  padding: 0 80px 0 80px;
+}
+
+.trending-title {
+  text-transform: uppercase;
+  color: var(--text-blue);
+  letter-spacing: 0.3em;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.trending-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trending-subtitle {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+.trending-view {
+  color: var(--text-blue);
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  line-height: 24px;
+}
+
+.trending-view:hover {
+  color: var(--text-blue);
+  text-decoration: underline;
+  transition: 0.3s;
+}
+
+.trending-wrapper {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.trending-card {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 260px;
+  width: 200px;
+  border-radius: 20px;
+  color: #fff;
+  position: relative;
+}
+
+.trending-card:hover {
+  box-shadow: 20px -20px rgba(115, 115, 115, 0.65), 40px -40px rgba(196, 196, 196, 0.65);
+  margin: 30px 0 -30px -20px;
+  transition: all 0.4s ease;
+}
+
+.trending-card::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+  position: absolute;
+  bottom: 0;
+  border-radius: 20px;
+}
+
+.trending-airline {
+  position: relative;
+  z-index: 99;
+  background-color: rgba(255, 255, 255, 0.41);
+  margin-left: 20px;
+  border-radius: 20px;
+  font-size: 12px;
+  width: 88px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trending-card .trending-detail {
+  position: relative;
+  z-index: 99;
+  margin: 60% 0 0 10%;
+}
+
+.trending-card .trending-button {
+  margin-top: 20%;
+  background: rgba(255, 255, 255, 0.17);
+  border-radius: 50%;
+  height: 28px;
+  width: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trending-card .trending-button:hover {
+  cursor: pointer;
+}
+
+.destination {
+  height: 100vh;
+  margin-top: 20px;
+}
+
+.destination-wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.destination-carousel {
+  height: 85%;
+  width: 88%;
+  background-color: var(--text-blue);
+  background-image: url('../../assets/images/vector 3.png');
+  background-repeat: no-repeat;
+  background-size: 550px !important;
+  background-position: left bottom;
+  border-radius: 60px;
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.destination-text {
+  margin-top: 4em;
+  margin-bottom: 2em;
+}
+
+.destination-title {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--text-white);
+}
+
+.destination-subtitle {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  color: var(--text-white);
+}
+
+.destination-decoration {
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  padding: 0.5em;
+}
+
+.destination-image {
+  border-radius: 50%;
+  width: 125px !important;
+  height: 125px !important;
+  object-fit: cover;
+}
+
+.destination-caption {
+  text-transform: uppercase;
+  color: #ffffff;
+  font-size: 1.2em;
+}
+
+/* Trending End */
 
 /* Responsive Start */
 
-/* Hero Start */
-@media screen and (max-width: 992px) {
-  .hero {
-    grid-template-columns: 1fr;
+@media screen and (max-width: 576px) {
+  /* Hero Start */
+  .hero-wrapper {
+    margin: 0;
   }
+
   .hero-title {
-    margin-bottom: 30px;
+    margin-top: 40px;
+    font-size: 35px;
+    letter-spacing: 2px;
   }
-  .hero-title h1 {
-    font-size: 40px;
+
+  .hero-subtitle {
+    font-size: 16px;
+  }
+
+  .hero-bg-large {
+    margin-top: 50px;
+    width: 250px;
+    height: 250px;
+    border-start-end-radius: 30px;
+    border-end-end-radius: 30px;
+    margin-left: -12px;
+  }
+
+  .hero-image {
+    top: 210px;
+  }
+
+  .hero-bg-medium {
+    width: 100px;
+    height: 150px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+
+  .hero-vector {
     margin-top: 0;
+    float: right;
+    width: 100px;
+    height: 100px;
   }
+  /* Hero End */
+
+  /* Trending Start */
+  .trending {
+    padding: 0 20px 0 20px;
+  }
+
+  .trending-title {
+    font-size: 13px;
+  }
+
+  .trending-container {
+    margin-top: -10px;
+  }
+
+  .trending-subtitle {
+    font-size: 18px;
+    line-height: 27px;
+  }
+
+  .trending-view {
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  .trending-wrapper {
+    margin-right: 20px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .trending-card {
+    width: 200px !important;
+    margin-right: 20px;
+  }
+
+  /* Trending End */
+
+  /* Destination Start */
+
+  .destination {
+    height: 60vh;
+  }
+
+  .destination-carousel {
+    height: 80%;
+    width: 95%;
+    background-size: 300px !important;
+    border-radius: 30px;
+  }
+
+  .destination-text {
+    margin-top: 2em;
+    margin-bottom: 1em;
+  }
+
+  .destination-subtitle {
+    font-size: 20px;
+  }
+
+  .destination-decoration {
+    padding: 0.2em;
+    margin-top: 25px;
+  }
+
+  .destination-image {
+    width: 70px !important;
+    height: 70px !important;
+  }
+
+  .destination-caption {
+    font-size: 0.7em;
+  }
+
+  /* Destination End */
 }
-/* Hero End */
 
 /* Responsive End */
