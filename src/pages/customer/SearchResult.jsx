@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import serchStyle from '../../assets/styles/searchResult.module.css';
+import searchStyle from '../../assets/styles/searchResult.module.css';
 
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -9,8 +9,8 @@ import Footer from '../../components/Footer';
 import bg from '../../assets/images/vector 2.png';
 import bgIcon from '../../assets/images/bgicon.svg';
 import garuda from '../../assets/images/garuda.png';
-import lion from '../../assets/images/lion-air.png';
-import airAsia from '../../assets/images/air-asia.png';
+// import lion from '../../assets/images/lion-air.png';
+// import airAsia from '../../assets/images/air-asia.png';
 import flightIconSmall from '../../assets/images/flightIconSmall.svg';
 
 const Section = styled.section`
@@ -32,20 +32,39 @@ const SearchResult = () => {
   return (
     <>
       <Navbar isLogin={token} />
-      <Section className="d-sm-block d-none">
-        <Header className="no-gutters pl-5 text-white">
+      <Section className="">
+        <Header className={`no-gutters pl-5 text-white ${searchStyle.header}`}>
           <div
             style={{
               width: '10%',
               display: 'flex'
             }}>
-            <img src={bgIcon} style={{ marginLeft: 'auto', marginRight: '0px' }} />
+            <img
+              className={searchStyle.imagePlane}
+              src={bgIcon}
+              // style={{ marginLeft: 'auto', marginRight: '0px' }}
+            />
           </div>
           <div
-            style={{ width: '20%', display: 'flex', flexDirection: 'column', paddingLeft: '20px' }}>
-            <div style={{ width: '100%', display: 'flex' }}>
-              <p style={{ marginLeft: '0px', marginRight: 'auto', fontSize: '12px' }}>From</p>
-              <p style={{ marginLeft: 'auto', marginRight: '0px', fontSize: '12px' }}>To</p>
+            className={searchStyle.headerMain}
+            // style={{ width: '20%', display: 'flex', flexDirection: 'column', paddingLeft: '20px' }}
+          >
+            <div
+              className={searchStyle.mainFromTo}
+              // style={{ width: '100%', display: 'flex' }}
+            >
+              <p
+                className={searchStyle.mainFrom}
+                // style={{ marginLeft: '0px', marginRight: 'auto', fontSize: '12px' }}
+              >
+                From
+              </p>
+              <p
+                className={searchStyle.mainTo}
+                // style={{ marginLeft: 'auto', marginRight: '0px', fontSize: '12px' }}
+              >
+                To
+              </p>
             </div>
             <div
               style={{
@@ -67,8 +86,16 @@ const SearchResult = () => {
               <small style={{ marginRight: '0px' }}>Economy</small>
             </div>
           </div>
-          <div style={{ width: '70%', display: 'flex', paddingRight: '70px' }}>
-            <h6 style={{ marginLeft: 'auto', marginRight: '0px' }}>Change Search</h6>
+          <div
+            className={searchStyle.divChangeSearch}
+            // style={{ width: '70%', display: 'flex', paddingRight: '70px' }}
+          >
+            <h6
+              className={searchStyle.changeSearch}
+              // style={{ marginLeft: 'auto', marginRight: '0px' }}
+            >
+              Change Search
+            </h6>
           </div>
         </Header>
         <div
@@ -80,12 +107,14 @@ const SearchResult = () => {
           }}>
           {/* Start Left Filter */}
           <div
-            style={{
-              width: '25%',
-              display: 'flex',
-              flexDirection: 'column',
-              padding: '30px 25px 30px 70px'
-            }}>
+            className={searchStyle.leftContent}
+            // style={{
+            //   width: '25%',
+            //   display: 'flex',
+            //   flexDirection: 'column',
+            //   padding: '30px 25px 30px 70px'
+            // }}
+          >
             <div
               style={{
                 display: 'flex',
@@ -296,20 +325,27 @@ const SearchResult = () => {
           </div>
           {/* End Left Filter */}
           <div
-            style={{
-              width: '75%',
-              display: 'flex',
-              flexDirection: 'column',
-              padding: '30px 70px 40px 0px'
-            }}>
+            className={searchStyle.startRightContent}
+            // style={{
+            //   width: '75%',
+            //   display: 'flex',
+            //   flexDirection: 'column',
+            //   padding: '30px 70px 40px 0px'
+            // }}
+          >
             <div
-              style={{
-                width: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                marginBottom: '25px'
-              }}>
-              <h5 style={{ marginLeft: '0px', fontWeight: '500', fontSize: '24px' }}>
+              className={searchStyle.divSelectTicket}
+              // style={{
+              //   width: '100%',
+              //   display: 'flex',
+              //   alignItems: 'center',
+              //   marginBottom: '25px'
+              // }}
+            >
+              <h5
+                className={searchStyle.selectTicket}
+                // style={{ marginLeft: '0px', fontWeight: '500', fontSize: '24px' }}
+              >
                 Select Ticket
               </h5>
               &nbsp;
@@ -329,15 +365,17 @@ const SearchResult = () => {
             </div>
             {/* Start search result */}
             <div
-              style={{
-                width: '100%',
-                backgroundColor: '#FFFFFF',
-                borderRadius: '15px',
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '25px',
-                marginBottom: '20px'
-              }}>
+              className={searchStyle.divSearchResult}
+              // style={{
+              //   width: '100%',
+              //   backgroundColor: '#FFFFFF',
+              //   borderRadius: '15px',
+              //   display: 'flex',
+              //   flexDirection: 'column',
+              //   padding: '25px',
+              //   marginBottom: '20px'
+              // }}
+            >
               <div
                 style={{
                   width: '100%',
@@ -345,7 +383,12 @@ const SearchResult = () => {
                   alignItems: 'center',
                   marginBottom: '30px'
                 }}>
-                <img src={garuda} alt="" style={{ width: '100px', marginRight: '30px' }} />
+                <img
+                  src={garuda}
+                  alt=""
+                  className={searchStyle.imgAirline}
+                  // style={{ width: '100px', marginRight: '30px' }}
+                />
                 <h6>Garuda Indonesia</h6>
               </div>
               <div
@@ -373,27 +416,34 @@ const SearchResult = () => {
                   <h6 style={{ fontSize: '14px', color: '#595959' }}>15:21</h6>
                 </div>
                 <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginLeft: 'auto',
-                    marginRight: 'auto'
-                  }}>
+                  className={searchStyle.longTime}
+                  // style={{
+                  //   display: 'flex',
+                  //   flexDirection: 'column',
+                  //   justifyContent: 'center',
+                  //   alignItems: 'center',
+                  //   marginLeft: 'auto',
+                  //   marginRight: 'auto'
+                  // }}
+                >
                   <h6 style={{ fontSize: '16px', color: '#595959' }}>3 hours 11 minutes</h6>
                   <h6 style={{ fontSize: '14px', color: '#595959' }}>(1 transit)</h6>
                 </div>
                 <div
-                  style={{
-                    fontSize: '25px',
-                    color: '#979797'
-                  }}>
+                  className={searchStyle.iconFeature}
+                  // style={{
+                  //   fontSize: '25px',
+                  //   color: '#979797'
+                  // }}
+                >
                   <i className="fa-solid fa-suitcase-rolling" style={{ marginRight: '10px' }}></i>
                   <i className="fa-solid fa-burger" style={{ marginRight: '10px' }}></i>
                   <i className="fa-solid fa-wifi" style={{ marginRight: '10px' }}></i>
                 </div>
-                <div style={{ display: 'flex', marginRight: '45px', marginLeft: 'auto' }}>
+                <div
+                  className={searchStyle.price}
+                  // style={{ display: 'flex', marginRight: '45px', marginLeft: 'auto' }}
+                >
                   <h6 style={{ color: '#2395FF', fontSize: '16px', fontWeight: '500' }}>
                     $ 214,00
                   </h6>
@@ -401,504 +451,27 @@ const SearchResult = () => {
                 </div>
                 <button
                   type="button"
-                  style={{
-                    height: '50px',
-                    width: '150px',
-                    backgroundColor: '#2395FF',
-                    color: '#FFFFFF',
-                    borderRadius: '10px',
-                    border: 'none',
-                    marginRight: '0px'
-                  }}>
+                  className={searchStyle.buttonSelect}
+                  // style={{
+                  //   height: '50px',
+                  //   width: '150px',
+                  //   backgroundColor: '#2395FF',
+                  //   color: '#FFFFFF',
+                  //   borderRadius: '10px',
+                  //   border: 'none',
+                  //   marginRight: '0px'
+                  // }}
+                >
                   Select
                 </button>
               </div>
               <div
-                style={{
-                  display: 'flex',
-                  color: '#2395FF'
-                }}>
-                <h6 style={{ fontWeight: '600', fontSize: '16px' }}>View Details</h6>
-                <i
-                  className="fa-solid fa-angle-down"
-                  style={{ marginLeft: '15px', fontWeight: '600', fontSize: '16px' }}></i>
-              </div>
-            </div>
-            {/* ============================================================== */}
-            <div
-              style={{
-                width: '100%',
-                backgroundColor: '#FFFFFF',
-                borderRadius: '15px',
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '25px',
-                marginBottom: '20px'
-              }}>
-              <div
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  marginBottom: '30px'
-                }}>
-                <img src={airAsia} alt="" style={{ width: '100px', marginRight: '30px' }} />
-                <h6>Air asia</h6>
-              </div>
-              <div
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  marginBottom: '30px'
-                }}>
-                <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '0px' }}>
-                  <h5 style={{ fontSize: '24px', fontWeight: '500' }}>IDN</h5>
-                  <h6 style={{ fontSize: '14px', color: '#595959' }}>12:33</h6>
-                </div>
-                <img
-                  src={flightIconSmall}
-                  alt=""
-                  style={{ marginLeft: 'auto', marginRight: 'auto' }}
-                />
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column'
-                  }}>
-                  <h5 style={{ fontSize: '24px', fontWeight: '500' }}>JPN</h5>
-                  <h6 style={{ fontSize: '14px', color: '#595959' }}>15:21</h6>
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginLeft: 'auto',
-                    marginRight: 'auto'
-                  }}>
-                  <h6 style={{ fontSize: '16px', color: '#595959' }}>3 hours 11 minutes</h6>
-                  <h6 style={{ fontSize: '14px', color: '#595959' }}>(Direct)</h6>
-                </div>
-                <div
-                  style={{
-                    fontSize: '25px',
-                    color: '#979797'
-                  }}>
-                  <i className="fa-solid fa-suitcase-rolling" style={{ marginRight: '10px' }}></i>
-                  <i className="fa-solid fa-burger" style={{ marginRight: '10px' }}></i>
-                </div>
-                <div style={{ display: 'flex', marginRight: '45px', marginLeft: 'auto' }}>
-                  <h6 style={{ color: '#2395FF', fontSize: '16px', fontWeight: '500' }}>
-                    $ 214,00
-                  </h6>
-                  <h6 style={{ color: '#595959', fontSize: '14px', fontWeight: '500' }}> /pax</h6>
-                </div>
-                <button
-                  type="button"
-                  style={{
-                    height: '50px',
-                    width: '150px',
-                    backgroundColor: '#2395FF',
-                    color: '#FFFFFF',
-                    borderRadius: '10px',
-                    border: 'none',
-                    marginRight: '0px'
-                  }}>
-                  Select
-                </button>
-              </div>
-              <div
-                style={{
-                  display: 'flex',
-                  color: '#2395FF'
-                }}>
-                <h6 style={{ fontWeight: '600', fontSize: '16px' }}>View Details</h6>
-                <i
-                  className="fa-solid fa-angle-down"
-                  style={{ marginLeft: '15px', fontWeight: '600', fontSize: '16px' }}></i>
-              </div>
-            </div>
-            {/* ============================================ */}
-            <div
-              style={{
-                width: '100%',
-                backgroundColor: '#FFFFFF',
-                borderRadius: '15px',
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '25px',
-                marginBottom: '20px'
-              }}>
-              <div
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  marginBottom: '30px'
-                }}>
-                <img src={lion} alt="" style={{ width: '100px', marginRight: '30px' }} />
-                <h6>Lion Air</h6>
-              </div>
-              <div
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  marginBottom: '30px'
-                }}>
-                <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '0px' }}>
-                  <h5 style={{ fontSize: '24px', fontWeight: '500' }}>IDN</h5>
-                  <h6 style={{ fontSize: '14px', color: '#595959' }}>12:33</h6>
-                </div>
-                <img
-                  src={flightIconSmall}
-                  alt=""
-                  style={{ marginLeft: 'auto', marginRight: 'auto' }}
-                />
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column'
-                  }}>
-                  <h5 style={{ fontSize: '24px', fontWeight: '500' }}>JPN</h5>
-                  <h6 style={{ fontSize: '14px', color: '#595959' }}>15:21</h6>
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginLeft: 'auto',
-                    marginRight: 'auto'
-                  }}>
-                  <h6 style={{ fontSize: '16px', color: '#595959' }}>3 hours 11 minutes</h6>
-                  <h6 style={{ fontSize: '14px', color: '#595959' }}>(2 Direct)</h6>
-                </div>
-                <div
-                  style={{
-                    fontSize: '25px',
-                    color: '#979797'
-                  }}>
-                  <i className="fa-solid fa-suitcase-rolling" style={{ marginRight: '10px' }}></i>
-                  <i className="fa-solid fa-burger" style={{ marginRight: '10px' }}></i>
-                </div>
-                <div style={{ display: 'flex', marginRight: '45px', marginLeft: 'auto' }}>
-                  <h6 style={{ color: '#2395FF', fontSize: '16px', fontWeight: '500' }}>
-                    $ 214,00
-                  </h6>
-                  <h6 style={{ color: '#595959', fontSize: '14px', fontWeight: '500' }}> /pax</h6>
-                </div>
-                <button
-                  type="button"
-                  style={{
-                    height: '50px',
-                    width: '150px',
-                    backgroundColor: '#2395FF',
-                    color: '#FFFFFF',
-                    borderRadius: '10px',
-                    border: 'none',
-                    marginRight: '0px'
-                  }}>
-                  Select
-                </button>
-              </div>
-              <div
-                style={{
-                  display: 'flex',
-                  color: '#2395FF'
-                }}>
-                <h6 style={{ fontWeight: '600', fontSize: '16px' }}>View Details</h6>
-                <i
-                  className="fa-solid fa-angle-down"
-                  style={{ marginLeft: '15px', fontWeight: '600', fontSize: '16px' }}></i>
-              </div>
-            </div>
-            {/* ======================== */}
-            <div
-              style={{
-                width: '100%',
-                backgroundColor: '#FFFFFF',
-                borderRadius: '15px',
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '25px',
-                marginBottom: '20px'
-              }}>
-              <div
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  marginBottom: '30px'
-                }}>
-                <img src={garuda} alt="" style={{ width: '100px', marginRight: '30px' }} />
-                <h6>Garuda Indonesia</h6>
-              </div>
-              <div
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  marginBottom: '30px'
-                }}>
-                <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '0px' }}>
-                  <h5 style={{ fontSize: '24px', fontWeight: '500' }}>IDN</h5>
-                  <h6 style={{ fontSize: '14px', color: '#595959' }}>12:33</h6>
-                </div>
-                <img
-                  src={flightIconSmall}
-                  alt=""
-                  style={{ marginLeft: 'auto', marginRight: 'auto' }}
-                />
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column'
-                  }}>
-                  <h5 style={{ fontSize: '24px', fontWeight: '500' }}>JPN</h5>
-                  <h6 style={{ fontSize: '14px', color: '#595959' }}>15:21</h6>
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginLeft: 'auto',
-                    marginRight: 'auto'
-                  }}>
-                  <h6 style={{ fontSize: '16px', color: '#595959' }}>3 hours 11 minutes</h6>
-                  <h6 style={{ fontSize: '14px', color: '#595959' }}>(1 transit)</h6>
-                </div>
-                <div
-                  style={{
-                    fontSize: '25px',
-                    color: '#979797'
-                  }}>
-                  <i className="fa-solid fa-suitcase-rolling" style={{ marginRight: '10px' }}></i>
-                  <i className="fa-solid fa-burger" style={{ marginRight: '10px' }}></i>
-                  <i className="fa-solid fa-wifi" style={{ marginRight: '10px' }}></i>
-                </div>
-                <div style={{ display: 'flex', marginRight: '45px', marginLeft: 'auto' }}>
-                  <h6 style={{ color: '#2395FF', fontSize: '16px', fontWeight: '500' }}>
-                    $ 214,00
-                  </h6>
-                  <h6 style={{ color: '#595959', fontSize: '14px', fontWeight: '500' }}> /pax</h6>
-                </div>
-                <button
-                  type="button"
-                  style={{
-                    height: '50px',
-                    width: '150px',
-                    backgroundColor: '#2395FF',
-                    color: '#FFFFFF',
-                    borderRadius: '10px',
-                    border: 'none',
-                    marginRight: '0px'
-                  }}>
-                  Select
-                </button>
-              </div>
-              <div
-                style={{
-                  display: 'flex',
-                  color: '#2395FF'
-                }}>
-                <h6 style={{ fontWeight: '600', fontSize: '16px' }}>View Details</h6>
-                <i
-                  className="fa-solid fa-angle-down"
-                  style={{ marginLeft: '15px', fontWeight: '600', fontSize: '16px' }}></i>
-              </div>
-            </div>
-            {/* ============================================================== */}
-            <div
-              style={{
-                width: '100%',
-                backgroundColor: '#FFFFFF',
-                borderRadius: '15px',
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '25px',
-                marginBottom: '20px'
-              }}>
-              <div
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  marginBottom: '30px'
-                }}>
-                <img src={airAsia} alt="" style={{ width: '100px', marginRight: '30px' }} />
-                <h6>Air asia</h6>
-              </div>
-              <div
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  marginBottom: '30px'
-                }}>
-                <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '0px' }}>
-                  <h5 style={{ fontSize: '24px', fontWeight: '500' }}>IDN</h5>
-                  <h6 style={{ fontSize: '14px', color: '#595959' }}>12:33</h6>
-                </div>
-                <img
-                  src={flightIconSmall}
-                  alt=""
-                  style={{ marginLeft: 'auto', marginRight: 'auto' }}
-                />
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column'
-                  }}>
-                  <h5 style={{ fontSize: '24px', fontWeight: '500' }}>JPN</h5>
-                  <h6 style={{ fontSize: '14px', color: '#595959' }}>15:21</h6>
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginLeft: 'auto',
-                    marginRight: 'auto'
-                  }}>
-                  <h6 style={{ fontSize: '16px', color: '#595959' }}>3 hours 11 minutes</h6>
-                  <h6 style={{ fontSize: '14px', color: '#595959' }}>(Direct)</h6>
-                </div>
-                <div
-                  style={{
-                    fontSize: '25px',
-                    color: '#979797'
-                  }}>
-                  <i className="fa-solid fa-suitcase-rolling" style={{ marginRight: '10px' }}></i>
-                  <i className="fa-solid fa-burger" style={{ marginRight: '10px' }}></i>
-                </div>
-                <div style={{ display: 'flex', marginRight: '45px', marginLeft: 'auto' }}>
-                  <h6 style={{ color: '#2395FF', fontSize: '16px', fontWeight: '500' }}>
-                    $ 214,00
-                  </h6>
-                  <h6 style={{ color: '#595959', fontSize: '14px', fontWeight: '500' }}> /pax</h6>
-                </div>
-                <button
-                  type="button"
-                  style={{
-                    height: '50px',
-                    width: '150px',
-                    backgroundColor: '#2395FF',
-                    color: '#FFFFFF',
-                    borderRadius: '10px',
-                    border: 'none',
-                    marginRight: '0px'
-                  }}>
-                  Select
-                </button>
-              </div>
-              <div
-                style={{
-                  display: 'flex',
-                  color: '#2395FF'
-                }}>
-                <h6 style={{ fontWeight: '600', fontSize: '16px' }}>View Details</h6>
-                <i
-                  className="fa-solid fa-angle-down"
-                  style={{ marginLeft: '15px', fontWeight: '600', fontSize: '16px' }}></i>
-              </div>
-            </div>
-            {/* ============================================ */}
-            <div
-              style={{
-                width: '100%',
-                backgroundColor: '#FFFFFF',
-                borderRadius: '15px',
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '25px',
-                marginBottom: '20px'
-              }}>
-              <div
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  marginBottom: '30px'
-                }}>
-                <img src={lion} alt="" style={{ width: '100px', marginRight: '30px' }} />
-                <h6>Lion Air</h6>
-              </div>
-              <div
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  marginBottom: '30px'
-                }}>
-                <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '0px' }}>
-                  <h5 style={{ fontSize: '24px', fontWeight: '500' }}>IDN</h5>
-                  <h6 style={{ fontSize: '14px', color: '#595959' }}>12:33</h6>
-                </div>
-                <img
-                  src={flightIconSmall}
-                  alt=""
-                  style={{ marginLeft: 'auto', marginRight: 'auto' }}
-                />
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column'
-                  }}>
-                  <h5 style={{ fontSize: '24px', fontWeight: '500' }}>JPN</h5>
-                  <h6 style={{ fontSize: '14px', color: '#595959' }}>15:21</h6>
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginLeft: 'auto',
-                    marginRight: 'auto'
-                  }}>
-                  <h6 style={{ fontSize: '16px', color: '#595959' }}>3 hours 11 minutes</h6>
-                  <h6 style={{ fontSize: '14px', color: '#595959' }}>(2 Direct)</h6>
-                </div>
-                <div
-                  style={{
-                    fontSize: '25px',
-                    color: '#979797'
-                  }}>
-                  <i className="fa-solid fa-suitcase-rolling" style={{ marginRight: '10px' }}></i>
-                  <i className="fa-solid fa-burger" style={{ marginRight: '10px' }}></i>
-                </div>
-                <div style={{ display: 'flex', marginRight: '45px', marginLeft: 'auto' }}>
-                  <h6 style={{ color: '#2395FF', fontSize: '16px', fontWeight: '500' }}>
-                    $ 214,00
-                  </h6>
-                  <h6 style={{ color: '#595959', fontSize: '14px', fontWeight: '500' }}> /pax</h6>
-                </div>
-                <button
-                  type="button"
-                  style={{
-                    height: '50px',
-                    width: '150px',
-                    backgroundColor: '#2395FF',
-                    color: '#FFFFFF',
-                    borderRadius: '10px',
-                    border: 'none',
-                    marginRight: '0px'
-                  }}>
-                  Select
-                </button>
-              </div>
-              <div
-                style={{
-                  display: 'flex',
-                  color: '#2395FF'
-                }}>
+                className={searchStyle.divViewDetail}
+                // style={{
+                //   display: 'flex',
+                //   color: '#2395FF'
+                // }}
+              >
                 <h6 style={{ fontWeight: '600', fontSize: '16px' }}>View Details</h6>
                 <i
                   className="fa-solid fa-angle-down"
