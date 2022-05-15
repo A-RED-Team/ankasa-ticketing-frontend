@@ -11,6 +11,91 @@
   flex-direction: column;
 }
 
+.bookingCanceled {
+  padding: 7px 18px;
+  background-color: #dc3545;
+  width: auto;
+  height: auto;
+  color: #ffffff;
+  border-radius: 6px;
+  margin-left: 60px;
+  margin-right: auto;
+}
+
+.bookingWaiting {
+  padding: 7px 18px;
+  background-color: #ff7f23;
+  width: auto;
+  height: auto;
+  color: #ffffff;
+  border-radius: 6px;
+  margin-left: 60px;
+  margin-right: auto;
+}
+
+.bookingPayment {
+  padding: 7px 18px;
+  background-color: #4fcf4d;
+  width: auto;
+  height: auto;
+  color: #ffffff;
+  border-radius: 6px;
+  margin-left: 60px;
+  margin-right: auto;
+}
+
+.eticketIssued {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.divStatusPayment {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.waitingPayAndCancle {
+  display: flex;
+  width: 100%;
+}
+
+.waitingForPayment {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.divPayNow {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 40px;
+}
+
+.payNow {
+  padding: 7px 18px;
+  background-color: #2395ff;
+  width: auto;
+  height: auto;
+  color: #ffffff;
+  border-radius: 6px;
+  margin-left: 0px;
+  margin-right: 10px;
+  border: none;
+}
+
+.canceleBooking {
+  padding: 7px 18px;
+  background-color: #dc3545;
+  width: auto;
+  height: auto;
+  color: #ffffff;
+  border-radius: 6px;
+  margin-right: 0px;
+  border: none;
+}
+
 /* Responsive */
 @media screen and (max-width: 576px) {
   .leftContent {
@@ -18,8 +103,48 @@
   }
 
   .rightContent {
-    width: 84%;
+    width: 100%;
     justify-content: center;
     align-items: center;
+  }
+
+  .bookingCanceled {
+    margin-left: 20px;
+  }
+
+  .waitingPayAndCancle {
+    position: relative;
+    flex-direction: column;
+  }
+
+  .bookingWaiting {
+    margin-left: 20px;
+    width: 93%;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .bookingPayment {
+    margin-left: 20px;
+  }
+
+  .waitingForPayment {
+    font-size: 14px;
+  }
+
+  .divPayNow {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .payNow {
+    width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .canceleBooking {
+    width: 100%;
   }
 }
