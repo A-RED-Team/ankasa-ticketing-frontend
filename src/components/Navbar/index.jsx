@@ -94,6 +94,9 @@ const index = ({ isLogin = false }) => {
                           : `${APP_PROD}uploads/users/${detailUser.data?.data?.photo}`
                       }`}
                       alt={detailUser.data?.data?.username}
+                      onError={(e) => {
+                        e.target.src = `${process.env.REACT_APP_PROD}uploads/users/profile-default.png`;
+                      }}
                     />
                   </Link>
                 </div>
