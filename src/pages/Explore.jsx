@@ -1,3 +1,4 @@
+import '../assets/styles/explore.css';
 import React, { useEffect } from 'react';
 
 import Navbar from '../components/Navbar';
@@ -27,28 +28,31 @@ const Explore = () => {
   return (
     <>
       <Navbar isLogin={token} />
-      <Hero />
-      {trending.isLoading ? (
-        // untuk membuat loading page
-        <ContentLoader />
-      ) : trending.isError ? (
-        // Disini bisa memasukkan sweet alert untuk error
-        <div>Error</div>
-      ) : (
-        // Mengirim data trending ke komponent card
-        <Card trending={trending} />
-      )}
+      <div className="container-fluid explore ff-poppins">
+        <Hero />
 
-      {destination.isLoading ? (
-        // untuk membuat loading page
-        <ContentLoader />
-      ) : destination.isError ? (
-        // Disini bisa memasukkan sweet alert untuk error
-        <div>Error</div>
-      ) : (
-        // Mengirim data trending ke komponent destination
-        <Carousel destination={destination} />
-      )}
+        {trending.isLoading ? (
+          // untuk membuat loading page
+          <ContentLoader />
+        ) : trending.isError ? (
+          // Disini bisa memasukkan sweet alert untuk error
+          <div>Error</div>
+        ) : (
+          // Mengirim data trending ke komponent card
+          <Card trending={trending} />
+        )}
+
+        {destination.isLoading ? (
+          // untuk membuat loading page
+          <ContentLoader />
+        ) : destination.isError ? (
+          // Disini bisa memasukkan sweet alert untuk error
+          <div>Error</div>
+        ) : (
+          // Mengirim data trending ke komponent destination
+          <Carousel destination={destination} />
+        )}
+      </div>
       <Footer />
     </>
   );

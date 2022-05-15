@@ -32,7 +32,7 @@ const router = () => {
         <Route path="booking/" element={<PrivateRoute />}>
           <Route index element={<SearchResult />} />
           <Route path="detail/:id" element={<BookingDetail />} />
-          <Route path="add" element={<FlightDetail />} />
+          <Route path="add/:flightId" element={<FlightDetail />} />
         </Route>
         <Route path="profile/" element={<PrivateRoute />}>
           <Route index element={<Profile />} />

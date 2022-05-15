@@ -86,3 +86,12 @@
 .swiper-button-next {
   right: 40%;
 }
+
+@media screen and (max-width: 576px) {
+  .swiper-button-prev {
+    left: 25%;
+  }
+  .swiper-button-next {
+    right: 25%;
+  }
+}
