@@ -181,6 +181,7 @@ const SearchResult = () => {
                   backgroundColor: '#2395FF',
                   color: '#FFFFFF'
                 }}>
+                <option value="">Dept. city</option>
                 {allCities.isLoading ? (
                   <option value="loading">Loading</option>
                 ) : allCities.isError ? (
@@ -216,6 +217,7 @@ const SearchResult = () => {
                   backgroundColor: '#2395FF',
                   color: '#FFFFFF'
                 }}>
+                <option value="">Arr. city</option>
                 {allCities.isLoading ? (
                   <option value="loading">Loading</option>
                 ) : allCities.isError ? (
@@ -284,6 +286,25 @@ const SearchResult = () => {
               <small
                 onClick={() => {
                   document.getElementById('reset').click();
+                  setMode('ASC');
+                  setDeptCity('');
+                  setArrCity('');
+                  setDeptDate('');
+                  setFlightClass('');
+                  setOneOrRoundTrip('');
+                  setChild('0');
+                  setAdult('1');
+                  setAirlinesName('');
+                  setLuggage('');
+                  setMeal('');
+                  setWifi('');
+                  setDirect('');
+                  setTransit('');
+                  setMoreTransit('');
+                  setDeptTimeFrom('');
+                  setDeptTimeTo('');
+                  setArrTimeFrom('');
+                  setArrTimeTo('');
                 }}
                 className={style.logout}
                 style={{
