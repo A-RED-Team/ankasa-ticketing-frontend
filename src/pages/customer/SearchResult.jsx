@@ -17,6 +17,7 @@ const Section = styled.section`
   font-family: 'Poppins', 'sans-serif';
   margin-top: 90px;
 `;
+
 const Header = styled.div`
   background: #2395ff url(${bg});
   width: 100%;
