@@ -188,7 +188,9 @@ const FlightDetail = () => {
     if (insurance) {
       setTotalPrice(totalPrice + totalPax * 2);
     } else {
-      setTotalPrice(detailFlight.data.data.price * totalPax);
+      if (detailFlight.data.data) {
+        setTotalPrice(detailFlight.data.data.price * totalPax);
+      }
     }
   }, [insurance]);
   useEffect(() => {
