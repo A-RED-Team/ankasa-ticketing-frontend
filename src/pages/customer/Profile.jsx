@@ -25,6 +25,7 @@ const Profile = () => {
 
   const decoded = JwtDecode(token);
   const [photo, setPhoto] = useState('');
+  const [photoUrl, setPhotoUrl] = useState('profile-default.png');
   const [buttonVisibility, setButtonVisibility] = useState(false);
   const [form, setForm] = useState({
     username: '',
@@ -52,6 +53,7 @@ const Profile = () => {
         address: detailUser.data.data.address,
         postCode: detailUser.data.data.post_code
       });
+      setPhotoUrl(detailUser.data.data.photo);
     }
   }, [detailUser]);
   const photoSubmit = (e) => {
@@ -196,10 +198,19 @@ const Profile = () => {
                     backgroundColor: '#FFF',
                     border: 'none',
                     borderRadius: '100px',
-                    backgroundImage: `url(${process.env.REACT_APP_PROD}uploads/users/${detailUser.data?.data?.photo})`,
+                    backgroundImage: `url(${process.env.REACT_APP_PROD}uploads/users/${photoUrl})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover'
-                  }}></div>
+                  }}>
+                  <img
+                    src={`${process.env.REACT_APP_PROD}uploads/users/${photoUrl}`}
+                    alt=""
+                    onError={() => {
+                      setPhotoUrl('profile-default.png');
+                    }}
+                    style={{ display: 'none' }}
+                  />
+                </div>
               </div>
               <form id="form" onSubmit={(e) => photoSubmit(e)}>
                 <input

@@ -16,6 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../../components/Navbar';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import flightIconSmall from '../../assets/images/flightIconSmall.svg';
 
 import line from '../../assets/icons/Line 16.svg';
 import alert from '../../assets/icons/ant-design_warning-filled.svg';
@@ -188,7 +189,9 @@ const FlightDetail = () => {
     if (insurance) {
       setTotalPrice(totalPrice + totalPax * 2);
     } else {
-      setTotalPrice(detailFlight.data.data.price * totalPax);
+      if (detailFlight.data.data) {
+        setTotalPrice(detailFlight.data.data.price * totalPax);
+      }
     }
   }, [insurance]);
   useEffect(() => {
@@ -432,7 +435,12 @@ const FlightDetail = () => {
                       {detailFlight.data?.data?.departurecountryname})
                     </>
                   )}
-                  <img className="ml-3 mr-3" src="" alt="" />
+                  <img
+                    className="ml-3 mr-3"
+                    src={flightIconSmall}
+                    alt=""
+                    style={{ marginLeft: '5px', marginRight: '5px' }}
+                  />
                   {detailFlight.isLoading ? (
                     <div>Loading...</div>
                   ) : detailFlight.isError ? (
