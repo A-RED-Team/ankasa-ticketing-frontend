@@ -38,9 +38,9 @@ const index = ({ isLogin = false }) => {
       <nav className="navbar navbar-expand-lg navbar-light fixed-top bg-white">
         <div className="container">
           <img src={logo} alt="Ankasa Ticketing" className="mr-2" />
-          <a className="navbar-brand" href="/">
+          <Link className="navbar-brand" to="/">
             ankasa
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
