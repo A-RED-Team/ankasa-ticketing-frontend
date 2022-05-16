@@ -30,6 +30,7 @@ const MyBooking = () => {
   const [isOpenCancel, setIsOpenCancel] = useState(false);
   const [loading, setLoading] = useState(false);
   const [photo, setPhoto] = useState('');
+  const [photoUrl, setPhotoUrl] = useState('profile-default.png');
   const [buttonVisibility, setButtonVisibility] = useState(false);
   const logout = () => {
     localStorage.clear();
@@ -127,6 +128,11 @@ const MyBooking = () => {
     dispatch(getMyBooking());
     dispatch(getDetailUser(decoded.id));
   }, []);
+  useEffect(() => {
+    if (detailUser.data.data) {
+      setPhotoUrl(detailUser.data.data.photo);
+    }
+  }, [detailUser]);
   return (
     <>
       <Navbar isLogin={token} />
@@ -186,10 +192,19 @@ const MyBooking = () => {
                     backgroundColor: '#FFF',
                     border: 'none',
                     borderRadius: '100px',
-                    backgroundImage: `url(${process.env.REACT_APP_PROD}uploads/users/${detailUser.data?.data?.photo})`,
+                    backgroundImage: `url(${process.env.REACT_APP_PROD}uploads/users/${photoUrl})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover'
-                  }}></div>
+                  }}>
+                  <img
+                    src={`${process.env.REACT_APP_PROD}uploads/users/${photoUrl}`}
+                    alt=""
+                    onError={() => {
+                      setPhotoUrl('profile-default.png');
+                    }}
+                    style={{ display: 'none' }}
+                  />
+                </div>
               </div>
               <form id="form" onSubmit={(e) => photoSubmit(e)}>
                 <input
