@@ -142,7 +142,7 @@ const SearchResult = () => {
     setArrCity(queryArrCity);
   }, []);
   const token = localStorage.getItem('token');
-  const [activeTab, setActiveTab] = useState(false);
+  const [activeTab, setActiveTab] = useState(true);
   // const classActive = activeTab ? 'active' : 'nonactive';
   return (
     <>
@@ -262,14 +262,17 @@ const SearchResult = () => {
             </h6>
           </div>
           <div
-            onClick={() => setActiveTab(!activeTab)}
+            onClick={() => {
+              setActiveTab(!activeTab);
+              console.log(activeTab);
+            }}
             className={`${searchStyle.divFilterSearch}`}>
             <h6 className={`${searchStyle.filterSearch} ${style.logout}`}>Filter Search</h6>
           </div>
         </Header>
         <div className={`container-fluid ${searchStyle.divMainContent}`}>
           {/* Start Left Filter */}
-          <div className={`${searchStyle.leftContent}`}>
+          <div className={searchStyle.leftContent} style={!activeTab ? { display: 'none' } : {}}>
             <div
               style={{
                 display: 'flex',
