@@ -261,9 +261,9 @@ const SearchResult = () => {
           </div>
           <div
             onClick={() =>
-              document.getElementById('leftContent').style.display === 'none'
-                ? (document.getElementById('leftContent').style.display = 'flex')
-                : (document.getElementById('leftContent').style.display = 'none')
+              document.getElementById('leftContent').style.display === 'flex'
+                ? (document.getElementById('leftContent').style.display = 'none')
+                : (document.getElementById('leftContent').style.display = 'flex')
             }
             className={`${searchStyle.divFilterSearch}`}>
             <h6 className={`${searchStyle.filterSearch} ${style.logout}`}>Filter Search</h6>
