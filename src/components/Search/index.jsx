@@ -1,6 +1,10 @@
-import React from 'react';
-import './style.css';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getAllCities } from '../../redux/actions/city';
 
+import './style.css';
+import swal from 'sweetalert2';
 import back from '../../assets/icons/btn-back.svg';
 import arrow from '../../assets/icons/arrow.svg';
 // import planeblack from '../../assets/icons/one-way-black.svg';
@@ -9,6 +13,45 @@ import arrow from '../../assets/icons/arrow.svg';
 import go from '../../assets/icons/white-arrow.svg';
 
 const index = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const allCities = useSelector((state) => state.allCities);
+  const [deptCity, setDeptCity] = useState('');
+  const [arrCity, setArrCity] = useState('');
+  const [adult, setAdult] = useState('1');
+  const [child, setChild] = useState('0');
+  const [oneOrRoundTrip, setOneOrRoundTrip] = useState('');
+  const [deptDate, setDeptDate] = useState('');
+  const [flightClass, setFlightClass] = useState('');
+  const onSearch = (e) => {
+    e.preventDefault();
+    if (!deptCity) {
+      swal.fire({
+        title: 'Error!',
+        text: `Select your departure city!`,
+        icon: 'warning'
+      });
+    } else if (!arrCity) {
+      swal.fire({
+        title: 'Error!',
+        text: `Select your arrival city!`,
+        icon: 'warning'
+      });
+    } else if (!deptDate) {
+      swal.fire({
+        title: 'Error!',
+        text: `Select your departure date!`,
+        icon: 'warning'
+      });
+    } else {
+      return navigate(
+        `/booking?deptCity=${deptCity}&arrCity=${arrCity}&deptDate=${deptDate}&flightClass=${flightClass}&oneOrRound=${oneOrRoundTrip}&adult=${adult}&child=${child}`
+      );
+    }
+  };
+  useEffect(() => {
+    dispatch(getAllCities());
+  }, []);
   return (
     <section className="search">
       <div className="search-container">
@@ -21,25 +64,83 @@ const index = () => {
         <div className="search-content">
           <div className="search-box">
             <p className="text-secondary">From</p>
-            <div className="search-city">
-              <button className="font-weight-bold">Medan</button>
-            </div>
-            <p className="text-secondary">Indonesia</p>
+
+            <select
+              className="font-weight-bold form-control w-auto"
+              name="deptCity"
+              style={{ border: 'none' }}
+              onChange={(e) => {
+                setDeptCity(e.target.value);
+              }}
+              value={deptCity}>
+              {allCities.isLoading ? (
+                <option value="loading">Loading</option>
+              ) : allCities.isError ? (
+                <option value="error">Error</option>
+              ) : allCities.data ? (
+                allCities.data.map((e, i) => {
+                  return (
+                    <option key={i} value={e.city_name}>
+                      {`${e.city_name}`}
+                    </option>
+                  );
+                })
+              ) : (
+                <option value="error">Error</option>
+              )}
+            </select>
           </div>
-          <img src={arrow} alt="" />
+          <img
+            className="ml-auto mr-auto mt-3"
+            src={arrow}
+            alt=""
+            onClick={() => {
+              setDeptCity(arrCity);
+              setArrCity(deptCity);
+            }}
+          />
           <div className="search-box">
             <p className="text-secondary">To</p>
-            <div className="search-city">
-              <button className="font-weight-bold">Tokyo</button>
-            </div>
-            <p className="text-secondary">Japan</p>
+
+            <select
+              className="font-weight-bold form-control w-auto"
+              style={{ border: 'none' }}
+              name="arrCity"
+              onChange={(e) => {
+                setArrCity(e.target.value);
+              }}
+              value={arrCity}>
+              {allCities.isLoading ? (
+                <option value="loading">Loading</option>
+              ) : allCities.isError ? (
+                <option value="error">Error</option>
+              ) : allCities.data ? (
+                allCities.data.map((e, i) => {
+                  return (
+                    <option key={i} value={e.city_name}>
+                      {`${e.city_name}`}
+                    </option>
+                  );
+                })
+              ) : (
+                <option value="error">Error</option>
+              )}
+            </select>
           </div>
         </div>
         <div className="search-type">
-          <button className="one-way">
+          <button
+            className="one-way"
+            onClick={() => {
+              setOneOrRoundTrip('0');
+            }}>
             <span>One Way</span>
           </button>
-          <button className="round-trip">
+          <button
+            className="round-trip"
+            onClick={() => {
+              setOneOrRoundTrip('1');
+            }}>
             <span>Round Trip</span>
           </button>
         </div>
@@ -48,6 +149,9 @@ const index = () => {
           <div className="form-group">
             <input
               type="date"
+              onChange={(e) => {
+                setDeptDate(e.target.value);
+              }}
               className="form-control"
               name=""
               id=""
@@ -58,46 +162,89 @@ const index = () => {
         <div className="mt-4 text-secondary">
           <p>How many person?</p>
           <div className="search-select">
-            <select className="form-check mb-3">
+            <select
+              className="form-check mb-3"
+              onChange={(e) => {
+                setChild(e.target.value);
+              }}>
               <option value="null" disabled="disabled" selected>
                 Child
               </option>
               <option value="1">1 Child</option>
-              <option value="1">2 Child</option>
-              <option value="1">3 Child</option>
-              <option value="1">4 Child</option>
-              <option value="1">5 Child</option>
-              <option value="1">6 Child</option>
-              <option value="1">7 Child</option>
-              <option value="1">8 Child</option>
+              <option value="2">2 Child</option>
+              <option value="3">3 Child</option>
+              <option value="4">4 Child</option>
+              <option value="5">5 Child</option>
+              <option value="6">6 Child</option>
+              <option value="7">7 Child</option>
+              <option value="8">8 Child</option>
+              <option value="9">9 Child</option>
+              <option value="10">10 Child</option>
             </select>
-            <select className="form-check mb-3">
+            <select
+              className="form-check mb-3"
+              onChange={(e) => {
+                setAdult(e.target.value);
+              }}>
               <option value="null" disabled="disabled" selected>
                 Adult
               </option>
               <option value="1">1 Adult</option>
-              <option value="1">2 Adult</option>
-              <option value="1">3 Adult</option>
-              <option value="1">4 Adult</option>
-              <option value="1">5 Adult</option>
-              <option value="1">6 Adult</option>
-              <option value="1">7 Adult</option>
-              <option value="1">8 Adult</option>
+              <option value="2">2 Adult</option>
+              <option value="3">3 Adult</option>
+              <option value="4">4 Adult</option>
+              <option value="5">5 Adult</option>
+              <option value="6">6 Adult</option>
+              <option value="7">7 Adult</option>
+              <option value="8">8 Adult</option>
+              <option value="9">9 Adult</option>
+              <option value="10">10 Adult</option>
             </select>
           </div>
         </div>
         <div>
           <p className="mb-3">Which class do you want?</p>
           <div className="d-flex">
-            <input type="radio" name="radio" id="radio1" />
-            <label htmlFor="radio1">Economy</label>
-            <input type="radio" name="radio" id="radio2" />
-            <label htmlFor="radio2">Business</label>
-            <input type="radio" name="radio" id="radio3" />
-            <label htmlFor="radio3">First Class</label>
+            <input
+              type="radio"
+              name="radio"
+              id="radio1"
+              onChange={() => {
+                setFlightClass('0');
+              }}
+            />
+            <label htmlFor="radio1" style={{ marginRight: '10px' }}>
+              Economy
+            </label>
+            <input
+              type="radio"
+              name="radio"
+              id="radio2"
+              onChange={() => {
+                setFlightClass('1');
+              }}
+            />
+            <label htmlFor="radio2" style={{ marginRight: '10px' }}>
+              Business
+            </label>
+            <input
+              type="radio"
+              name="radio"
+              id="radio3"
+              onChange={() => {
+                setFlightClass('3');
+              }}
+            />
+            <label htmlFor="radio3" style={{ marginRight: '10px' }}>
+              First Class
+            </label>
           </div>
         </div>
-        <button className="search-button mt-4">
+        <button
+          className="search-button mt-4"
+          onClick={(e) => {
+            onSearch(e);
+          }}>
           Search Flight
           <img src={go} alt="" />
         </button>
