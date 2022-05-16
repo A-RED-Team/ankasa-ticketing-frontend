@@ -188,7 +188,7 @@ const SearchResult = () => {
                   allCities.data.map((e, i) => {
                     return (
                       <option key={i} value={e.city_name}>
-                        {e.city_name}
+                        {`${e.city_name} (${e.alias})`}
                       </option>
                     );
                   })
@@ -223,7 +223,7 @@ const SearchResult = () => {
                   allCities.data.map((e, i) => {
                     return (
                       <option key={i} value={e.city_name}>
-                        {e.city_name}
+                        {`${e.city_name} (${e.alias})`}
                       </option>
                     );
                   })
