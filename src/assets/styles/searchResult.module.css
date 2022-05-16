@@ -177,6 +177,7 @@
 
   /* Left */
   .leftContent {
+    display: none;
     width: 100%;
     padding: 30px 25px 30px 25px;
   }
