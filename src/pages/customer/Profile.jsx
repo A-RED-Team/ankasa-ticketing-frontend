@@ -331,12 +331,17 @@ const Profile = () => {
                 </div>
               </div>
               <div
+                className={style.logout}
+                onClick={() =>
+                  document.getElementById('rightContent').style.display === 'none'
+                    ? (document.getElementById('rightContent').style.display = 'flex')
+                    : (document.getElementById('rightContent').style.display = 'none')
+                }
                 style={{
                   display: 'flex',
                   width: '70%',
                   alignItems: 'center',
-                  marginBottom: '30px',
-                  color: '#2395FF'
+                  marginBottom: '30px'
                 }}>
                 <i className="fa-solid fa-circle-user" style={{ marginLeft: '0px' }}></i>
                 <small
@@ -423,6 +428,7 @@ const Profile = () => {
           </div>
           <div
             // className="rightArea"
+            id="rightContent"
             className={`${profileStyle.rightContent} rightArea`}
             // style={{
             //   width: '70%',
