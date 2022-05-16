@@ -17,9 +17,13 @@ const index = ({ isLogin = false }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [modal, setModal] = useState(false);
+  const [arrCities, setArrCities] = useState('');
   const dispatch = useDispatch();
   const detailUser = useSelector((state) => state.detailUser);
-
+  const onSubmit = (e) => {
+    e.preventDefault();
+    return navigate(`/booking?arrCity=${arrCities}`);
+  };
   let decoded = '';
   if (isLogin) {
     decoded = jwt_decode(isLogin);
@@ -49,7 +53,10 @@ const index = ({ isLogin = false }) => {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav m-auto">
-              <form>
+              <form
+                onSubmit={(e) => {
+                  onSubmit(e);
+                }}>
                 <div className="navbar-search p-1 pl-4">
                   <label htmlFor="search" className="navbar-icon-search">
                     <img src={search} alt="Search" id="search" />
@@ -57,6 +64,9 @@ const index = ({ isLogin = false }) => {
                   <input
                     type="search"
                     className="form-control"
+                    onChange={(e) => {
+                      setArrCities(e.target.value);
+                    }}
                     style={{
                       backgroundColor: 'transparent',
                       border: 'none',
@@ -65,6 +75,7 @@ const index = ({ isLogin = false }) => {
                     }}
                     placeholder="Where you want to go ?"
                   />
+                  <input type="submit" style={{ display: 'none' }} />
                 </div>
               </form>
               <li className="nav-item">
