@@ -203,7 +203,7 @@ const Profile = () => {
                     backgroundSize: 'cover'
                   }}>
                   <img
-                    src={`${process.env.REACT_APP_PROD}uploads/users/${detailUser.data?.data?.photo}`}
+                    src={`${process.env.REACT_APP_PROD}uploads/users/${photoUrl}`}
                     alt=""
                     onError={() => {
                       setPhotoUrl('profile-default.png');
