@@ -146,7 +146,7 @@ const index = () => {
             <span>Round Trip</span>
           </button>
         </div>
-        <div className="departure mt-4 text-secondary">
+        <div className="search-departure mt-4 text-secondary">
           <p>Departure</p>
           <div className="form-group">
             <input
@@ -161,7 +161,7 @@ const index = () => {
             />
           </div>
         </div>
-        <div className="mt-4 text-secondary">
+        <div className="search-person mt-4 text-secondary">
           <p>How many person?</p>
           <div className="search-select">
             <select
@@ -206,7 +206,7 @@ const index = () => {
         </div>
         <div>
           <p className="mb-3">Which class do you want?</p>
-          <div className="d-flex">
+          <div className="search-radio">
             <input
               type="radio"
               name="radio"
@@ -215,9 +215,7 @@ const index = () => {
                 setFlightClass('0');
               }}
             />
-            <label htmlFor="radio1" style={{ marginRight: '10px' }}>
-              Economy
-            </label>
+            <label htmlFor="radio1">Economy</label>
             <input
               type="radio"
               name="radio"
@@ -226,9 +224,7 @@ const index = () => {
                 setFlightClass('1');
               }}
             />
-            <label htmlFor="radio2" style={{ marginRight: '10px' }}>
-              Business
-            </label>
+            <label htmlFor="radio2">Business</label>
             <input
               type="radio"
               name="radio"
@@ -237,9 +233,7 @@ const index = () => {
                 setFlightClass('3');
               }}
             />
-            <label htmlFor="radio3" style={{ marginRight: '10px' }}>
-              First Class
-            </label>
+            <label htmlFor="radio3">First Class</label>
           </div>
         </div>
         <button
