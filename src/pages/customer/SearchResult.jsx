@@ -195,14 +195,11 @@ const SearchResult = () => {
               Change Search
             </h6>
           </div>
+          <div className={searchStyle.divFilterSearch}>
+            <h6 className={`${searchStyle.filterSearch} ${style.logout}`}>Filter Search</h6>
+          </div>
         </Header>
-        <div
-          className="container-fluid"
-          style={{
-            width: '100%',
-            backgroundColor: '#F5F6FA',
-            display: 'flex'
-          }}>
+        <div className={`container-fluid ${searchStyle.divMainContent}`}>
           {/* Start Left Filter */}
           <div className={searchStyle.leftContent}>
             <div
@@ -723,30 +720,9 @@ const SearchResult = () => {
           </div>
 
           {/* End Left Filter */}
-          <div
-            className={searchStyle.startRightContent}
-            // style={{
-            //   width: '75%',
-            //   display: 'flex',
-            //   flexDirection: 'column',
-            //   padding: '30px 70px 40px 0px'
-            // }}
-          >
-            <div
-              className={searchStyle.divSelectTicket}
-              // style={{
-              //   width: '100%',
-              //   display: 'flex',
-              //   alignItems: 'center',
-              //   marginBottom: '25px'
-              // }}
-            >
-              <h5
-                className={searchStyle.selectTicket}
-                // style={{ marginLeft: '0px', fontWeight: '500', fontSize: '24px' }}
-              >
-                Select Ticket
-              </h5>
+          <div className={searchStyle.startRightContent}>
+            <div className={searchStyle.divSelectTicket}>
+              <h5 className={searchStyle.selectTicket}>Select Ticket</h5>
               &nbsp;
               <h5 style={{ fontWeight: '500', fontSize: '18px', color: '#979797' }}>
                 (
@@ -820,9 +796,7 @@ const SearchResult = () => {
                         marginBottom: '30px'
                       }}>
                       <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '0px' }}>
-                        <h5 style={{ fontSize: '24px', fontWeight: '500' }}>
-                          {e.departurecityname}
-                        </h5>
+                        <h5 className={searchStyle.departureCity}>{e.departurecityname}</h5>
                         <h6 style={{ fontSize: '14px', color: '#595959' }}>
                           {moment(e.departure_time, 'HH:mm:ss').format('HH:mm')}
                         </h6>
@@ -837,7 +811,7 @@ const SearchResult = () => {
                           display: 'flex',
                           flexDirection: 'column'
                         }}>
-                        <h5 style={{ fontSize: '24px', fontWeight: '500' }}>{e.arrivalcityname}</h5>
+                        <h5 className={searchStyle.arrivalCity}>{e.arrivalcityname}</h5>
                         <h6 style={{ fontSize: '14px', color: '#595959' }}>
                           {moment(e.arrival_time, 'HH:mm:ss').format('HH:mm')}
                         </h6>
