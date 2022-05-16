@@ -783,7 +783,8 @@ const SearchResult = () => {
                     border: '1px solid #2395FF',
                     borderRadius: '10px',
                     paddingTop: '10px',
-                    paddingBottom: '10px'
+                    paddingBottom: '10px',
+                    width: '100%'
                   }}
                   onClick={(e) => {
                     search(e);
