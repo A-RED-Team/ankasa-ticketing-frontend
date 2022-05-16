@@ -9,6 +9,7 @@ import getAirlines from './airline';
 import detailFlightReducer from './flight';
 import allCountry from './country';
 import allFlight from './allFlight';
+import allCities from './city';
 
 export default combineReducers({
   trending,
@@ -19,5 +20,6 @@ export default combineReducers({
   getAirlines,
   detailFlightReducer,
   allCountry,
-  allFlight
+  allFlight,
+  allCities
 });

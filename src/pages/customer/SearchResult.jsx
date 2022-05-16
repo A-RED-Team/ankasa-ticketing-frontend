@@ -4,6 +4,7 @@ import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import { getAllFlight } from '../../redux/actions/flight';
 import { getAllAirlines } from '../../redux/actions/airline';
+import { getAllCities } from '../../redux/actions/city';
 import styled from 'styled-components';
 import ContentLoader from 'react-content-loader';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -42,6 +43,7 @@ const SearchResult = () => {
   const dispatch = useDispatch();
   const allFlight = useSelector((state) => state.allFlight);
   const allAirlines = useSelector((state) => state.getAirlines);
+  const allCities = useSelector((state) => state.allCities);
   const [query] = useSearchParams();
   const queryMode = query.get('mode') === 'DESC' ? 'DESC' : 'ASC';
   const queryDeptCity = query.get('deptCity') ? query.get('deptCity') : '';
@@ -135,6 +137,7 @@ const SearchResult = () => {
       )
     );
     dispatch(getAllAirlines());
+    dispatch(getAllCities());
     setDeptCity(queryDeptCity);
     setArrCity(queryArrCity);
   }, []);
@@ -160,13 +163,72 @@ const SearchResult = () => {
               style={{
                 width: '100%',
                 display: 'flex',
-                textAlign: 'center'
+                alignItems: 'center',
+                paddingBottom: '10px'
               }}>
-              <h6 style={{ marginLeft: '0px' }}>Medan (IDN)</h6>
+              <select
+                name="deptCity"
+                onChange={(e) => {
+                  setDeptCity(e.target.value);
+                }}
+                value={deptCity}
+                style={{
+                  marginLeft: '0px',
+                  border: 'none',
+                  backgroundColor: '#2395FF',
+                  color: '#FFFFFF'
+                }}>
+                {allCities.isLoading ? (
+                  <option value="loading">Loading</option>
+                ) : allCities.isError ? (
+                  <option value="error">Error</option>
+                ) : allCities.data ? (
+                  allCities.data.map((e, i) => {
+                    return (
+                      <option key={i} value={e.city_name}>
+                        {e.city_name}
+                      </option>
+                    );
+                  })
+                ) : (
+                  <option value="error">Error</option>
+                )}
+              </select>
               <i
-                className="fa-solid fa-right-left"
+                className={`fa-solid fa-right-left ${style.logout}`}
+                onClick={() => {
+                  setDeptCity(arrCity);
+                  setArrCity(deptCity);
+                }}
                 style={{ marginLeft: 'auto', marginRight: 'auto' }}></i>
-              <h6 style={{ marginRight: '0px' }}>Tokyo (JPN)</h6>
+              <select
+                name="arrCity"
+                onChange={(e) => {
+                  setArrCity(e.target.value);
+                }}
+                value={arrCity}
+                style={{
+                  marginLeft: '0px',
+                  border: 'none',
+                  backgroundColor: '#2395FF',
+                  color: '#FFFFFF'
+                }}>
+                {allCities.isLoading ? (
+                  <option value="loading">Loading</option>
+                ) : allCities.isError ? (
+                  <option value="error">Error</option>
+                ) : allCities.data ? (
+                  allCities.data.map((e, i) => {
+                    return (
+                      <option key={i} value={e.city_name}>
+                        {e.city_name}
+                      </option>
+                    );
+                  })
+                ) : (
+                  <option value="error">Error</option>
+                )}
+              </select>
             </div>
             <div style={{ width: '100%', display: 'flex', alignItems: 'center' }}>
               <small style={{ marginLeft: '0px' }}>
@@ -230,492 +292,501 @@ const SearchResult = () => {
                 borderRadius: '15px',
                 padding: '30px'
               }}>
-              <div style={{ display: 'flex', marginBottom: '20px' }}>
-                <h6 style={{ fontSize: '14px', marginTop: 'auto', marginBottom: 'auto' }}>Date</h6>
-                <input
-                  type="date"
+              <form>
+                <input type="reset" />
+                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                  <h6 style={{ fontSize: '14px', marginTop: 'auto', marginBottom: 'auto' }}>
+                    Date
+                  </h6>
+                  <input
+                    type="date"
+                    style={{
+                      marginLeft: 'auto',
+                      marginRight: '0px',
+                      border: '2px solid #2395FF',
+                      borderRadius: '5px'
+                    }}
+                    onChange={(e) => {
+                      setDeptDate(e.target.value);
+                    }}
+                    value={deptDate}
+                  />
+                </div>
+                <hr
                   style={{
-                    marginLeft: 'auto',
-                    marginRight: '0px',
-                    border: '2px solid #2395FF',
-                    borderRadius: '5px'
+                    marginTop: '0px',
+                    height: '1px',
+                    color: '#E5E5E5',
+                    marginBottom: '20px'
                   }}
-                  onChange={(e) => {
-                    setDeptDate(e.target.value);
-                  }}
-                  value={deptDate}
                 />
-              </div>
-              <hr
-                style={{
-                  marginTop: '0px',
-                  height: '1px',
-                  color: '#E5E5E5',
-                  marginBottom: '20px'
-                }}
-              />
-              <div
-                style={{
-                  display: 'flex',
-                  marginBottom: '20px',
-                  alignItems: 'center'
-                }}>
-                <h6 style={{ fontSize: '14px', marginTop: 'auto', marginBottom: 'auto' }}>Adult</h6>
-                <input
-                  type="number"
+                <div
                   style={{
-                    marginLeft: 'auto',
-                    marginRight: '10px',
-                    width: '14%',
-                    border: '2px solid #2395FF',
-                    borderRadius: '5px'
-                  }}
-                  onChange={(e) => {
-                    setAdult(e.target.value);
-                  }}
-                  value={adult}
-                />
-                <h6 style={{ fontSize: '14px', marginTop: 'auto', marginBottom: 'auto' }}>Child</h6>
-                <input
-                  type="number"
+                    display: 'flex',
+                    marginBottom: '20px',
+                    alignItems: 'center'
+                  }}>
+                  <h6 style={{ fontSize: '14px', marginTop: 'auto', marginBottom: 'auto' }}>
+                    Adult
+                  </h6>
+                  <input
+                    type="number"
+                    style={{
+                      marginLeft: 'auto',
+                      marginRight: '10px',
+                      width: '50px',
+                      border: '2px solid #2395FF',
+                      borderRadius: '5px'
+                    }}
+                    onChange={(e) => {
+                      setAdult(e.target.value);
+                    }}
+                    value={adult}
+                  />
+                  <h6 style={{ fontSize: '14px', marginTop: 'auto', marginBottom: 'auto' }}>
+                    Child
+                  </h6>
+                  <input
+                    type="number"
+                    style={{
+                      marginLeft: 'auto',
+                      marginRight: '0px',
+                      width: '50px',
+                      border: '2px solid #2395FF',
+                      borderRadius: '5px'
+                    }}
+                    onChange={(e) => {
+                      setChild(e.target.value);
+                    }}
+                    value={child}
+                  />
+                </div>
+                <hr
                   style={{
-                    marginLeft: 'auto',
-                    marginRight: '0px',
-                    width: '14%',
-                    border: '2px solid #2395FF',
-                    borderRadius: '5px'
-                  }}
-                  onChange={(e) => {
-                    setChild(e.target.value);
-                  }}
-                  value={child}
-                />
-              </div>
-              <hr
-                style={{
-                  marginTop: '0px',
-                  height: '1px',
-                  color: '#E5E5E5',
-                  marginBottom: '20px'
-                }}
-              />
-              <div style={{ display: 'flex', marginBottom: '20px', alignItems: 'center' }}>
-                <h6 style={{ fontSize: '14px' }}>One Way</h6>
-                <input
-                  type="radio"
-                  id="oneway"
-                  name="route"
-                  onChange={() => {
-                    setOneOrRoundTrip('0');
+                    marginTop: '0px',
+                    height: '1px',
+                    color: '#E5E5E5',
+                    marginBottom: '20px'
                   }}
                 />
-                <label
-                  htmlFor="oneway"
-                  style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '10px' }}></label>
-                <h6 style={{ fontSize: '14px' }}>Round Trip</h6>
-                <input
-                  type="radio"
-                  id="rtrip"
-                  name="route"
-                  onChange={() => {
-                    setOneOrRoundTrip('1');
+                <div style={{ display: 'flex', marginBottom: '20px', alignItems: 'center' }}>
+                  <h6 style={{ fontSize: '14px' }}>One Way</h6>
+                  <input
+                    type="radio"
+                    id="oneway"
+                    name="route"
+                    onChange={() => {
+                      setOneOrRoundTrip('0');
+                    }}
+                  />
+                  <label
+                    htmlFor="oneway"
+                    style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '10px' }}></label>
+                  <h6 style={{ fontSize: '14px' }}>Round Trip</h6>
+                  <input
+                    type="radio"
+                    id="rtrip"
+                    name="route"
+                    onChange={() => {
+                      setOneOrRoundTrip('1');
+                    }}
+                  />
+                  <label
+                    htmlFor="rtrip"
+                    style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
+                </div>
+                <hr
+                  style={{
+                    marginTop: '0px',
+                    height: '1px',
+                    color: '#E5E5E5',
+                    marginBottom: '20px'
                   }}
                 />
-                <label
-                  htmlFor="rtrip"
-                  style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
-              </div>
-              <hr
-                style={{
-                  marginTop: '0px',
-                  height: '1px',
-                  color: '#E5E5E5',
-                  marginBottom: '20px'
-                }}
-              />
-              <div style={{ display: 'flex', marginBottom: '30px' }}>
-                <h6 style={{ fontSize: '16px', fontWeight: '600' }}>Flight Class</h6>
-                <i
-                  className="fa-solid fa-angle-up"
-                  style={{ marginLeft: 'auto', marginRight: '0px', color: '#2395FF' }}></i>
-              </div>
-              <div style={{ display: 'flex', marginBottom: '20px' }}>
-                <h6 style={{ fontSize: '14px' }}>Economy</h6>
-                <input
-                  type="radio"
-                  id="economy"
-                  name="classFlight"
-                  onChange={() => {
-                    setFlightClass('0');
+                <div style={{ display: 'flex', marginBottom: '30px' }}>
+                  <h6 style={{ fontSize: '16px', fontWeight: '600' }}>Flight Class</h6>
+                  <i
+                    className="fa-solid fa-angle-up"
+                    style={{ marginLeft: 'auto', marginRight: '0px', color: '#2395FF' }}></i>
+                </div>
+                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                  <h6 style={{ fontSize: '14px' }}>Economy</h6>
+                  <input
+                    type="radio"
+                    id="economy"
+                    name="classFlight"
+                    onChange={() => {
+                      setFlightClass('0');
+                    }}
+                  />
+                  <label
+                    htmlFor="economy"
+                    style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
+                </div>
+                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                  <h6 style={{ fontSize: '14px' }}>Business Class</h6>
+                  <input
+                    type="radio"
+                    id="business"
+                    name="classFlight"
+                    onChange={() => {
+                      setFlightClass('1');
+                    }}
+                  />
+                  <label
+                    htmlFor="business"
+                    style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
+                </div>
+                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                  <h6 style={{ fontSize: '14px' }}>First Class</h6>
+                  <input
+                    type="radio"
+                    id="first"
+                    name="classFlight"
+                    onChange={() => {
+                      setFlightClass('2');
+                    }}
+                  />
+                  <label
+                    htmlFor="first"
+                    style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
+                </div>
+                <hr
+                  style={{
+                    marginTop: '0px',
+                    height: '1px',
+                    color: '#E5E5E5',
+                    marginBottom: '20px'
                   }}
                 />
-                <label
-                  htmlFor="economy"
-                  style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
-              </div>
-              <div style={{ display: 'flex', marginBottom: '20px' }}>
-                <h6 style={{ fontSize: '14px' }}>Business Class</h6>
-                <input
-                  type="radio"
-                  id="business"
-                  name="classFlight"
-                  onChange={() => {
-                    setFlightClass('1');
+                <div style={{ display: 'flex', marginBottom: '30px' }}>
+                  <h6 style={{ fontSize: '16px', fontWeight: '600' }}>Transit</h6>
+                  <i
+                    className="fa-solid fa-angle-up"
+                    style={{ marginLeft: 'auto', marginRight: '0px', color: '#2395FF' }}></i>
+                </div>
+                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                  <h6 style={{ fontSize: '14px' }}>Direct</h6>
+                  <input
+                    type="radio"
+                    id="direct"
+                    name="direct"
+                    onChange={() => {
+                      setDirect('1');
+                      setTransit('0');
+                      setMoreTransit('0');
+                    }}
+                  />
+                  <label
+                    htmlFor="direct"
+                    style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
+                </div>
+                <div style={{ display: 'flex', marginBottom: '20px', alignItems: 'center' }}>
+                  <h6 style={{ fontSize: '14px' }}>Transit</h6>
+                  <input
+                    type="radio"
+                    id="transit"
+                    name="direct"
+                    onChange={() => {
+                      setDirect('0');
+                      setTransit('1');
+                      setMoreTransit('0');
+                    }}
+                  />
+                  <label
+                    htmlFor="transit"
+                    style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
+                </div>
+                <div style={{ display: 'flex', marginBottom: '20px', alignItems: 'center' }}>
+                  <h6 style={{ fontSize: '14px' }}>Transit 2+</h6>
+                  <input
+                    type="radio"
+                    id="transit2"
+                    name="direct"
+                    onChange={() => {
+                      setDirect('0');
+                      setTransit('1');
+                      setMoreTransit('1');
+                    }}
+                  />
+                  <label
+                    htmlFor="transit2"
+                    style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
+                </div>
+                <hr
+                  style={{
+                    marginTop: '0px',
+                    height: '1px',
+                    color: '#E5E5E5',
+                    marginBottom: '20px'
                   }}
                 />
-                <label
-                  htmlFor="business"
-                  style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
-              </div>
-              <div style={{ display: 'flex', marginBottom: '20px' }}>
-                <h6 style={{ fontSize: '14px' }}>First Class</h6>
-                <input
-                  type="radio"
-                  id="first"
-                  name="classFlight"
-                  onChange={() => {
-                    setFlightClass('2');
+                <div style={{ display: 'flex', marginBottom: '30px' }}>
+                  <h6 style={{ fontSize: '16px', fontWeight: '600' }}>Facilities</h6>
+                  <i
+                    className="fa-solid fa-angle-up"
+                    style={{ marginLeft: 'auto', marginRight: '0px', color: '#2395FF' }}></i>
+                </div>
+                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                  <h6 style={{ fontSize: '14px' }}>Luggage</h6>
+                  <input
+                    type="checkbox"
+                    name="luggage"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setLuggage('1');
+                      } else {
+                        setLuggage('');
+                      }
+                    }}
+                    style={{ marginLeft: 'auto', marginRight: '0px' }}
+                  />
+                </div>
+                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                  <h6 style={{ fontSize: '14px' }}>In-Flight Meal</h6>
+                  <input
+                    type="checkbox"
+                    name="meal"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setMeal('1');
+                      } else {
+                        setMeal('');
+                      }
+                    }}
+                    style={{ marginLeft: 'auto', marginRight: '0px' }}
+                  />
+                </div>
+                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                  <h6 style={{ fontSize: '14px' }}>Wi-fi</h6>
+                  <input
+                    type="checkbox"
+                    name="wifi"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setWifi('1');
+                      } else {
+                        setWifi('');
+                      }
+                    }}
+                    style={{ marginLeft: 'auto', marginRight: '0px' }}
+                  />
+                </div>
+                <hr
+                  style={{
+                    marginTop: '0px',
+                    height: '1px',
+                    color: '#E5E5E5',
+                    marginBottom: '20px'
                   }}
                 />
-                <label
-                  htmlFor="first"
-                  style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
-              </div>
-              <hr
-                style={{
-                  marginTop: '0px',
-                  height: '1px',
-                  color: '#E5E5E5',
-                  marginBottom: '20px'
-                }}
-              />
-              <div style={{ display: 'flex', marginBottom: '30px' }}>
-                <h6 style={{ fontSize: '16px', fontWeight: '600' }}>Transit</h6>
-                <i
-                  className="fa-solid fa-angle-up"
-                  style={{ marginLeft: 'auto', marginRight: '0px', color: '#2395FF' }}></i>
-              </div>
-              <div style={{ display: 'flex', marginBottom: '20px' }}>
-                <h6 style={{ fontSize: '14px' }}>Direct</h6>
-                <input
-                  type="radio"
-                  id="direct"
-                  name="direct"
-                  onChange={() => {
-                    setDirect('1');
-                    setTransit('0');
-                    setMoreTransit('0');
+                <div style={{ display: 'flex', marginBottom: '30px' }}>
+                  <h6 style={{ fontSize: '16px', fontWeight: '600' }}>Departure Time</h6>
+                  <i
+                    className="fa-solid fa-angle-up"
+                    style={{ marginLeft: 'auto', marginRight: '0px', color: '#2395FF' }}></i>
+                </div>
+                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                  <h6 style={{ fontSize: '14px' }}>00:00 - 06:00</h6>
+                  <input
+                    type="radio"
+                    id="deptime1"
+                    name="depttime"
+                    onChange={() => {
+                      setDeptTimeFrom('00:00:00');
+                      setDeptTimeTo('06:00:00');
+                    }}
+                  />
+                  <label
+                    htmlFor="deptime1"
+                    style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
+                </div>
+                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                  <h6 style={{ fontSize: '14px' }}>06:00 - 12:00</h6>
+                  <input
+                    type="radio"
+                    id="deptime2"
+                    name="depttime"
+                    onChange={() => {
+                      setDeptTimeFrom('06:00:00');
+                      setDeptTimeTo('12:00:00');
+                    }}
+                  />
+                  <label
+                    htmlFor="deptime2"
+                    style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
+                </div>
+                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                  <h6 style={{ fontSize: '14px' }}>12:00 - 18:00</h6>
+                  <input
+                    type="radio"
+                    id="deptime3"
+                    name="depttime"
+                    onChange={() => {
+                      setDeptTimeFrom('12:00:00');
+                      setDeptTimeTo('18:00:00');
+                    }}
+                  />
+                  <label
+                    htmlFor="deptime3"
+                    style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
+                </div>
+                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                  <h6 style={{ fontSize: '14px' }}>18:00 - 24:00</h6>
+                  <input
+                    type="radio"
+                    id="deptime4"
+                    name="depttime"
+                    onChange={() => {
+                      setDeptTimeFrom('18:00:00');
+                      setDeptTimeTo('24:00:00');
+                    }}
+                  />
+                  <label
+                    htmlFor="deptime4"
+                    style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
+                </div>
+                <hr
+                  style={{
+                    marginTop: '0px',
+                    height: '1px',
+                    color: '#E5E5E5',
+                    marginBottom: '20px'
                   }}
                 />
-                <label
-                  htmlFor="direct"
-                  style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
-              </div>
-              <div style={{ display: 'flex', marginBottom: '20px', alignItems: 'center' }}>
-                <h6 style={{ fontSize: '14px' }}>Transit</h6>
-                <input
-                  type="radio"
-                  id="transit"
-                  name="direct"
-                  onChange={() => {
-                    setDirect('0');
-                    setTransit('1');
-                    setMoreTransit('0');
+                <div style={{ display: 'flex', marginBottom: '30px' }}>
+                  <h6 style={{ fontSize: '16px', fontWeight: '600' }}>Time Arrived</h6>
+                  <i
+                    className="fa-solid fa-angle-up"
+                    style={{ marginLeft: 'auto', marginRight: '0px', color: '#2395FF' }}></i>
+                </div>
+                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                  <h6 style={{ fontSize: '14px' }}>00:00 - 06:00</h6>
+                  <input
+                    type="radio"
+                    id="arrtime1"
+                    name="arrtime"
+                    onChange={() => {
+                      setArrTimeFrom('00:00');
+                      setArrTimeTo('06:00');
+                    }}
+                  />
+                  <label
+                    htmlFor="arrtime1"
+                    style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
+                </div>
+                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                  <h6 style={{ fontSize: '14px' }}>06:00 - 12:00</h6>
+                  <input
+                    type="radio"
+                    id="arrtime2"
+                    name="arrtime"
+                    onChange={() => {
+                      setArrTimeFrom('06:00');
+                      setArrTimeTo('12:00');
+                    }}
+                  />
+                  <label
+                    htmlFor="arrtime2"
+                    style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
+                </div>
+                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                  <h6 style={{ fontSize: '14px' }}>12:00 - 18:00</h6>
+                  <input
+                    type="radio"
+                    id="arrtime3"
+                    name="arrtime"
+                    onChange={() => {
+                      setArrTimeFrom('12:00');
+                      setArrTimeTo('18:00');
+                    }}
+                  />
+                  <label
+                    htmlFor="arrtime3"
+                    style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
+                </div>
+                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                  <h6 style={{ fontSize: '14px' }}>18:00 - 24:00</h6>
+                  <input
+                    type="radio"
+                    id="arrtime4"
+                    name="arrtime"
+                    onChange={() => {
+                      setArrTimeFrom('18:00');
+                      setArrTimeTo('24:00');
+                    }}
+                  />
+                  <label
+                    htmlFor="arrtime4"
+                    style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
+                </div>
+                <hr
+                  style={{
+                    marginTop: '0px',
+                    height: '1px',
+                    color: '#E5E5E5',
+                    marginBottom: '20px'
                   }}
                 />
-                <label
-                  htmlFor="transit"
-                  style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
-              </div>
-              <div style={{ display: 'flex', marginBottom: '20px', alignItems: 'center' }}>
-                <h6 style={{ fontSize: '14px' }}>Transit 2+</h6>
-                <input
-                  type="radio"
-                  id="transit2"
-                  name="direct"
-                  onChange={() => {
-                    setDirect('0');
-                    setTransit('1');
-                    setMoreTransit('1');
+                <div style={{ display: 'flex', marginBottom: '30px' }}>
+                  <h6 style={{ fontSize: '16px', fontWeight: '600' }}>Airlines</h6>
+                  <i
+                    className="fa-solid fa-angle-up"
+                    style={{ marginLeft: 'auto', marginRight: '0px', color: '#2395FF' }}></i>
+                </div>
+                {allAirlines.isLoading ? (
+                  <div>Loading...</div>
+                ) : allAirlines.isError ? (
+                  <div>No Airlines Found</div>
+                ) : allAirlines.data ? (
+                  allAirlines.data.map((e, i) => {
+                    return (
+                      <div key={i} style={{ display: 'flex', marginBottom: '20px' }}>
+                        <h6 style={{ fontSize: '14px' }}>{e.name}</h6>
+                        <input
+                          type="radio"
+                          id={e.id}
+                          name="airlines"
+                          onChange={() => {
+                            setAirlinesName(e.name);
+                          }}
+                        />
+                        <label
+                          htmlFor={e.id}
+                          style={{
+                            fontSize: '14px',
+                            marginLeft: 'auto',
+                            marginRight: '0px'
+                          }}></label>
+                      </div>
+                    );
+                  })
+                ) : (
+                  ''
+                )}
+                <hr
+                  style={{
+                    marginTop: '0px',
+                    height: '1px',
+                    color: '#E5E5E5',
+                    marginBottom: '20px'
                   }}
                 />
-                <label
-                  htmlFor="transit2"
-                  style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
-              </div>
-              <hr
-                style={{
-                  marginTop: '0px',
-                  height: '1px',
-                  color: '#E5E5E5',
-                  marginBottom: '20px'
-                }}
-              />
-              <div style={{ display: 'flex', marginBottom: '30px' }}>
-                <h6 style={{ fontSize: '16px', fontWeight: '600' }}>Facilities</h6>
-                <i
-                  className="fa-solid fa-angle-up"
-                  style={{ marginLeft: 'auto', marginRight: '0px', color: '#2395FF' }}></i>
-              </div>
-              <div style={{ display: 'flex', marginBottom: '20px' }}>
-                <h6 style={{ fontSize: '14px' }}>Luggage</h6>
-                <input
-                  type="checkbox"
-                  name="luggage"
-                  onChange={(e) => {
-                    if (e.target.checked) {
-                      setLuggage('1');
-                    } else {
-                      setLuggage('');
-                    }
+                <button
+                  style={{
+                    backgroundColor: '#FFFFFF',
+                    color: '#2395FF',
+                    border: '1px solid #2395FF',
+                    borderRadius: '10px',
+                    paddingTop: '10px',
+                    paddingBottom: '10px'
                   }}
-                  style={{ marginLeft: 'auto', marginRight: '0px' }}
-                />
-              </div>
-              <div style={{ display: 'flex', marginBottom: '20px' }}>
-                <h6 style={{ fontSize: '14px' }}>In-Flight Meal</h6>
-                <input
-                  type="checkbox"
-                  name="meal"
-                  onChange={(e) => {
-                    if (e.target.checked) {
-                      setMeal('1');
-                    } else {
-                      setMeal('');
-                    }
-                  }}
-                  style={{ marginLeft: 'auto', marginRight: '0px' }}
-                />
-              </div>
-              <div style={{ display: 'flex', marginBottom: '20px' }}>
-                <h6 style={{ fontSize: '14px' }}>Wi-fi</h6>
-                <input
-                  type="checkbox"
-                  name="wifi"
-                  onChange={(e) => {
-                    if (e.target.checked) {
-                      setWifi('1');
-                    } else {
-                      setWifi('');
-                    }
-                  }}
-                  style={{ marginLeft: 'auto', marginRight: '0px' }}
-                />
-              </div>
-              <hr
-                style={{
-                  marginTop: '0px',
-                  height: '1px',
-                  color: '#E5E5E5',
-                  marginBottom: '20px'
-                }}
-              />
-              <div style={{ display: 'flex', marginBottom: '30px' }}>
-                <h6 style={{ fontSize: '16px', fontWeight: '600' }}>Departure Time</h6>
-                <i
-                  className="fa-solid fa-angle-up"
-                  style={{ marginLeft: 'auto', marginRight: '0px', color: '#2395FF' }}></i>
-              </div>
-              <div style={{ display: 'flex', marginBottom: '20px' }}>
-                <h6 style={{ fontSize: '14px' }}>00:00 - 06:00</h6>
-                <input
-                  type="radio"
-                  id="deptime1"
-                  name="depttime"
-                  onChange={() => {
-                    setDeptTimeFrom('00:00:00');
-                    setDeptTimeTo('06:00:00');
-                  }}
-                />
-                <label
-                  htmlFor="deptime1"
-                  style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
-              </div>
-              <div style={{ display: 'flex', marginBottom: '20px' }}>
-                <h6 style={{ fontSize: '14px' }}>06:00 - 12:00</h6>
-                <input
-                  type="radio"
-                  id="deptime2"
-                  name="depttime"
-                  onChange={() => {
-                    setDeptTimeFrom('06:00:00');
-                    setDeptTimeTo('12:00:00');
-                  }}
-                />
-                <label
-                  htmlFor="deptime2"
-                  style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
-              </div>
-              <div style={{ display: 'flex', marginBottom: '20px' }}>
-                <h6 style={{ fontSize: '14px' }}>12:00 - 18:00</h6>
-                <input
-                  type="radio"
-                  id="deptime3"
-                  name="depttime"
-                  onChange={() => {
-                    setDeptTimeFrom('12:00:00');
-                    setDeptTimeTo('18:00:00');
-                  }}
-                />
-                <label
-                  htmlFor="deptime3"
-                  style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
-              </div>
-              <div style={{ display: 'flex', marginBottom: '20px' }}>
-                <h6 style={{ fontSize: '14px' }}>18:00 - 24:00</h6>
-                <input
-                  type="radio"
-                  id="deptime4"
-                  name="depttime"
-                  onChange={() => {
-                    setDeptTimeFrom('18:00:00');
-                    setDeptTimeTo('24:00:00');
-                  }}
-                />
-                <label
-                  htmlFor="deptime4"
-                  style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
-              </div>
-              <hr
-                style={{
-                  marginTop: '0px',
-                  height: '1px',
-                  color: '#E5E5E5',
-                  marginBottom: '20px'
-                }}
-              />
-              <div style={{ display: 'flex', marginBottom: '30px' }}>
-                <h6 style={{ fontSize: '16px', fontWeight: '600' }}>Time Arrived</h6>
-                <i
-                  className="fa-solid fa-angle-up"
-                  style={{ marginLeft: 'auto', marginRight: '0px', color: '#2395FF' }}></i>
-              </div>
-              <div style={{ display: 'flex', marginBottom: '20px' }}>
-                <h6 style={{ fontSize: '14px' }}>00:00 - 06:00</h6>
-                <input
-                  type="radio"
-                  id="arrtime1"
-                  name="arrtime"
-                  onChange={() => {
-                    setArrTimeFrom('00:00');
-                    setArrTimeTo('06:00');
-                  }}
-                />
-                <label
-                  htmlFor="arrtime1"
-                  style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
-              </div>
-              <div style={{ display: 'flex', marginBottom: '20px' }}>
-                <h6 style={{ fontSize: '14px' }}>06:00 - 12:00</h6>
-                <input
-                  type="radio"
-                  id="arrtime2"
-                  name="arrtime"
-                  onChange={() => {
-                    setArrTimeFrom('06:00');
-                    setArrTimeTo('12:00');
-                  }}
-                />
-                <label
-                  htmlFor="arrtime2"
-                  style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
-              </div>
-              <div style={{ display: 'flex', marginBottom: '20px' }}>
-                <h6 style={{ fontSize: '14px' }}>12:00 - 18:00</h6>
-                <input
-                  type="radio"
-                  id="arrtime3"
-                  name="arrtime"
-                  onChange={() => {
-                    setArrTimeFrom('12:00');
-                    setArrTimeTo('18:00');
-                  }}
-                />
-                <label
-                  htmlFor="arrtime3"
-                  style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
-              </div>
-              <div style={{ display: 'flex', marginBottom: '20px' }}>
-                <h6 style={{ fontSize: '14px' }}>18:00 - 24:00</h6>
-                <input
-                  type="radio"
-                  id="arrtime4"
-                  name="arrtime"
-                  onChange={() => {
-                    setArrTimeFrom('18:00');
-                    setArrTimeTo('24:00');
-                  }}
-                />
-                <label
-                  htmlFor="arrtime4"
-                  style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
-              </div>
-              <hr
-                style={{
-                  marginTop: '0px',
-                  height: '1px',
-                  color: '#E5E5E5',
-                  marginBottom: '20px'
-                }}
-              />
-              <div style={{ display: 'flex', marginBottom: '30px' }}>
-                <h6 style={{ fontSize: '16px', fontWeight: '600' }}>Airlines</h6>
-                <i
-                  className="fa-solid fa-angle-up"
-                  style={{ marginLeft: 'auto', marginRight: '0px', color: '#2395FF' }}></i>
-              </div>
-              {allAirlines.isLoading ? (
-                <div>Loading...</div>
-              ) : allAirlines.isError ? (
-                <div>No Airlines Found</div>
-              ) : allAirlines.data ? (
-                allAirlines.data.map((e, i) => {
-                  return (
-                    <div key={i} style={{ display: 'flex', marginBottom: '20px' }}>
-                      <h6 style={{ fontSize: '14px' }}>{e.name}</h6>
-                      <input
-                        type="radio"
-                        id={e.id}
-                        name="airlines"
-                        onChange={() => {
-                          setAirlinesName(e.name);
-                        }}
-                      />
-                      <label
-                        htmlFor={e.id}
-                        style={{
-                          fontSize: '14px',
-                          marginLeft: 'auto',
-                          marginRight: '0px'
-                        }}></label>
-                    </div>
-                  );
-                })
-              ) : (
-                ''
-              )}
-              <hr
-                style={{
-                  marginTop: '0px',
-                  height: '1px',
-                  color: '#E5E5E5',
-                  marginBottom: '20px'
-                }}
-              />
-              <button
-                style={{
-                  backgroundColor: '#FFFFFF',
-                  color: '#2395FF',
-                  border: '1px solid #2395FF',
-                  borderRadius: '10px',
-                  paddingTop: '10px',
-                  paddingBottom: '10px'
-                }}
-                onClick={(e) => {
-                  search(e);
-                }}>
-                Change Search
-              </button>
+                  onClick={(e) => {
+                    search(e);
+                  }}>
+                  Change Search
+                </button>
+              </form>
             </div>
           </div>
 
