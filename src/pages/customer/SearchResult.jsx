@@ -308,6 +308,7 @@ const SearchResult = () => {
                   </h6>
                   <input
                     type="date"
+                    min={new Date().toISOString().split('T')[0]}
                     style={{
                       marginLeft: 'auto',
                       marginRight: '0px',
@@ -349,6 +350,7 @@ const SearchResult = () => {
                     onChange={(e) => {
                       setAdult(e.target.value);
                     }}
+                    min="1"
                     value={adult}
                   />
                   <h6 style={{ fontSize: '14px', marginTop: 'auto', marginBottom: 'auto' }}>
@@ -366,6 +368,7 @@ const SearchResult = () => {
                     onChange={(e) => {
                       setChild(e.target.value);
                     }}
+                    min="0"
                     value={child}
                   />
                 </div>
