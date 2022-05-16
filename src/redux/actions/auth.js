@@ -40,10 +40,10 @@ export const forgot = (data) => {
   });
 };
 
-export const reset = (data) => {
+export const reset = (data, token) => {
   return new Promise((resolve, reject) => {
     axios
-      .put('auth/reset-password', data)
+      .put(`auth/reset-password?token=${token}`, data)
       .then((res) => {
         resolve(res.data);
       })
