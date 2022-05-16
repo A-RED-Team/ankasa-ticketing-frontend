@@ -142,7 +142,7 @@ const SearchResult = () => {
     setArrCity(queryArrCity);
   }, []);
   const token = localStorage.getItem('token');
-  const [activeTab, setActiveTab] = useState(true);
+  // const [activeTab, setActiveTab] = useState(false);
   // const classActive = activeTab ? 'active' : 'nonactive';
   return (
     <>
@@ -180,7 +180,6 @@ const SearchResult = () => {
                   backgroundColor: '#2395FF',
                   color: '#FFFFFF'
                 }}>
-                <option value="">Dept. City</option>
                 {allCities.isLoading ? (
                   <option value="loading">Loading</option>
                 ) : allCities.isError ? (
@@ -189,7 +188,7 @@ const SearchResult = () => {
                   allCities.data.map((e, i) => {
                     return (
                       <option key={i} value={e.city_name}>
-                        {`${e.city_name} (${e.alias})`}
+                        {e.city_name}
                       </option>
                     );
                   })
@@ -216,7 +215,6 @@ const SearchResult = () => {
                   backgroundColor: '#2395FF',
                   color: '#FFFFFF'
                 }}>
-                <option value="">Arr. City</option>
                 {allCities.isLoading ? (
                   <option value="loading">Loading</option>
                 ) : allCities.isError ? (
@@ -225,7 +223,7 @@ const SearchResult = () => {
                   allCities.data.map((e, i) => {
                     return (
                       <option key={i} value={e.city_name}>
-                        {`${e.city_name} (${e.alias})`}
+                        {e.city_name}
                       </option>
                     );
                   })
@@ -262,17 +260,18 @@ const SearchResult = () => {
             </h6>
           </div>
           <div
-            onClick={() => {
-              setActiveTab(!activeTab);
-              console.log(activeTab);
-            }}
+            onClick={() =>
+              document.getElementById('leftContent').style.display === 'none'
+                ? (document.getElementById('leftContent').style.display = 'flex')
+                : (document.getElementById('leftContent').style.display = 'none')
+            }
             className={`${searchStyle.divFilterSearch}`}>
             <h6 className={`${searchStyle.filterSearch} ${style.logout}`}>Filter Search</h6>
           </div>
         </Header>
         <div className={`container-fluid ${searchStyle.divMainContent}`}>
           {/* Start Left Filter */}
-          <div className={searchStyle.leftContent} style={!activeTab ? { display: 'none' } : {}}>
+          <div id="leftContent" className={`${searchStyle.leftContent}`}>
             <div
               style={{
                 display: 'flex',
