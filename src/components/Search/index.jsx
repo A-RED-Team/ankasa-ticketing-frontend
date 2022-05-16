@@ -73,6 +73,7 @@ const index = () => {
                 setDeptCity(e.target.value);
               }}
               value={deptCity}>
+              <option value="">Dept. City</option>
               {allCities.isLoading ? (
                 <option value="loading">Loading</option>
               ) : allCities.isError ? (
@@ -110,6 +111,7 @@ const index = () => {
                 setArrCity(e.target.value);
               }}
               value={arrCity}>
+              <option value="">Arr. City</option>
               {allCities.isLoading ? (
                 <option value="loading">Loading</option>
               ) : allCities.isError ? (
