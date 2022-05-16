@@ -3,11 +3,9 @@
   height: 100%;
 }
 
-.swiper-slide {
+.mySwiper {
   text-align: center;
   font-size: 18px;
-  margin-top: -6em;
-
   /* Center slide text vertically */
   display: -webkit-box;
   display: -ms-flexbox;
