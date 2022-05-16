@@ -273,6 +273,10 @@ const SearchResult = () => {
               }}>
               <h5 style={{ marginLeft: '0px', fontWeight: '600', fontSize: '24px' }}>Filter</h5>
               <small
+                onClick={() => {
+                  document.getElementById('reset').click();
+                }}
+                className={style.logout}
                 style={{
                   marginLeft: 'auto',
                   marginRight: '0px',
@@ -293,7 +297,7 @@ const SearchResult = () => {
                 padding: '30px'
               }}>
               <form>
-                <input type="reset" />
+                <input type="reset" id="reset" style={{ display: 'none' }} />
                 <div style={{ display: 'flex', marginBottom: '20px' }}>
                   <h6 style={{ fontSize: '14px', marginTop: 'auto', marginBottom: 'auto' }}>
                     Date
