@@ -71,17 +71,7 @@ label {
 .close-search {
   display: none !important;
 }
-.btn-submit {
-  width: 100%;
-  padding: 15px;
-  background-color: #2395ff;
-  color: #fff;
-  font-weight: 700;
-  text-transform: uppercase;
-  border: 0;
-  box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3);
-  border-radius: 8px;
-}
+
 @media screen and (max-width: 992px) {
   .close-search {
     display: unset !important;
