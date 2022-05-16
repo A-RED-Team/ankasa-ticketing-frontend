@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getAllCities } from '../../redux/actions/city';
 
-import './style.css';
+// import './style.css';
 import swal from 'sweetalert2';
 import back from '../../assets/icons/btn-back.svg';
 import arrow from '../../assets/icons/arrow.svg';
@@ -131,7 +131,17 @@ const index = () => {
           </div>
         </div>
         <div className="search-type">
-          <button
+          <ul className="search-mode">
+            <li className="one-way">
+              <input type="radio" id="one" name="type" />
+              <label htmlFor="one">One Way</label>
+            </li>
+            <li className="round-trip">
+              <input type="radio" id="round" name="type" />
+              <label htmlFor="round">Round Trip</label>
+            </li>
+          </ul>
+          {/* <button
             className="one-way"
             onClick={() => {
               setOneOrRoundTrip('0');
@@ -144,7 +154,7 @@ const index = () => {
               setOneOrRoundTrip('1');
             }}>
             <span>Round Trip</span>
-          </button>
+          </button> */}
         </div>
         <div className="search-departure mt-4 text-secondary">
           <p>Departure</p>

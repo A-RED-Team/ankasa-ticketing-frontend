@@ -144,7 +144,7 @@
   margin-top: 25px;
 }
 
-.search-type .one-way,
+/* .search-type .one-way,
 .search-type .round-trip {
   border: 0;
   border-radius: 7px;
@@ -226,7 +226,7 @@
 .search-type .round-trip:hover {
   background-color: var(--text-blue);
   color: var(--text-white);
-}
+} */
 
 .search-select {
   display: flex;
@@ -253,15 +253,71 @@
   margin-right: 0 !important;
 }
 
+.search-mode {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.search-mode li {
+  float: left;
+  margin: 0 5px 0 0;
+  width: 165px;
+  height: 50px;
+  position: relative;
+}
+
+.search-mode label,
+.search-mode input {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 0;
+  border-radius: 7px;
+  background-color: #f0f0f0;
+  background-repeat: no-repeat;
+}
+
+.search-mode label {
+  text-align: center;
+  line-height: 35px;
+}
+
+.search-mode input[type='radio'] {
+  opacity: 0.01;
+  z-index: 100;
+}
+
+.search-mode input[type='radio']:checked + label,
+.Checked + label {
+  background: var(--text-blue);
+  color: var(--text-white);
+}
+
+.search-mode label {
+  padding: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  z-index: 90;
+}
+
+.search-mode label:hover {
+  background: #ddd;
+}
+
 .search-radio {
   display: flex;
   align-items: center;
+
   /* justify-content: center; */
   /* position: relative;
   background-color: red; */
 }
 
-input[type='radio'] {
+/* input[type='radio'] {
   display: none;
 }
 
@@ -280,7 +336,7 @@ input[type='radio'] + label:before {
 
 input[type='radio']:checked + label:before {
   background-color: var(--text-blue);
-}
+} */
 
 .search-button {
   width: 100%;
@@ -410,7 +466,7 @@ input[type='radio']:checked + label:before {
   background: rgba(255, 255, 255, 0.17);
   border-radius: 50%;
   height: 28px;
-  width: 20px;
+  width: 28px;
   text-align: center;
   display: flex;
   align-items: center;
