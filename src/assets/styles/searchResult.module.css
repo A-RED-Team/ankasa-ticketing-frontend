@@ -1,3 +1,58 @@
+/* Header */
+.header {
+  display: flex;
+}
+.imagePlane {
+  margin-left: auto;
+  margin-right: 0px;
+}
+.headerMain {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+}
+.mainFromTo {
+  width: 100%;
+  display: flex;
+}
+.mainFrom {
+  margin-left: 0px;
+  margin-right: auto;
+  font-size: 12px;
+}
+.mainTo {
+  margin-left: auto;
+  margin-right: 0px;
+  font-size: 12px;
+}
+
+/* End Header */
+.divChangeSearch {
+  width: 70%;
+  display: flex;
+  padding-right: 70px;
+}
+.changeSearch {
+  margin-left: auto;
+  margin-right: 0px;
+}
+.divFilterSearch {
+  display: none;
+}
+.filterSearch {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+/* Main Content */
+.divMainContent {
+  width: 100%;
+  background-color: #f5f6fa;
+  display: flex;
+}
+
+/* Left */
 .leftContent {
   width: 25%;
   display: flex;
@@ -5,23 +60,171 @@
   padding: 30px 25px 30px 70px;
 }
 
-.rightContent {
+/* Right */
+.startRightContent {
   width: 75%;
   display: flex;
   flex-direction: column;
   padding: 30px 70px 40px 0px;
 }
 
+.divSelectTicket {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.selectTicket {
+  margin-left: 0px;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.divSearchResult {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  margin-bottom: 20px;
+}
+.imgAirline {
+  width: 100px;
+  margin-right: 30px;
+}
+.departureCity {
+  font-size: 24px;
+  font-weight: 500;
+}
+.arrivalCity {
+  font-size: 24px;
+  font-weight: 500;
+}
+.longTime {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.iconFeature {
+  font-size: 25px;
+  color: #979797;
+}
+.price {
+  display: flex;
+  margin-right: 45px;
+  margin-left: auto;
+}
+.buttonSelect {
+  height: 50px;
+  width: 150px;
+  background-color: #2395ff;
+  color: #ffffff;
+  border-radius: 10px;
+  border: none;
+  margin-right: 0px;
+}
+.divViewDetail {
+  display: flex;
+  color: #2395ff;
+}
+
 /* Responsive */
 @media screen and (max-width: 576px) {
-  .leftContent {
+  /* Header */
+  .header {
+    position: relative;
+    padding-bottom: 35px;
+  }
+  .imagePlane {
     display: none;
   }
+  .headerMain {
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 15px;
+    margin-left: -20px;
+  }
+  .mainFrom {
+    margin-right: auto;
+  }
+  .mainTo {
+    margin-left: 0px;
+  }
+  .divChangeSearch {
+    position: absolute;
+    left: 15px;
+    bottom: 26px;
+  }
+  .changeSearch {
+    margin-left: 0px;
+  }
+  .divFilterSearch {
+    display: flex;
+    position: absolute;
+    bottom: 26px;
+    right: 15px;
+  }
 
-  .rightContent {
+  /* Main content */
+  .divMainContent {
+    flex-direction: column;
+  }
+
+  /* Left */
+  .leftContent {
     display: none;
-    /* width: 100%; */
-    /* justify-content: center;
-    align-items: center; */
+    width: 100%;
+    padding: 30px 25px 30px 25px;
+  }
+
+  /* Right */
+  .startRightContent {
+    width: 100%;
+    padding: 30px 0px 40px 0px;
+  }
+  .selectTicket {
+    display: none;
+  }
+  .divSelectTicket {
+    width: 100%;
+  }
+  .divSearchResult {
+    width: 100%;
+    position: relative;
+  }
+  .imgAirline {
+    display: none;
+  }
+  .departureCity {
+    font-size: 20px;
+  }
+  .arrivalCity {
+    font-size: 20px;
+  }
+  .longTime {
+    display: none;
+  }
+  .iconFeature {
+    display: none;
+  }
+  .price {
+    position: relative;
+    right: -50px;
+  }
+  .buttonSelect {
+    position: absolute;
+    bottom: 10px;
+    width: 89%;
+    height: 30px;
+    left: 20px;
+  }
+  .divViewDetail {
+    position: absolute;
+    right: 10px;
   }
 }

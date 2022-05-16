@@ -123,7 +123,7 @@ const BookingDetail = () => {
       ? 'Economy'
       : detailBooking.data.class == 1
       ? 'Business'
-      : 'Firts Class';
+      : 'First Class';
   const logo = detailBooking.data.image;
 
   useEffect(() => {

@@ -16,6 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../../components/Navbar';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import flightIconSmall from '../../assets/images/flightIconSmall.svg';
 
 import line from '../../assets/icons/Line 16.svg';
 import alert from '../../assets/icons/ant-design_warning-filled.svg';
@@ -188,7 +189,9 @@ const FlightDetail = () => {
     if (insurance) {
       setTotalPrice(totalPrice + totalPax * 2);
     } else {
-      setTotalPrice(detailFlight.data.data.price * totalPax);
+      if (detailFlight.data.data) {
+        setTotalPrice(detailFlight.data.data.price * totalPax);
+      }
     }
   }, [insurance]);
   useEffect(() => {
@@ -307,6 +310,7 @@ const FlightDetail = () => {
                       </div>
                     </div>
                     <div className="form-box">
+                      <label htmlFor="title">Title</label>
                       <select
                         name="title"
                         id="title"
@@ -318,7 +322,6 @@ const FlightDetail = () => {
                         <option>Mr.</option>
                         <option>Mrs.</option>
                       </select>
-                      <label htmlFor="title">Title</label>
                     </div>
                     <div className="form-box">
                       <input
@@ -422,7 +425,7 @@ const FlightDetail = () => {
                     detailFlight.data?.data?.airlinesname
                   )}
                 </p>
-                <h5 className="font-weight-bold mb-4">
+                <h6 className="font-weight-bold mb-4">
                   {detailFlight.isLoading ? (
                     <div>Loading...</div>
                   ) : detailFlight.isError ? (
@@ -433,7 +436,12 @@ const FlightDetail = () => {
                       {detailFlight.data?.data?.departurecountryname})
                     </>
                   )}
-                  <img className="ml-3 mr-3" src="" alt="" />
+                  <img
+                    className="ml-3 mr-3"
+                    src={flightIconSmall}
+                    alt=""
+                    style={{ marginLeft: '5px', marginRight: '5px' }}
+                  />
                   {detailFlight.isLoading ? (
                     <div>Loading...</div>
                   ) : detailFlight.isError ? (
@@ -444,7 +452,7 @@ const FlightDetail = () => {
                       {detailFlight.data?.data?.arrivalcountryname})
                     </>
                   )}
-                </h5>
+                </h6>
                 <p className="font-size-12 mb-4">
                   {detailFlight.isLoading ? (
                     <div>Loading...</div>
