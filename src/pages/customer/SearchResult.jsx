@@ -181,7 +181,6 @@ const SearchResult = () => {
                   backgroundColor: '#2395FF',
                   color: '#FFFFFF'
                 }}>
-                <option value="">Dept. City</option>
                 {allCities.isLoading ? (
                   <option value="loading">Loading</option>
                 ) : allCities.isError ? (
@@ -190,7 +189,7 @@ const SearchResult = () => {
                   allCities.data.map((e, i) => {
                     return (
                       <option key={i} value={e.city_name}>
-                        {`${e.city_name} (${e.alias})`}
+                        {e.city_name}
                       </option>
                     );
                   })
@@ -217,7 +216,6 @@ const SearchResult = () => {
                   backgroundColor: '#2395FF',
                   color: '#FFFFFF'
                 }}>
-                <option value="">Arr. City</option>
                 {allCities.isLoading ? (
                   <option value="loading">Loading</option>
                 ) : allCities.isError ? (
@@ -226,7 +224,7 @@ const SearchResult = () => {
                   allCities.data.map((e, i) => {
                     return (
                       <option key={i} value={e.city_name}>
-                        {`${e.city_name} (${e.alias})`}
+                        {e.city_name}
                       </option>
                     );
                   })
