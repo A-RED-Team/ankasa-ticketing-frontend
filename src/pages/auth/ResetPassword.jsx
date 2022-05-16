@@ -1,6 +1,6 @@
 import '../../assets/styles/auth.css';
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import Icon from '../../assets/images/icon.svg';
 import swal from 'sweetalert2';
 import Banner from '../../components/Banner';
@@ -10,6 +10,8 @@ import { toastr } from '../../utils/toastr';
 
 const ResetPassword = () => {
   const navigate = useNavigate();
+  const [queryParams] = useSearchParams();
+  const queryToken = queryParams.get('token');
   const token = localStorage.getItem('token');
   const [loading, setLoading] = useState(false);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
@@ -39,7 +41,7 @@ const ResetPassword = () => {
       });
     } else {
       setLoading(true);
-      reset(form)
+      reset(form, queryToken)
         .then((res) => {
           swal
             .fire({
