@@ -34,10 +34,25 @@
   padding-right: 70px;
 }
 .changeSearch {
-  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: 0px;
+}
+.divFilterSearch {
+  display: none;
+}
+.filterSearch {
+  margin-left: 0px;
   margin-right: 0px;
 }
 
+/* Main Content */
+.divMainContent {
+  width: 100%;
+  background-color: #f5f6fa;
+  display: flex;
+}
+
+/* Left */
 .leftContent {
   width: 25%;
   display: flex;
@@ -45,6 +60,7 @@
   padding: 30px 25px 30px 70px;
 }
 
+/* Right */
 .startRightContent {
   width: 75%;
   display: flex;
@@ -52,8 +68,6 @@
   padding: 30px 70px 40px 0px;
 }
 
-/* .rightContent {
-} */
 .divSelectTicket {
   width: 100%;
   display: flex;
@@ -79,6 +93,14 @@
 .imgAirline {
   width: 100px;
   margin-right: 30px;
+}
+.departureCity {
+  font-size: 24px;
+  font-weight: 500;
+}
+.arrivalCity {
+  font-size: 24px;
+  font-weight: 500;
 }
 .longTime {
   display: flex;
@@ -138,12 +160,28 @@
     left: 15px;
     bottom: 26px;
   }
-
-  .leftContent {
-    display: none;
-    width: 0%;
+  .changeSearch {
+    margin-left: 0px;
+  }
+  .divFilterSearch {
+    display: flex;
+    position: absolute;
+    bottom: 26px;
+    right: 15px;
   }
 
+  /* Main content */
+  .divMainContent {
+    flex-direction: column;
+  }
+
+  /* Left */
+  .leftContent {
+    width: 100%;
+    padding: 30px 25px 30px 25px;
+  }
+
+  /* Right */
   .startRightContent {
     width: 100%;
     padding: 30px 0px 40px 0px;
@@ -161,6 +199,12 @@
   .imgAirline {
     display: none;
   }
+  .departureCity {
+    font-size: 20px;
+  }
+  .arrivalCity {
+    font-size: 20px;
+  }
   .longTime {
     display: none;
   }
@@ -176,6 +220,7 @@
     bottom: 10px;
     width: 89%;
     height: 30px;
+    left: 20px;
   }
   .divViewDetail {
     position: absolute;
