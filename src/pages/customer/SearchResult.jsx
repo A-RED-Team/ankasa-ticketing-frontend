@@ -7,15 +7,20 @@ import { getAllAirlines } from '../../redux/actions/airline';
 import styled from 'styled-components';
 import ContentLoader from 'react-content-loader';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
+import searchStyle from '../../assets/styles/searchResult.module.css';
+// import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
 import style from '../../assets/styles/input.module.css';
-// import serchStyle from '../../assets/styles/searchResult.module.css';
 
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
 import bg from '../../assets/images/vector 2.png';
 import bgIcon from '../../assets/images/bgicon.svg';
+
+// import garuda from '../../assets/images/garuda.png';
+// import lion from '../../assets/images/lion-air.png';
+// import airAsia from '../../assets/images/air-asia.png';
+
 import flightIconSmall from '../../assets/images/flightIconSmall.svg';
 
 const Section = styled.section`
@@ -137,20 +142,19 @@ const SearchResult = () => {
   return (
     <>
       <Navbar isLogin={token} />
-      <Section className="d-sm-block d-none">
-        <Header className="no-gutters pl-5 text-white">
+      <Section className="">
+        <Header className={`no-gutters pl-5 text-white ${searchStyle.header}`}>
           <div
             style={{
               width: '10%',
               display: 'flex'
             }}>
-            <img src={bgIcon} style={{ marginLeft: 'auto', marginRight: '0px' }} />
+            <img className={searchStyle.imagePlane} src={bgIcon} />
           </div>
-          <div
-            style={{ width: '20%', display: 'flex', flexDirection: 'column', paddingLeft: '20px' }}>
-            <div style={{ width: '100%', display: 'flex' }}>
-              <p style={{ marginLeft: '0px', marginRight: 'auto', fontSize: '12px' }}>From</p>
-              <p style={{ marginLeft: 'auto', marginRight: '0px', fontSize: '12px' }}>To</p>
+          <div className={searchStyle.headerMain}>
+            <div className={searchStyle.mainFromTo}>
+              <p className={searchStyle.mainFrom}>From</p>
+              <p className={searchStyle.mainTo}>To</p>
             </div>
             <div
               style={{
@@ -182,32 +186,22 @@ const SearchResult = () => {
               </small>
             </div>
           </div>
-          <div style={{ width: '70%', display: 'flex', paddingRight: '70px' }}>
+          <div className={searchStyle.divChangeSearch}>
             <h6
-              className={style.logout}
-              style={{ marginLeft: 'auto', marginRight: '0px' }}
+              className={`${searchStyle.changeSearch} ${style.logout}`}
               onClick={(e) => {
                 search(e);
               }}>
               Change Search
             </h6>
           </div>
+          <div className={searchStyle.divFilterSearch}>
+            <h6 className={`${searchStyle.filterSearch} ${style.logout}`}>Filter Search</h6>
+          </div>
         </Header>
-        <div
-          className="container-fluid"
-          style={{
-            width: '100%',
-            backgroundColor: '#F5F6FA',
-            display: 'flex'
-          }}>
+        <div className={`container-fluid ${searchStyle.divMainContent}`}>
           {/* Start Left Filter */}
-          <div
-            style={{
-              width: '25%',
-              display: 'flex',
-              flexDirection: 'column',
-              padding: '30px 25px 30px 70px'
-            }}>
+          <div className={searchStyle.leftContent}>
             <div
               style={{
                 display: 'flex',
@@ -726,23 +720,9 @@ const SearchResult = () => {
           </div>
 
           {/* End Left Filter */}
-          <div
-            style={{
-              width: '75%',
-              display: 'flex',
-              flexDirection: 'column',
-              padding: '30px 70px 40px 0px'
-            }}>
-            <div
-              style={{
-                width: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                marginBottom: '25px'
-              }}>
-              <h5 style={{ marginLeft: '0px', fontWeight: '500', fontSize: '24px' }}>
-                Select Ticket
-              </h5>
+          <div className={searchStyle.startRightContent}>
+            <div className={searchStyle.divSelectTicket}>
+              <h5 className={searchStyle.selectTicket}>Select Ticket</h5>
               &nbsp;
               <h5 style={{ fontWeight: '500', fontSize: '18px', color: '#979797' }}>
                 (
@@ -790,17 +770,7 @@ const SearchResult = () => {
             ) : allFlight.data ? (
               allFlight.data.map((e, i) => {
                 return (
-                  <div
-                    key={i}
-                    style={{
-                      width: '100%',
-                      backgroundColor: '#FFFFFF',
-                      borderRadius: '15px',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      padding: '25px',
-                      marginBottom: '20px'
-                    }}>
+                  <div key={i} className={searchStyle.divSearchResult}>
                     <div
                       style={{
                         width: '100%',
@@ -814,7 +784,7 @@ const SearchResult = () => {
                         onError={(e) => {
                           e.target.src = `${process.env.REACT_APP_PROD}uploads/airlines/airlines-default.png`;
                         }}
-                        style={{ width: '100px', marginRight: '30px' }}
+                        className={searchStyle.imgAirline}
                       />
                       <h6>{e.airlinesname}</h6>
                     </div>
@@ -826,9 +796,7 @@ const SearchResult = () => {
                         marginBottom: '30px'
                       }}>
                       <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '0px' }}>
-                        <h5 style={{ fontSize: '24px', fontWeight: '500' }}>
-                          {e.departurecityname}
-                        </h5>
+                        <h5 className={searchStyle.departureCity}>{e.departurecityname}</h5>
                         <h6 style={{ fontSize: '14px', color: '#595959' }}>
                           {moment(e.departure_time, 'HH:mm:ss').format('HH:mm')}
                         </h6>
@@ -843,20 +811,12 @@ const SearchResult = () => {
                           display: 'flex',
                           flexDirection: 'column'
                         }}>
-                        <h5 style={{ fontSize: '24px', fontWeight: '500' }}>{e.arrivalcityname}</h5>
+                        <h5 className={searchStyle.arrivalCity}>{e.arrivalcityname}</h5>
                         <h6 style={{ fontSize: '14px', color: '#595959' }}>
                           {moment(e.arrival_time, 'HH:mm:ss').format('HH:mm')}
                         </h6>
                       </div>
-                      <div
-                        style={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          marginLeft: 'auto',
-                          marginRight: 'auto'
-                        }}>
+                      <div className={searchStyle.longTime}>
                         <h6 style={{ fontSize: '16px', color: '#595959' }}>
                           {parseInt(
                             moment
@@ -883,11 +843,7 @@ const SearchResult = () => {
                           ({e.direct ? 'Direct' : e.more_transit ? '2 Transit' : '1 Transit'})
                         </h6>
                       </div>
-                      <div
-                        style={{
-                          fontSize: '25px',
-                          color: '#979797'
-                        }}>
+                      <div className={searchStyle.iconFeature}>
                         {e.luggage ? (
                           <>
                             <i
@@ -912,7 +868,7 @@ const SearchResult = () => {
                           ''
                         )}
                       </div>
-                      <div style={{ display: 'flex', marginRight: '45px', marginLeft: 'auto' }}>
+                      <div className={searchStyle.price}>
                         <h6 style={{ color: '#2395FF', fontSize: '16px', fontWeight: '500' }}>
                           $ {Intl.NumberFormat('en-US').format(e.price)}
                         </h6>
@@ -922,26 +878,12 @@ const SearchResult = () => {
                         </h6>
                       </div>
                       <Link to={`/booking/add/${e.flightid}?adult=${adult}&child=${child}`}>
-                        <button
-                          type="button"
-                          style={{
-                            height: '50px',
-                            width: '150px',
-                            backgroundColor: '#2395FF',
-                            color: '#FFFFFF',
-                            borderRadius: '10px',
-                            border: 'none',
-                            marginRight: '0px'
-                          }}>
+                        <button type="button" className={searchStyle.buttonSelect}>
                           Select
                         </button>
                       </Link>
                     </div>
-                    <div
-                      style={{
-                        display: 'flex',
-                        color: '#2395FF'
-                      }}>
+                    <div className={searchStyle.divViewDetail}>
                       <h6 style={{ fontWeight: '600', fontSize: '16px' }}>View Details</h6>
                       <i
                         className="fa-solid fa-angle-down"
@@ -953,7 +895,6 @@ const SearchResult = () => {
             ) : (
               <div>No Flight Found</div>
             )}
-            {/* ============================================================== */}
           </div>
         </div>
       </Section>

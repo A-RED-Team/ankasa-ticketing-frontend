@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Modal from '../Search';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getDetailUser } from '../../redux/actions/user';
 import jwt_decode from 'jwt-decode';
@@ -15,6 +15,7 @@ import bell from '../../assets/icons/bell.svg';
 
 const index = ({ isLogin = false }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
   const detailUser = useSelector((state) => state.detailUser);
@@ -69,13 +70,17 @@ const index = ({ isLogin = false }) => {
               <li className="nav-item">
                 <a
                   onClick={() => setModal(!modal)}
-                  className={modal ? 'nav-link active' : 'nav-link'}>
+                  className={modal && location.pathname === '/' ? 'nav-link active' : 'nav-link'}>
                   find ticket
                 </a>
               </li>
               {isLogin && (
                 <li className="nav-item">
-                  <Link to="/profile/booking" className="nav-link">
+                  <Link
+                    to="/profile/booking"
+                    className={
+                      location.pathname === '/profile/booking' ? 'nav-link active' : 'nav-link'
+                    }>
                     my booking
                   </Link>
                 </li>
@@ -109,7 +114,7 @@ const index = ({ isLogin = false }) => {
           </div>
         </div>
       </nav>
-      {modal ? <Modal /> : null}
+      {modal && location.pathname === '/' ? <Modal /> : null}
     </>
   );
 };
