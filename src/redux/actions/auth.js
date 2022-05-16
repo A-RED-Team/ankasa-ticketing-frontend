@@ -26,3 +26,29 @@ export const register = (data) => {
       });
   });
 };
+
+export const forgot = (data) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .put('auth/forgot-password', data)
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export const reset = (data, token) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(`auth/reset-password?token=${token}`, data)
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};

@@ -19,7 +19,7 @@ const Explore = () => {
   const destination = useSelector((state) => state.topDestination);
 
   useEffect(() => {
-    dispatch(getTrendingCity('cities.created_at', 'DESC', 5));
+    dispatch(getTrendingCity('cities.created_at', 'DESC', 10));
     dispatch(getDestinationCity('cities.created_at', 'ASC', 10));
     console.log(trending);
     console.log(destination);

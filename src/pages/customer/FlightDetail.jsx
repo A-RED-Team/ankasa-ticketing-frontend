@@ -201,6 +201,7 @@ const FlightDetail = () => {
       setForm({ ...form, paxName: '' });
     }
   }, [sameAsContact]);
+
   return (
     <>
       <Navbar isLogin={token} />
