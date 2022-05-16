@@ -27,15 +27,15 @@ const index = ({ trending }) => {
       <div className="trending-wrapper col-md-12">
         <Swiper
           slidesPerView={5}
-          slidesPerGroup={1}
+          slidesPerGroup={2}
           scrollbar={{
             hide: true
           }}
           modules={[Scrollbar]}
-          style={{ width: '100%', height: '45vh' }}
+          id="trending-carousel"
           breakpoints={{
             100: {
-              slidesPerView: 1
+              slidesPerView: 'auto'
             },
             768: {
               slidesPerView: 5
