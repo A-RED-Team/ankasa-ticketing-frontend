@@ -180,6 +180,7 @@ const SearchResult = () => {
                   backgroundColor: '#2395FF',
                   color: '#FFFFFF'
                 }}>
+                <option value="">Dept. City</option>
                 {allCities.isLoading ? (
                   <option value="loading">Loading</option>
                 ) : allCities.isError ? (
@@ -215,6 +216,7 @@ const SearchResult = () => {
                   backgroundColor: '#2395FF',
                   color: '#FFFFFF'
                 }}>
+                <option value="">Arr. City</option>
                 {allCities.isLoading ? (
                   <option value="loading">Loading</option>
                 ) : allCities.isError ? (
