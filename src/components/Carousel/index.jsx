@@ -42,8 +42,8 @@ const index = ({ destination }) => {
               <div></div>
             ) : (
               destination.data.map((item) => (
-                <SwiperSlide key={item.city_id}>
-                  <div>
+                <SwiperSlide key={item.city_id} className="mySwiper">
+                  <div style={{ marginTop: '-6em' }}>
                     <div className="destination-decoration">
                       <img
                         src={`${APP_PROD}uploads/cities/${item.image}`}
