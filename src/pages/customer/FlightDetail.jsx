@@ -310,6 +310,7 @@ const FlightDetail = () => {
                       </div>
                     </div>
                     <div className="form-box">
+                      <label htmlFor="title">Title</label>
                       <select
                         name="title"
                         id="title"
@@ -321,7 +322,6 @@ const FlightDetail = () => {
                         <option>Mr.</option>
                         <option>Mrs.</option>
                       </select>
-                      <label htmlFor="title">Title</label>
                     </div>
                     <div className="form-box">
                       <input
@@ -425,7 +425,7 @@ const FlightDetail = () => {
                     detailFlight.data?.data?.airlinesname
                   )}
                 </p>
-                <h5 className="font-weight-bold mb-4">
+                <h6 className="font-weight-bold mb-4">
                   {detailFlight.isLoading ? (
                     <div>Loading...</div>
                   ) : detailFlight.isError ? (
@@ -452,7 +452,7 @@ const FlightDetail = () => {
                       {detailFlight.data?.data?.arrivalcountryname})
                     </>
                   )}
-                </h5>
+                </h6>
                 <p className="font-size-12 mb-4">
                   {detailFlight.isLoading ? (
                     <div>Loading...</div>

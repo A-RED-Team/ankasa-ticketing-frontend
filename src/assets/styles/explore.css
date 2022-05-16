@@ -373,6 +373,15 @@
   justify-content: space-between;
 }
 
+#trending-carousel {
+  width: 120%;
+  height: 50vh;
+  position: relative;
+  margin-left: -80px;
+  margin-right: -80px;
+  padding: 0 80px 0 80px;
+}
+
 .trending-card {
   background-size: cover;
   background-repeat: no-repeat;
@@ -381,7 +390,8 @@
   width: 200px;
   border-radius: 20px;
   color: #fff;
-  position: relative;
+  position: absolute;
+  top: 10%;
 }
 
 .trending-card:hover {
@@ -578,8 +588,15 @@
     margin-right: 20px;
     margin-top: 30px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
+  }
+
+  #trending-carousel {
+    width: 120%;
+    height: 45vh;
+    /* padding: 0 -20px 0 -20px;
+    float: left; */
   }
 
   .trending-card {

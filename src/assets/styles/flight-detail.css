@@ -18,6 +18,14 @@
   font-weight: 600;
   font-size: 24px;
   line-height: 36px;
+  margin-left: 20px;
+}
+
+.flight-detail {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  margin-right: 100px;
 }
 
 .flight-container {
@@ -154,4 +162,13 @@
   border-radius: 10px;
   color: #fff;
   padding: 15px 50px;
+}
+
+@media screen and (max-width: 576px) {
+  .flight-title {
+    display: none;
+  }
+  .flight-detail {
+    margin-right: auto;
+  }
 }
