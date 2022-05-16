@@ -142,6 +142,8 @@ const SearchResult = () => {
     setArrCity(queryArrCity);
   }, []);
   const token = localStorage.getItem('token');
+  const [activeTab, setActiveTab] = useState(false);
+  // const classActive = activeTab ? 'active' : 'nonactive';
   return (
     <>
       <Navbar isLogin={token} />
@@ -257,13 +259,15 @@ const SearchResult = () => {
               Change Search
             </h6>
           </div>
-          <div className={searchStyle.divFilterSearch}>
+          <div
+            onClick={() => setActiveTab(!activeTab)}
+            className={`${searchStyle.divFilterSearch}`}>
             <h6 className={`${searchStyle.filterSearch} ${style.logout}`}>Filter Search</h6>
           </div>
         </Header>
         <div className={`container-fluid ${searchStyle.divMainContent}`}>
           {/* Start Left Filter */}
-          <div className={searchStyle.leftContent}>
+          <div className={`${searchStyle.leftContent}`}>
             <div
               style={{
                 display: 'flex',
