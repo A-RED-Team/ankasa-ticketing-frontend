@@ -125,7 +125,7 @@ const index = () => {
                   );
                 })
               ) : (
-                <option value="error">Error</option>
+                <option value="error">Error.</option>
               )}
             </select>
           </div>
