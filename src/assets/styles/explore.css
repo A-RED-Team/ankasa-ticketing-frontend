@@ -281,6 +281,44 @@
   background-repeat: no-repeat;
 }
 
+.search-mode .one-way label {
+  padding-left: 20px;
+}
+
+.search-mode .round-trip label {
+  padding-left: 25px;
+}
+
+.search-mode .one-way label,
+.search-mode .one-way input {
+  background-position: 30px 15px;
+  background-image: url('../icons/one-way-black.svg');
+}
+
+.search-mode .one-way label:hover,
+.search-mode .one-way input:hover {
+  background-color: var(--text-blue);
+  color: var(--text-white);
+  background-repeat: no-repeat;
+  background-position: 30px 15px;
+  background-image: url('../icons/one-way-white.svg');
+}
+
+.search-mode .round-trip label,
+.search-mode .round-trip input {
+  background-position: 25px 15px;
+  background-image: url('../icons/round-trip-black.svg');
+}
+
+.search-mode .round-trip label:hover,
+.search-mode .round-trip input:hover {
+  background-color: var(--text-blue);
+  color: var(--text-white);
+  background-repeat: no-repeat;
+  background-position: 25px 15px;
+  background-image: url('../icons/round-trip-white.svg');
+}
+
 .search-mode label {
   text-align: center;
   line-height: 35px;
@@ -295,6 +333,20 @@
 .Checked + label {
   background: var(--text-blue);
   color: var(--text-white);
+}
+
+.search-mode .one-way input[type='radio']:checked + label,
+.Checked + label {
+  background-repeat: no-repeat;
+  background-position: 30px 15px;
+  background-image: url('../icons/one-way-white.svg');
+}
+
+.search-mode .round-trip input[type='radio']:checked + label,
+.Checked + label {
+  background-repeat: no-repeat;
+  background-position: 25px 15px;
+  background-image: url('../icons/round-trip-white.svg');
 }
 
 .search-mode label {
@@ -317,26 +369,25 @@
   background-color: red; */
 }
 
-/* input[type='radio'] {
+.search-radio input[type='radio'] {
   display: none;
 }
 
-input[type='radio'] + label:before {
+.search-radio input[type='radio'] + label:before {
   content: '';
   display: inline-block;
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   padding: 6px;
-  margin-right: 5px;
   background-clip: content-box;
   border: 2px solid var(--text-blue);
   background-color: none;
   border-radius: 50%;
 }
 
-input[type='radio']:checked + label:before {
+.search-radio input[type='radio']:checked + label:before {
   background-color: var(--text-blue);
-} */
+}
 
 .search-button {
   width: 100%;
