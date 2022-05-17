@@ -35,7 +35,7 @@ const index = ({ isLogin = false }) => {
   }, []);
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light fixed-top bg-white">
+      <nav className="navbar navbar-expand-lg navbar-light fixed-top bg-white" id="navigation">
         <div className="container">
           <img src={logo} alt="Ankasa Ticketing" className="mr-2" />
           <Link className="navbar-brand" to="/">
