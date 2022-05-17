@@ -6,6 +6,7 @@ import Hero from '../components/Hero';
 import Card from '../components/Card';
 import Carousel from '../components/Carousel';
 import Footer from '../components/Footer';
+import ScrollToTop from '../components/ScrollToTop';
 
 import ContentLoader from 'react-content-loader';
 import { useSelector, useDispatch } from 'react-redux';
@@ -52,6 +53,7 @@ const Explore = () => {
         )}
       </div>
       <Footer />
+      <ScrollToTop />
     </>
   );
 };
