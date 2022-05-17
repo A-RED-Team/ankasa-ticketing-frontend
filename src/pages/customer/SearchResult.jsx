@@ -148,7 +148,7 @@ const SearchResult = () => {
   return (
     <>
       <Navbar isLogin={token} />
-      <Section className="">
+      <Section>
         <Header className={`no-gutters pl-5 text-white ${searchStyle.header}`}>
           <div
             style={{
@@ -406,7 +406,9 @@ const SearchResult = () => {
                     marginBottom: '20px'
                   }}
                 />
-                <div style={{ display: 'flex', marginBottom: '20px', alignItems: 'center' }}>
+                <div
+                  style={{ display: 'flex', marginBottom: '20px', alignItems: 'center' }}
+                  className="search-radio">
                   <h6 style={{ fontSize: '14px' }}>One Way</h6>
                   <input
                     type="radio"
@@ -446,7 +448,7 @@ const SearchResult = () => {
                     className="fa-solid fa-angle-up"
                     style={{ marginLeft: 'auto', marginRight: '0px', color: '#2395FF' }}></i>
                 </div>
-                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                <div style={{ display: 'flex', marginBottom: '20px' }} className="search-radio">
                   <h6 style={{ fontSize: '14px' }}>Economy</h6>
                   <input
                     type="radio"
@@ -460,7 +462,7 @@ const SearchResult = () => {
                     htmlFor="economy"
                     style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
                 </div>
-                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                <div style={{ display: 'flex', marginBottom: '20px' }} className="search-radio">
                   <h6 style={{ fontSize: '14px' }}>Business Class</h6>
                   <input
                     type="radio"
@@ -474,7 +476,7 @@ const SearchResult = () => {
                     htmlFor="business"
                     style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
                 </div>
-                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                <div style={{ display: 'flex', marginBottom: '20px' }} className="search-radio">
                   <h6 style={{ fontSize: '14px' }}>First Class</h6>
                   <input
                     type="radio"
@@ -502,7 +504,7 @@ const SearchResult = () => {
                     className="fa-solid fa-angle-up"
                     style={{ marginLeft: 'auto', marginRight: '0px', color: '#2395FF' }}></i>
                 </div>
-                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                <div style={{ display: 'flex', marginBottom: '20px' }} className="search-radio">
                   <h6 style={{ fontSize: '14px' }}>Direct</h6>
                   <input
                     type="radio"
@@ -518,7 +520,9 @@ const SearchResult = () => {
                     htmlFor="direct"
                     style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
                 </div>
-                <div style={{ display: 'flex', marginBottom: '20px', alignItems: 'center' }}>
+                <div
+                  style={{ display: 'flex', marginBottom: '20px', alignItems: 'center' }}
+                  className="search-radio">
                   <h6 style={{ fontSize: '14px' }}>Transit</h6>
                   <input
                     type="radio"
@@ -534,7 +538,9 @@ const SearchResult = () => {
                     htmlFor="transit"
                     style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
                 </div>
-                <div style={{ display: 'flex', marginBottom: '20px', alignItems: 'center' }}>
+                <div
+                  style={{ display: 'flex', marginBottom: '20px', alignItems: 'center' }}
+                  className="search-radio">
                   <h6 style={{ fontSize: '14px' }}>Transit 2+</h6>
                   <input
                     type="radio"
@@ -623,7 +629,7 @@ const SearchResult = () => {
                     className="fa-solid fa-angle-up"
                     style={{ marginLeft: 'auto', marginRight: '0px', color: '#2395FF' }}></i>
                 </div>
-                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                <div style={{ display: 'flex', marginBottom: '20px' }} className="search-radio">
                   <h6 style={{ fontSize: '14px' }}>00:00 - 06:00</h6>
                   <input
                     type="radio"
@@ -638,7 +644,7 @@ const SearchResult = () => {
                     htmlFor="deptime1"
                     style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
                 </div>
-                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                <div style={{ display: 'flex', marginBottom: '20px' }} className="search-radio">
                   <h6 style={{ fontSize: '14px' }}>06:00 - 12:00</h6>
                   <input
                     type="radio"
@@ -653,7 +659,7 @@ const SearchResult = () => {
                     htmlFor="deptime2"
                     style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
                 </div>
-                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                <div style={{ display: 'flex', marginBottom: '20px' }} className="search-radio">
                   <h6 style={{ fontSize: '14px' }}>12:00 - 18:00</h6>
                   <input
                     type="radio"
@@ -668,7 +674,7 @@ const SearchResult = () => {
                     htmlFor="deptime3"
                     style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
                 </div>
-                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                <div style={{ display: 'flex', marginBottom: '20px' }} className="search-radio">
                   <h6 style={{ fontSize: '14px' }}>18:00 - 24:00</h6>
                   <input
                     type="radio"
@@ -697,7 +703,7 @@ const SearchResult = () => {
                     className="fa-solid fa-angle-up"
                     style={{ marginLeft: 'auto', marginRight: '0px', color: '#2395FF' }}></i>
                 </div>
-                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                <div style={{ display: 'flex', marginBottom: '20px' }} className="search-radio">
                   <h6 style={{ fontSize: '14px' }}>00:00 - 06:00</h6>
                   <input
                     type="radio"
@@ -712,7 +718,7 @@ const SearchResult = () => {
                     htmlFor="arrtime1"
                     style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
                 </div>
-                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                <div style={{ display: 'flex', marginBottom: '20px' }} className="search-radio">
                   <h6 style={{ fontSize: '14px' }}>06:00 - 12:00</h6>
                   <input
                     type="radio"
@@ -727,7 +733,7 @@ const SearchResult = () => {
                     htmlFor="arrtime2"
                     style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
                 </div>
-                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                <div style={{ display: 'flex', marginBottom: '20px' }} className="search-radio">
                   <h6 style={{ fontSize: '14px' }}>12:00 - 18:00</h6>
                   <input
                     type="radio"
@@ -742,7 +748,7 @@ const SearchResult = () => {
                     htmlFor="arrtime3"
                     style={{ fontSize: '14px', marginLeft: 'auto', marginRight: '0px' }}></label>
                 </div>
-                <div style={{ display: 'flex', marginBottom: '20px' }}>
+                <div style={{ display: 'flex', marginBottom: '20px' }} className="search-radio">
                   <h6 style={{ fontSize: '14px' }}>18:00 - 24:00</h6>
                   <input
                     type="radio"
@@ -778,7 +784,10 @@ const SearchResult = () => {
                 ) : allAirlines.data ? (
                   allAirlines.data.map((e, i) => {
                     return (
-                      <div key={i} style={{ display: 'flex', marginBottom: '20px' }}>
+                      <div
+                        key={i}
+                        style={{ display: 'flex', marginBottom: '20px' }}
+                        className="search-radio">
                         <h6 style={{ fontSize: '14px' }}>{e.name}</h6>
                         <input
                           type="radio"
