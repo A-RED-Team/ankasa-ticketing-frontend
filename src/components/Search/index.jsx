@@ -20,7 +20,7 @@ const index = () => {
   const [arrCity, setArrCity] = useState('');
   const [adult, setAdult] = useState('1');
   const [child, setChild] = useState('0');
-  const [oneOrRoundTrip, setOneOrRoundTrip] = useState('');
+  const [oneOrRoundTrip] = useState('');
   const [deptDate, setDeptDate] = useState('');
   const [flightClass, setFlightClass] = useState('');
   const onSearch = (e) => {
