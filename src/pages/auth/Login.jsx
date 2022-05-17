@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert2';
 import { APP_NAME } from '../../helper/env';
 import { toastr } from '../../utils/toastr';
-
+import jwt_decode from 'jwt-decode';
 import Banner from '../../components/Banner';
 import Icon from '../../assets/images/icon.svg';
 import Google from '../../assets/images/google.svg';
@@ -41,15 +41,26 @@ const Login = () => {
       setLoading(true);
       login(form)
         .then((res) => {
-          swal
-            .fire({
-              title: 'Success!',
-              text: res.message,
-              icon: 'success'
-            })
-            .then(() => {
-              navigate('/');
+          const decoded = jwt_decode(res.token);
+
+          if (decoded.level === 0) {
+            localStorage.setItem('token', res.token);
+            swal
+              .fire({
+                title: 'Success!',
+                text: res.message,
+                icon: 'success'
+              })
+              .then(() => {
+                navigate('/');
+              });
+          } else {
+            swal.fire({
+              title: 'Error!',
+              text: "You don't have access to this page",
+              icon: 'error'
             });
+          }
         })
         .catch((err) => {
           if (err.response.data.message === 'validation failed') {
