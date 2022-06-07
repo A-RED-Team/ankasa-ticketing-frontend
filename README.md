@@ -35,12 +35,16 @@
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
+  * [Setup .env](#setup-env)
 * [Screenshots](#screenshoots)
+* [Contributing](#contributing)
 * [Related Project](#related-project)
-* [Contributors](#contributors)
+* [Our Team](#our-team)
+* [License](#license)
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+-
 
 ### Built With
 This app was built with some technologies below:
@@ -59,48 +63,97 @@ This app was built with some technologies below:
 
 ### Prerequisites
 
-Before going to the installation stage there are some software that must be installed first.
+This is an example of how to list things you need to use the software and how to install them.
 
-* [NodeJs](https://nodejs.org/en/download/)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
+* [nodejs](https://nodejs.org/en/download/)
 
 ### Installation
 
-If you want to run this project locally, We recommend you to configure the [back-end](https://github.com/altrawan/ankasa-ticketing-backend) first before configuring this repo front-end.
-1. Clone the repo
+- Clone This Front End Repo
 ```
-git clone https://github.com/altrawan/ankasa-ticketing-frontend
+git clone https://github.com/altrawan/ankasa-ticketing-frontend.git
 ```
- 2. Install NPM packages
+- Go To Folder Repo
+```
+cd ankasa-ticketing-frontend
+```
+- Install Module
 ```
 npm install
 ```
-3. Add .env file at root folder project, and add following
+- <a href="#setup-env">Setup .env</a>
+- Type ` npm run dev` To Start Website
+- Type ` npm run start` To Start Production
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+### Setup .env
+Create .env file in your root project folder.
 ```
 # app
-REACT_APP_NAME=Ankasa Ticketing
-REACT_APP_VERSION=1.0.0
+REACT_APP_NAME=[APP NAME]
+REACT_APP_VERSION=[APP VERSION]
 
 # mode
-REACT_APP_DEV=http://localhost:4000/
-REACT_APP_PROD=https://ankasa-ticketing-app.herokuapp.com/
-REACT_APP_STAGING=prod / dev
-```
-4. Start the Application
-```
-  npm start
+REACT_APP_DEV=[BACKEND_URL_DEVELOPMENT]
+REACT_APP_PROD=[BACKEND_URL_PRODUCTION]
+REACT_APP_STAGING=[dev / prod]
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Screenshoots
-<details>
-  <summary>
-    Explore Page
-  </summary>
-<img src="#" alt="Explore" />
-</details>
+## Screenshoots
+<p align="center" display=flex>
+<table>
+ 
+  <tr>
+    <td><image src="screenshoots/Explore Page.png" alt="Explore Page" width=100%></td>
+    <td><image src="screenshoots/Search Result Page.png" alt="Search Result Page" width=100%/></td>
+  </tr>
+   <tr>
+    <td>Explore Page</td>
+    <td>Search Result Page</td>
+  </tr>
+  
+  <tr>
+    <td><image src="screenshoots/Login Page.png" alt="Login Page" width=100%></td>
+    <td><image src="screenshoots/Register Page.png" alt="Register Page" width=100%/></td>
+  </tr>
+  <tr>
+    <td>Login Page</td>
+    <td>Register Page</td>
+  </tr>
+
+  <tr>
+    <td><image src="screenshoots/Forgot Password Page.png" alt="Forgot Password Page" width=100%></td>
+    <td><image src="screenshoots/Reset Password Page.png" alt="Reset Password Page" width=100%></td>
+  </tr>
+  <tr>
+      <td>Forgot Password Page</td>
+      <td>Reset Password Page</td>
+  </tr>
+  
+  <tr>
+    <td><image src="screenshoots/Flight Detail Page.png" alt="Flight Detail Page" width=100%/></td>
+    <td><image src="screenshoots/Booking Detail Page.png" alt="Booking Detail Page"' width=100%></td>
+  </tr>
+  <tr>
+    <td>Flight Detail Page</td>
+    <td>Booking Detail Page</td>
+  </tr>
+  
+
+  <tr>
+    <td><image src="screenshoots/My Booking Page.png" alt="My Booking Page" width=100%></td> 
+    <td><image src="screenshoots/My Profile Page.png" alt="My Profile Page" width=100%></td>  
+  </tr>
+  <tr>
+    <td>My Booking Page</td>
+    <td>My Profile Page</td>
+  </tr>
+</table>
+</p>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -117,7 +170,13 @@ Contributions are what make the open source community such an amazing place to b
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Related Project
-- [Flight Booking API](https://github.com/altrawan/ankasa-ticketing-backend)
+:rocket: [`Backend Ankasa Ticketing`](https://github.com/altrawan/ankasa-ticketing-backend)
+
+:rocket: [`Frontend Ankasa Ticketing`](https://github.com/altrawan/ankasa-ticketing-frontend)
+
+:rocket: [`Frontend Ankasa Ticketing Admin`](https://github.com/altrawan/ankasa-ticketing-admin)
+
+:rocket: [`Demo Ankasa Ticketing`](https://bit.ly/ankasa-ticketing-app)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -130,32 +189,37 @@ Contributions are what make the open source community such an amazing place to b
         <a href="https://github.com/altrawan">
           <img width="100" src="https://avatars.githubusercontent.com/u/39686865?v=4" alt="Nur Muhammad Alif Putra Setiawan"><br/>
           <sub><b>Nur Muhammad Alif Putra Setiawan</b></sub> <br/>
-          <sub>Project Manager | Front-End Developer</sub>
+          <sub>Project Manager | Full Stack Web Developer</sub>
         </a>
       </td>
       <td align="center">
         <a href="https://github.com/rifanhidayatulloh">
           <img width="100" src="https://avatars.githubusercontent.com/u/87940197?v=4" alt="Rif'an Hidayatulloh"><br/>
           <sub><b>Rif'an Hidayatulloh</b></sub> <br/>
-          <sub>Back-End Developer</sub>
+          <sub>Back End Web Developer</sub>
         </a>
       </td>
       <td align="center">
         <a href="https://github.com/edoprayoga1999">
           <img width="100" src="https://avatars.githubusercontent.com/u/101086199?v=4" alt="Edo Prayoga"><br/>
           <sub><b>Edo Prayoga</b></sub> <br/>
-          <sub>Front-End Developer</sub>
+          <sub>Front End Web Developer</sub>
         </a>
       </td>
       <td align="center">
         <a href="https://github.com/janexmgd">
           <img width="100" src="https://avatars.githubusercontent.com/u/43938494?v=4" alt="Denny Wahyu Prasetio"><br/>
           <sub><b>Denny Wahyu Prasetio</b></sub> <br/>
-          <sub>Back-End Developer</sub>
+          <sub>Back End Web Developer</sub>
         </a>
       </td>
     </tr>
   </table>
 </center>
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## License
+Distributed under the [MIT](/LICENSE) License.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
