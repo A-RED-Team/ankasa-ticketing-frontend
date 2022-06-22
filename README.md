@@ -194,6 +194,8 @@ Contributions are what make the open source community such an amazing place to b
 :rocket: [`Frontend Ankasa Ticketing Admin`](https://github.com/A-RED-Team/ankasa-ticketing-admin)
 
 :rocket: [`Demo Ankasa Ticketing`](https://bit.ly/ankasa-ticketing-app)
+      
+:rocket: [`Demo Ankasa Ticketing Admin`](https://ankasa-ticketing-admin.netlify.app/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
