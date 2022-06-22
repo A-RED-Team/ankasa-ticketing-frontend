@@ -1,23 +1,28 @@
 <div id="top"></div>
-<p align="center">
-  <a href="https://github.com/altrawan/ankasa-ticketing-frontend">
-    <img src="./screenshoots/logo.png"  width="200px" alt="Logo">
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/A-RED-Team/ankasa-ticketing-frontend">
+    <img src="https://lh3.googleusercontent.com/d/1j1a09gdu6PaysgD-U4teBGLPuDqN81zA" alt="Logo" width="200px">
   </a>
-</p>
-<h3 align="center">Ankasa Ticketing App</h3>
-<p align="center">
-  Find your Flight and explore the world with us.
-  <br/>
-  <a href="#table-of-contents">
-    <strong>Explore the docs »</strong>
-  </a>
-  <br /><br/>
-  <a href="https://ankasa-ticketing.netlify.app">View Demo</a>
-  ·
-  <a href="https://github.com/altrawan/ankasa-ticketing-frontend">Report Bug</a>
-  ·
-  <a href="https://github.com/altrawan/ankasa-ticketing-frontend">Request Feature</a>
-</p>
+
+  <h3 align="center">Ankasa Ticketing</h3>
+
+  <p align="center">
+    Find your Flight and explore the world with us.
+    <br />
+    <a href="#table-of-contents"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="bit.ly/blanja-app">View Demo</a>
+    ·
+    <a href="https://github.com/A-RED-Team/ankasa-ticketing-frontend/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/A-RED-Team/ankasa-ticketing-frontend/issues">Request Feature</a>
+  </p>
+</div>
+
 <p align="center">
   <a href="https://reactjs.org/">
     <img src="https://img.shields.io/badge/React-v18-blue?style=flat">
@@ -29,22 +34,35 @@
 
 <!-- TABLE OF CONTENTS -->
  ## Table of Contents
-
-* [About the Project](#about-the-project)
-  * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-  * [Setup .env](#setup-env)
-* [Screenshots](#screenshoots)
-* [Contributing](#contributing)
-* [Related Project](#related-project)
-* [Our Team](#our-team)
-* [License](#license)
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#setup-env-example">Setup .env example</a></li>
+      </ul>
+    </li>
+    <li><a href="#screenshoots">Screenshots</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#related-project">Related Project</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#our-team">Our Team</a></li>
+    <li><a href="#license">License</a></li>
+  </ol>
+</details>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-Ankasa Ticketing is a flight ticket booking application built using PERN.
+**Ankasa Ticketing** is a flight ticket booking application built using PERN.
 
 ### Built With
 This app was built with some technologies below:
@@ -87,7 +105,7 @@ npm install
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-### Setup .env
+### Setup .env example
 Create .env file in your root project folder.
 ```
 # app
@@ -169,11 +187,11 @@ Contributions are what make the open source community such an amazing place to b
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Related Project
-:rocket: [`Backend Ankasa Ticketing`](https://github.com/altrawan/ankasa-ticketing-backend)
+:rocket: [`Backend Ankasa Ticketing`](https://github.com/A-RED-Team/ankasa-ticketing-backend)
 
-:rocket: [`Frontend Ankasa Ticketing`](https://github.com/altrawan/ankasa-ticketing-frontend)
+:rocket: [`Frontend Ankasa Ticketing`](https://github.com/A-RED-Team/ankasa-ticketing-frontend)
 
-:rocket: [`Frontend Ankasa Ticketing Admin`](https://github.com/altrawan/ankasa-ticketing-admin)
+:rocket: [`Frontend Ankasa Ticketing Admin`](https://github.com/A-RED-Team/ankasa-ticketing-admin)
 
 :rocket: [`Demo Ankasa Ticketing`](https://bit.ly/ankasa-ticketing-app)
 
