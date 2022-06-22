@@ -62,7 +62,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-**Ankasa Ticketing** is a flight ticket booking application built using PERN.
+**Ankasa Ticketing** is a flight ticket booking application that has several features, namely ticket search, ticket booking, canceling unpaid tickets, and recommendations for frequently visited destinations.
 
 ### Built With
 This app was built with some technologies below:
