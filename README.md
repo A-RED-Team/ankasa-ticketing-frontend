@@ -229,8 +229,8 @@ Contributions are what make the open source community such an amazing place to b
       </td>
       <td align="center">
         <a href="https://github.com/janexmgd">
-          <img width="100" src="https://avatars.githubusercontent.com/u/43938494?v=4" alt="Denny Wahyu Prasetio"><br/>
-          <sub><b>Denny Wahyu Prasetio</b></sub> <br/>
+          <img width="100" src="https://avatars.githubusercontent.com/u/43938494?v=4" alt="Denny Wahyu Prasetyo"><br/>
+          <sub><b>Denny Wahyu Prasetyo</b></sub> <br/>
           <sub>Full Stack Web Developer</sub>
         </a>
       </td>
