@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { APP_NAME } from '../../helper/env';
+import { APP_NAME } from '../../helpers/env';
 
 import logo from '../../assets/images/plane.svg';
 

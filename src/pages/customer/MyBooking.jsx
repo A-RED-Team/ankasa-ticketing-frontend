@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ContentLoader from 'react-content-loader';
 import moment from 'moment';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
+import User from '../../assets/images/user.png';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import style from '../../assets/styles/input.module.css';
@@ -192,15 +192,15 @@ const MyBooking = () => {
                     backgroundColor: '#FFF',
                     border: 'none',
                     borderRadius: '100px',
-                    backgroundImage: `url(${process.env.REACT_APP_PROD}uploads/users/${photoUrl})`,
+                    backgroundImage: `url(https://drive.google.com/uc?export=view&id=${photoUrl})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover'
                   }}>
                   <img
-                    src={`${process.env.REACT_APP_PROD}uploads/users/${photoUrl}`}
+                    src={`https://drive.google.com/uc?export=view&id=${photoUrl}`}
                     alt=""
-                    onError={() => {
-                      setPhotoUrl('profile-default.png');
+                    onError={(e) => {
+                      e.target.src = User;
                     }}
                     style={{ display: 'none' }}
                   />
@@ -261,7 +261,7 @@ const MyBooking = () => {
                   </button>
                 </>
               )}
-              <h5 style={{ fontWeight: 'bold' }}>{detailUser.data?.data?.username}</h5>
+              <h5 style={{ fontWeight: 'bold' }}>{detailUser.data?.data?.name}</h5>
               <small style={{ color: '#6B6B6B', marginBottom: '20px' }}>
                 {detailUser.data?.data?.address || 'Your Address'}
               </small>
