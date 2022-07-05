@@ -10,7 +10,6 @@ import { toastr } from '../../utils/toastr';
 
 const Register = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
   const [loading, setLoading] = useState(false);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
 
@@ -24,10 +23,6 @@ const Register = () => {
 
   useEffect(() => {
     document.title = `${APP_NAME} - Register Page`;
-
-    if (token) {
-      return navigate('/');
-    }
   }, []);
 
   const onSubmit = (e) => {

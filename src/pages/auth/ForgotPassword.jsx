@@ -10,7 +10,6 @@ import { toastr } from '../../utils/toastr';
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
   const [loading, setLoading] = useState(false);
 
   const [form, setForm] = useState({
@@ -19,10 +18,6 @@ const ForgotPassword = () => {
 
   useEffect(() => {
     document.title = `${APP_NAME} - Forgot Password Page`;
-
-    if (token) {
-      return navigate('/');
-    }
   }, []);
 
   const onSubmit = (e) => {

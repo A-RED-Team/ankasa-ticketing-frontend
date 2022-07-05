@@ -13,7 +13,6 @@ import { login } from '../../redux/actions/auth';
 
 const Login = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     username: '',
@@ -22,10 +21,6 @@ const Login = () => {
 
   useEffect(() => {
     document.title = `${APP_NAME} - Login Page`;
-
-    if (token) {
-      return navigate('/');
-    }
   }, []);
 
   const onSubmit = (e) => {
@@ -139,7 +134,7 @@ const Login = () => {
               </div>
               <p className="small mt-3 mb-3 text-center">
                 Did you forgot your password? <br />
-                <Link to="/forgot-password">Tap here for reset</Link>
+                <Link to="/forgot">Tap here for reset</Link>
               </p>
               <div className="auth-separator"></div>
               <p className="small text-center mb-2">or sign in with</p>
