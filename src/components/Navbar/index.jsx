@@ -4,7 +4,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getDetailUser } from '../../redux/actions/user';
 import jwt_decode from 'jwt-decode';
-import { APP_STAGING, APP_DEV, APP_PROD } from '../../helpers/env';
+import User from '../../assets/images/user.png';
 import '../../utils/navbar.js';
 
 import logo from '../../assets/icons/illustration.svg';
@@ -104,14 +104,10 @@ const index = ({ isLogin = false }) => {
                 <div className="navbar-photo">
                   <Link to="/profile">
                     <img
-                      src={`${
-                        APP_STAGING === 'dev'
-                          ? `${APP_DEV}uploads/users/${detailUser.data?.data?.photo}`
-                          : `${APP_PROD}uploads/users/${detailUser.data?.data?.photo}`
-                      }`}
+                      src={`https://drive.google.com/uc?export=view&id=${detailUser.data?.data?.photo}`}
                       alt={detailUser.data?.data?.username}
                       onError={(e) => {
-                        e.target.src = `${process.env.REACT_APP_PROD}uploads/users/profile-default.png`;
+                        e.target.src = User;
                       }}
                     />
                   </Link>

@@ -8,10 +8,11 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import style from '../../assets/styles/input.module.css';
 import profileStyle from '../../assets/styles/profile.module.css';
-
+import User from '../../assets/images/user.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { getDetailUser } from '../../redux/actions/user';
 import { updateUser, updatePhoto } from '../../redux/actions/updateUser';
+import { toastr } from '../../utils/toastr';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const Profile = () => {
   const [photoUrl, setPhotoUrl] = useState('profile-default.png');
   const [buttonVisibility, setButtonVisibility] = useState(false);
   const [form, setForm] = useState({
+    name: '',
     username: '',
     email: '',
     phone: '',
@@ -46,6 +48,7 @@ const Profile = () => {
     if (detailUser.data.data) {
       setForm({
         ...form,
+        name: detailUser.data.data.name,
         username: detailUser.data.data.username,
         email: detailUser.data.data.email,
         phone: detailUser.data.data.phone_number,
@@ -124,11 +127,16 @@ const Profile = () => {
               });
           })
           .catch((err) => {
-            swal.fire({
-              title: 'Error!',
-              text: err.response.data.message,
-              icon: 'error'
-            });
+            if (err.response.data.code === 422) {
+              const error = err.response.data.error;
+              error.map((e) => toastr(e, 'error'));
+            } else {
+              swal.fire({
+                title: 'Error!',
+                text: err.response.data.message,
+                icon: 'error'
+              });
+            }
           })
           .finally(() => {
             setLoading(false);
@@ -198,15 +206,15 @@ const Profile = () => {
                     backgroundColor: '#FFF',
                     border: 'none',
                     borderRadius: '100px',
-                    backgroundImage: `url(${process.env.REACT_APP_PROD}uploads/users/${photoUrl})`,
+                    backgroundImage: `url(https://drive.google.com/uc?export=view&id=${photoUrl})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover'
                   }}>
                   <img
-                    src={`${process.env.REACT_APP_PROD}uploads/users/${photoUrl}`}
+                    src={`https://drive.google.com/uc?export=view&id=${photoUrl}`}
                     alt=""
-                    onError={() => {
-                      setPhotoUrl('profile-default.png');
+                    onError={(e) => {
+                      e.target.src = User;
                     }}
                     style={{ display: 'none' }}
                   />
@@ -268,7 +276,7 @@ const Profile = () => {
                 </>
               )}
               {/* for username */}
-              <h5 style={{ fontWeight: 'bold' }}>{detailUser.data?.data?.username}</h5>
+              <h5 style={{ fontWeight: 'bold' }}>{detailUser.data?.data?.name}</h5>
               {/* for address */}
               <small style={{ color: '#6B6B6B', marginBottom: '20px' }}>
                 {detailUser.data?.data?.address || 'Your Address'}
@@ -473,6 +481,7 @@ const Profile = () => {
                       placeholder="Email"
                       value={form.email || ''}
                       onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      disabled
                       // style={{
                       //   width: '100%',
                       //   height: '40px',
@@ -524,6 +533,22 @@ const Profile = () => {
                     //     }}
                   >
                     <h6 style={{ fontWeight: '600' }}>Biodata</h6>
+                    <small style={{ color: '#9B96AB' }}>Name</small>
+                    <input
+                      type="text"
+                      className={style.inputForm}
+                      name="name"
+                      placeholder="Name"
+                      value={form.name || ''}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      style={{
+                        width: '100%',
+                        height: '40px',
+                        border: 'none',
+                        borderBottom: '2px solid #D2C2FF',
+                        marginBottom: '30px'
+                      }}
+                    />
                     <small style={{ color: '#9B96AB' }}>Username</small>
                     <input
                       type="text"

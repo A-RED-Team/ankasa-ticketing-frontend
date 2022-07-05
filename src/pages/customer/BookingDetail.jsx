@@ -8,6 +8,7 @@ import moment from 'moment';
 import { APP_PROD } from '../../helpers/env';
 import Swal from 'sweetalert2';
 import { getDetailBooking } from '../../redux/actions/detailBooking';
+import Airline from '../../assets/images/airline.png';
 
 // Import Images
 // import logo from '../../assets/images/Group 1125.svg';
@@ -175,9 +176,9 @@ const BookingDetail = () => {
                   <div className="row">
                     <Plane className="col-sm-8 col-12 mb-4 mb-sm-0">
                       <img
-                        src={`${APP_PROD}uploads/airlines/${logo}`}
+                        src={`https://drive.google.com/uc?export=view&id=${logo}`}
                         onError={(e) => {
-                          e.target.src = `${APP_PROD}uploads/airlines/airlines-default.png`;
+                          e.target.src = Airline;
                         }}
                         style={{ width: '90px', height: '40px', objectFit: 'center' }}
                         alt={`${logo}`}

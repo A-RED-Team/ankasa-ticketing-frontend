@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { APP_PROD } from '../../helpers/env';
-
 import 'swiper/css';
 import 'swiper/css/navigation';
 import '../../assets/styles/swiper.css';
+import Default from '../../assets/images/default.jpg';
 
 const index = ({ destination }) => {
   const [loading, setLoading] = useState(true);
@@ -46,9 +45,13 @@ const index = ({ destination }) => {
                   <div style={{ marginTop: '-6em' }}>
                     <div className="destination-decoration">
                       <img
-                        src={`${APP_PROD}uploads/cities/${item.image}`}
+                        src={`https://drive.google.com/uc?export=view&id=${item.image}`}
                         alt={`${item.city_name}`}
-                        className="destination-image"></img>
+                        className="destination-image"
+                        onError={(e) => {
+                          e.target.src = Default;
+                        }}
+                      />
                     </div>
                     <div className="destination-caption mt-4">{item.city_name}</div>
                   </div>

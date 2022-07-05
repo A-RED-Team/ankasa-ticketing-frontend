@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { APP_PROD } from '../../helpers/env';
 import { Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/scrollbar';
@@ -49,7 +48,7 @@ const index = ({ trending }) => {
                 <div
                   className="trending-card"
                   style={{
-                    background: `url(${APP_PROD}uploads/cities/${item.image})`
+                    background: `url(https://drive.google.com/uc?export=view&id=${item.image})`
                   }}
                   key={item.id}>
                   <div className="trending-airline mt-3">
