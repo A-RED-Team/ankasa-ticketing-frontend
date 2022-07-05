@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import searchStyle from '../../assets/styles/searchResult.module.css';
 // import 'bootstrap-input-spinner/src/bootstrap-input-spinner';
 import style from '../../assets/styles/input.module.css';
-
+import Airline from '../../assets/images/airline.png';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
@@ -897,10 +897,10 @@ const SearchResult = () => {
                         marginBottom: '30px'
                       }}>
                       <img
-                        src={`${process.env.REACT_APP_PROD}uploads/airlines/${e.airlinesimage}`}
+                        src={`https://drive.google.com/uc?export=view&id=${e.airlinesimage}`}
                         alt=""
                         onError={(e) => {
-                          e.target.src = `${process.env.REACT_APP_PROD}uploads/airlines/airlines-default.png`;
+                          e.target.src = Airline;
                         }}
                         className={searchStyle.imgAirline}
                       />

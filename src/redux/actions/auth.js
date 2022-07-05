@@ -29,7 +29,7 @@ export const register = (data) => {
 export const forgot = (data) => {
   return new Promise((resolve, reject) => {
     axios
-      .put('auth/forgot-password', data)
+      .put('auth/forgot', data)
       .then((res) => {
         resolve(res.data);
       })
@@ -42,7 +42,7 @@ export const forgot = (data) => {
 export const reset = (data, token) => {
   return new Promise((resolve, reject) => {
     axios
-      .put(`auth/reset-password?token=${token}`, data)
+      .put(`auth/reset/${token}`, data)
       .then((res) => {
         resolve(res.data);
       })

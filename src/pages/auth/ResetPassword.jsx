@@ -1,18 +1,16 @@
 import '../../assets/styles/auth.css';
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Icon from '../../assets/images/icon.svg';
 import swal from 'sweetalert2';
 import Banner from '../../components/Banner';
 import { reset } from '../../redux/actions/auth';
-import { APP_NAME } from '../../helper/env';
+import { APP_NAME } from '../../helpers/env';
 import { toastr } from '../../utils/toastr';
 
 const ResetPassword = () => {
   const navigate = useNavigate();
-  const [queryParams] = useSearchParams();
-  const queryToken = queryParams.get('token');
-  const token = localStorage.getItem('token');
+  const { token } = useParams();
   const [loading, setLoading] = useState(false);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [confirmVisibility, setConfirmVisibility] = useState(false);
@@ -24,10 +22,6 @@ const ResetPassword = () => {
 
   useEffect(() => {
     document.title = `${APP_NAME} - Reset Password Page`;
-
-    if (token) {
-      return navigate('/');
-    }
   }, []);
 
   const onSubmit = (e) => {
@@ -41,7 +35,7 @@ const ResetPassword = () => {
       });
     } else {
       setLoading(true);
-      reset(form, queryToken)
+      reset(form, token)
         .then((res) => {
           swal
             .fire({

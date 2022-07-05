@@ -5,12 +5,11 @@ import Icon from '../../assets/images/icon.svg';
 import swal from 'sweetalert2';
 import Banner from '../../components/Banner';
 import { forgot } from '../../redux/actions/auth';
-import { APP_NAME } from '../../helper/env';
+import { APP_NAME } from '../../helpers/env';
 import { toastr } from '../../utils/toastr';
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
   const [loading, setLoading] = useState(false);
 
   const [form, setForm] = useState({
@@ -19,10 +18,6 @@ const ForgotPassword = () => {
 
   useEffect(() => {
     document.title = `${APP_NAME} - Forgot Password Page`;
-
-    if (token) {
-      return navigate('/');
-    }
   }, []);
 
   const onSubmit = (e) => {

@@ -5,16 +5,16 @@ import Icon from '../../assets/images/icon.svg';
 import swal from 'sweetalert2';
 import Banner from '../../components/Banner';
 import { register } from '../../redux/actions/auth';
-import { APP_NAME } from '../../helper/env';
+import { APP_NAME } from '../../helpers/env';
 import { toastr } from '../../utils/toastr';
 
 const Register = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
   const [loading, setLoading] = useState(false);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
 
   const [form, setForm] = useState({
+    name: '',
     username: '',
     email: '',
     password: '',
@@ -23,10 +23,6 @@ const Register = () => {
 
   useEffect(() => {
     document.title = `${APP_NAME} - Register Page`;
-
-    if (token) {
-      return navigate('/');
-    }
   }, []);
 
   const onSubmit = (e) => {
@@ -39,7 +35,7 @@ const Register = () => {
         icon: 'error'
       });
       setLoading(false);
-    } else if (form.username === '' || form.email === '' || form.password === '') {
+    } else if (!form.name || !form.username || !form.email || !form.password) {
       swal.fire({
         title: 'Error!',
         text: 'All field must be filled!',
@@ -60,7 +56,7 @@ const Register = () => {
             });
         })
         .catch((err) => {
-          if (err.response.data.message === 'validation failed') {
+          if (err.response.data.code === 422) {
             const error = err.response.data.error;
             error.map((e) => toastr(e, 'error'));
           } else {
@@ -93,7 +89,13 @@ const Register = () => {
                   <h2 className="mb-4 auth-header">Register</h2>
                   <input
                     type="text"
-                    name="fullname"
+                    name="name"
+                    placeholder="Name"
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  />
+                  <input
+                    type="text"
+                    name="username"
                     placeholder="Username"
                     onChange={(e) => setForm({ ...form, username: e.target.value })}
                   />
