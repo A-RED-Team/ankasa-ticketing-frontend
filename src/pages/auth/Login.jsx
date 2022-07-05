@@ -2,7 +2,7 @@ import '../../assets/styles/auth.css';
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert2';
-import { APP_NAME } from '../../helper/env';
+import { APP_NAME } from '../../helpers/env';
 import { toastr } from '../../utils/toastr';
 import jwt_decode from 'jwt-decode';
 import Banner from '../../components/Banner';

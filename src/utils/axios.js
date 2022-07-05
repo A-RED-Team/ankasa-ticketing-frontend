@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL } from '../helper/env';
+import { API_URL } from '../helpers/env';
 
 const axiosApiIntances = axios.create({
   baseURL: `${API_URL}`

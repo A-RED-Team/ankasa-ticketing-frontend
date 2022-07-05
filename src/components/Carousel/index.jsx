@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { APP_PROD } from '../../helper/env';
+import { APP_PROD } from '../../helpers/env';
 
 import 'swiper/css';
 import 'swiper/css/navigation';

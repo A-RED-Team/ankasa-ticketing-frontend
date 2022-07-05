@@ -5,7 +5,7 @@ import Icon from '../../assets/images/icon.svg';
 import swal from 'sweetalert2';
 import Banner from '../../components/Banner';
 import { reset } from '../../redux/actions/auth';
-import { APP_NAME } from '../../helper/env';
+import { APP_NAME } from '../../helpers/env';
 import { toastr } from '../../utils/toastr';
 
 const ResetPassword = () => {

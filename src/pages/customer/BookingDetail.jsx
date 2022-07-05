@@ -5,7 +5,7 @@ import Footer from '../../components/Footer';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import moment from 'moment';
-import { APP_PROD } from '../../helper/env';
+import { APP_PROD } from '../../helpers/env';
 import Swal from 'sweetalert2';
 import { getDetailBooking } from '../../redux/actions/detailBooking';
 

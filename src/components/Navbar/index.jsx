@@ -4,7 +4,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getDetailUser } from '../../redux/actions/user';
 import jwt_decode from 'jwt-decode';
-import { APP_STAGING, APP_DEV, APP_PROD } from '../../helper/env';
+import { APP_STAGING, APP_DEV, APP_PROD } from '../../helpers/env';
 import '../../utils/navbar.js';
 
 import logo from '../../assets/icons/illustration.svg';
