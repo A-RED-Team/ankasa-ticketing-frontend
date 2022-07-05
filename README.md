@@ -1,23 +1,28 @@
 <div id="top"></div>
-<p align="center">
-  <a href="https://github.com/altrawan/ankasa-ticketing-frontend">
-    <img src="./screenshoots/logo.png"  width="200px" alt="Logo">
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/A-RED-Team/ankasa-ticketing-frontend">
+    <img src="https://lh3.googleusercontent.com/d/1j1a09gdu6PaysgD-U4teBGLPuDqN81zA" alt="Logo" width="200px">
   </a>
-</p>
-<h3 align="center">Ankasa Ticketing App</h3>
-<p align="center">
-  Find your Flight and explore the world with us.
-  <br/>
-  <a href="#table-of-contents">
-    <strong>Explore the docs »</strong>
-  </a>
-  <br /><br/>
-  <a href="https://ankasa-ticketing.netlify.app">View Demo</a>
-  ·
-  <a href="https://github.com/altrawan/ankasa-ticketing-frontend">Report Bug</a>
-  ·
-  <a href="https://github.com/altrawan/ankasa-ticketing-frontend">Request Feature</a>
-</p>
+
+  <h3 align="center">Ankasa Ticketing</h3>
+
+  <p align="center">
+    Find your Flight and explore the world with us.
+    <br />
+    <a href="#table-of-contents"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="bit.ly/blanja-app">View Demo</a>
+    ·
+    <a href="https://github.com/A-RED-Team/ankasa-ticketing-frontend/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/A-RED-Team/ankasa-ticketing-frontend/issues">Request Feature</a>
+  </p>
+</div>
+
 <p align="center">
   <a href="https://reactjs.org/">
     <img src="https://img.shields.io/badge/React-v18-blue?style=flat">
@@ -29,22 +34,35 @@
 
 <!-- TABLE OF CONTENTS -->
  ## Table of Contents
-
-* [About the Project](#about-the-project)
-  * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-  * [Setup .env](#setup-env)
-* [Screenshots](#screenshoots)
-* [Contributing](#contributing)
-* [Related Project](#related-project)
-* [Our Team](#our-team)
-* [License](#license)
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#setup-env-example">Setup .env example</a></li>
+      </ul>
+    </li>
+    <li><a href="#screenshoots">Screenshots</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#related-project">Related Project</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#our-team">Our Team</a></li>
+    <li><a href="#license">License</a></li>
+  </ol>
+</details>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
--
+**Ankasa Ticketing** is a flight ticket booking application that has several features, namely ticket search, ticket booking, canceling unpaid tickets, and recommendations for frequently visited destinations.
 
 ### Built With
 This app was built with some technologies below:
@@ -87,22 +105,17 @@ npm install
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-### Setup .env
+### Setup .env example
 Create .env file in your root project folder.
 ```
 # app
-REACT_APP_NAME=[APP NAME]
-REACT_APP_VERSION=[APP VERSION]
-
-# mode
-REACT_APP_DEV=[BACKEND_URL_DEVELOPMENT]
-REACT_APP_PROD=[BACKEND_URL_PRODUCTION]
-REACT_APP_STAGING=[dev / prod]
+REACT_APP_APP_NAME=
+REACT_APP_NODE_ENV=
+REACT_APP_API_URL=
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Screenshoots
 ## Screenshoots
 <p align="center" display=flex>
 <table>
@@ -170,13 +183,17 @@ Contributions are what make the open source community such an amazing place to b
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Related Project
-:rocket: [`Backend Ankasa Ticketing`](https://github.com/altrawan/ankasa-ticketing-backend)
+:rocket: [`Backend Ankasa Ticketing`](https://github.com/A-RED-Team/ankasa-ticketing-backend)
 
-:rocket: [`Frontend Ankasa Ticketing`](https://github.com/altrawan/ankasa-ticketing-frontend)
+:rocket: [`Frontend Ankasa Ticketing`](https://github.com/A-RED-Team/ankasa-ticketing-frontend)
 
-:rocket: [`Frontend Ankasa Ticketing Admin`](https://github.com/altrawan/ankasa-ticketing-admin)
+:rocket: [`Frontend Ankasa Ticketing Admin`](https://github.com/A-RED-Team/ankasa-ticketing-admin)
+
+:rocket: [`Web Service`](https://ankasa-ticketing-app.herokuapp.com/)
 
 :rocket: [`Demo Ankasa Ticketing`](https://bit.ly/ankasa-ticketing-app)
+      
+:rocket: [`Demo Ankasa Ticketing Admin`](https://ankasa-ticketing-admin.netlify.app/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -208,9 +225,9 @@ Contributions are what make the open source community such an amazing place to b
       </td>
       <td align="center">
         <a href="https://github.com/janexmgd">
-          <img width="100" src="https://avatars.githubusercontent.com/u/43938494?v=4" alt="Denny Wahyu Prasetio"><br/>
-          <sub><b>Denny Wahyu Prasetio</b></sub> <br/>
-          <sub>Back End Web Developer</sub>
+          <img width="100" src="https://avatars.githubusercontent.com/u/43938494?v=4" alt="Denny Wahyu Prasetyo"><br/>
+          <sub><b>Denny Wahyu Prasetyo</b></sub> <br/>
+          <sub>Full Stack Web Developer</sub>
         </a>
       </td>
     </tr>
