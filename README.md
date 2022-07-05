@@ -119,19 +119,28 @@ REACT_APP_API_URL=
 ## Screenshoots
 <p align="center" display=flex>
 <table>
- 
+
   <tr>
-    <td><image src="screenshoots/Explore Page.png" alt="Explore Page" width=100%></td>
-    <td><image src="screenshoots/Search Result Page.png" alt="Search Result Page" width=100%/></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1W6mupMiQb_dX03zi3CvY28YpBFNAzes8" alt="Explore Page" width=100%></td>
+    <td><image src="https://lh3.googleusercontent.com/d/11T7CtcHgDqaVqx5_m2wcHFQymuJUP_kr" alt="Expolre Page After Login" width=100%/></td>
   </tr>
    <tr>
     <td>Explore Page</td>
+    <td>Explore Page After Login</td>
+  </tr>
+ 
+  <tr>
+    <td><image src="https://lh3.googleusercontent.com/d/18DFRNRr96aNt3Ena8PMcJsHpWOn8pQBc" alt="Find Ticket" width=100%></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1Fnea4UkhazLMx5Jz1eCCybo7GFB6rR50" alt="Search Result Page" width=100%/></td>
+  </tr>
+   <tr>
+    <td>Find Ticket</td>
     <td>Search Result Page</td>
   </tr>
   
   <tr>
-    <td><image src="screenshoots/Login Page.png" alt="Login Page" width=100%></td>
-    <td><image src="screenshoots/Register Page.png" alt="Register Page" width=100%/></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1RTPmmtW0y1ylH199h0WpKklVRRW09CM4" alt="Login Page" width=100%></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1KxyPb5SRjDX0N57LBcQ6NwHMx3ikkx6U" alt="Register Page" width=100%/></td>
   </tr>
   <tr>
     <td>Login Page</td>
@@ -139,8 +148,8 @@ REACT_APP_API_URL=
   </tr>
 
   <tr>
-    <td><image src="screenshoots/Forgot Password Page.png" alt="Forgot Password Page" width=100%></td>
-    <td><image src="screenshoots/Reset Password Page.png" alt="Reset Password Page" width=100%></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1SxrQzdXVkWBSjCW7tguk2EJ8lxrkJg_h" alt="Forgot Password Page" width=100%></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1khLxMvrjsthsF0HCrsW2JhMj7jdT3yZY" alt="Reset Password Page" width=100%></td>
   </tr>
   <tr>
       <td>Forgot Password Page</td>
@@ -148,8 +157,8 @@ REACT_APP_API_URL=
   </tr>
   
   <tr>
-    <td><image src="screenshoots/Flight Detail Page.png" alt="Flight Detail Page" width=100%/></td>
-    <td><image src="screenshoots/Booking Detail Page.png" alt="Booking Detail Page"' width=100%></td>
+    <td><image src="https://lh3.googleusercontent.com/d/11REMFQ1DMoWxGYN_LSwEEMA9aNJ4x2LY" alt="Flight Detail Page" width=100%/></td>
+    <td><image src="https://lh3.googleusercontent.com/d/1LGfMhxI4SUZbAmVBG-k9OWFYJY5fGME2" alt="Booking Detail Page"' width=100%></td>
   </tr>
   <tr>
     <td>Flight Detail Page</td>
@@ -158,12 +167,12 @@ REACT_APP_API_URL=
   
 
   <tr>
-    <td><image src="screenshoots/My Booking Page.png" alt="My Booking Page" width=100%></td> 
-    <td><image src="screenshoots/My Profile Page.png" alt="My Profile Page" width=100%></td>  
+    <td><image src="https://lh3.googleusercontent.com/d/1hS0gGZCOSXvIuvjb-3ecVNJGYN2Lb5oF" alt="My Booking Page" width=100%></td> 
+    <td><image src="https://lh3.googleusercontent.com/d/1S4rjS9jrcAfX0GZpwlg6KwvhNl3HtUUd" alt="Profile Page" width=100%></td>  
   </tr>
   <tr>
     <td>My Booking Page</td>
-    <td>My Profile Page</td>
+    <td>Profile Page</td>
   </tr>
 </table>
 </p>
