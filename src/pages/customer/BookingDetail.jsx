@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import moment from 'moment';
-import { APP_PROD } from '../../helpers/env';
 import Swal from 'sweetalert2';
 import { getDetailBooking } from '../../redux/actions/detailBooking';
 import Airline from '../../assets/images/airline.png';
+import qrcode from '../../assets/images/QR Code 1.png';
 
 // Import Images
 // import logo from '../../assets/images/Group 1125.svg';
@@ -113,7 +113,6 @@ const Pass = styled.div`
 const BookingDetail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [getQrcode, setGetQrcode] = useState('');
   const token = localStorage.getItem('token');
   const detailBooking = useSelector((state) => state.detailBooking);
   const { id } = useParams();
@@ -138,19 +137,6 @@ const BookingDetail = () => {
         navigate('/profile/booking');
       });
     }
-    const requestImage = async () => {
-      try {
-        const response = await fetch(`${APP_PROD}qrcode/${id}.png`);
-        if (response.status != 200) {
-          setGetQrcode(`${APP_PROD}qrcode/6dee2567-ee39-4aad-b855-51cf7f7eed15.png`);
-        } else {
-          setGetQrcode(`${APP_PROD}qrcode/${id}.png`);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    requestImage();
   }, []);
 
   return (
@@ -219,9 +205,12 @@ const BookingDetail = () => {
                 </Left>
                 <Right className="col-sm-3 ">
                   <img
-                    src={getQrcode}
+                    src={`https://drive.google.com/uc?export=view&id=${qrcode}`}
                     // src={`${APP_PROD}qrcode/6dee2567-ee39-4aad-b855-51cf7f7eed15.png`}
                     alt="QR Code"
+                    onError={(e) => {
+                      e.target.src = qrcode;
+                    }}
                   />
                 </Right>
               </div>
